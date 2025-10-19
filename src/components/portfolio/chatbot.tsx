@@ -24,7 +24,7 @@ const quickQuestions: { [key in Role]: string[] } = {
 export function Chatbot({ role }: { role: Role }) {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
-    { sender: 'bot', text: "Hello! I'm an AI assistant. How can I help you today?" },
+    { sender: 'bot', text: "Hello! I'm the First Officer, your AI assistant. How can I help you navigate this portfolio?" },
   ]);
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -71,7 +71,7 @@ export function Chatbot({ role }: { role: Role }) {
             className="fixed bottom-24 right-4 sm:right-8 w-[calc(100%-2rem)] max-w-sm h-[60vh] bg-card/80 backdrop-blur-lg border border-white/10 rounded-lg shadow-2xl flex flex-col z-50"
           >
             <header className="p-4 border-b border-white/10 flex justify-between items-center">
-              <h3 className="font-semibold text-card-foreground">AI Portfolio Assistant</h3>
+              <h3 className="font-semibold text-card-foreground">First Officer</h3>
               <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)}>
                 <X className="h-4 w-4" />
               </Button>
@@ -146,7 +146,7 @@ export function Chatbot({ role }: { role: Role }) {
             transition={{ duration: 0.2 }}
             className="absolute"
           >
-            {isOpen ? <X className="h-7 w-7" /> : <Plus className="h-7 w-7" />}
+            {isOpen ? <X className="h-7 w-7" /> : <Bot className="h-7 w-7" />}
           </motion.div>
         </AnimatePresence>
       </Button>
