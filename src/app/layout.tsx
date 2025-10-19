@@ -3,11 +3,10 @@ import './globals.css';
 import { cn } from '@/lib/utils';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
-import { AviationCursor } from '@/components/aviation-cursor';
 
 export const metadata: Metadata = {
-  title: 'Altitude Portfolio',
-  description: 'An aviation-themed portfolio.',
+  title: 'Flight Control',
+  description: 'An aviation-themed portfolio system.',
 };
 
 export default function RootLayout({
@@ -40,13 +39,11 @@ export default function RootLayout({
       <body className={cn('font-body antialiased min-h-screen bg-background')}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >
-          <AviationCursor>
-            {children}
-          </AviationCursor>
+          {children}
           <Toaster />
         </ThemeProvider>
       </body>

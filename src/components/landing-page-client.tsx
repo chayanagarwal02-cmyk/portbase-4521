@@ -1,36 +1,34 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
-import { ArrowRight, Briefcase, Bot, User, UserCheck } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { ConfettiCelebration } from '@/components/confetti-celebration';
+import { Briefcase, Database, Eye, UserCheck, ArrowRight, Plane } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const roles = [
-  { name: 'HR', icon: Briefcase, role: 'hr' },
-  { name: 'Data Professional', icon: Bot, role: 'data-professional' },
-  { name: 'Hiring Manager', icon: UserCheck, role: 'hiring-manager' },
-  { name: 'Stalker', icon: User, role: 'stalker' },
+  { name: 'HR Professional', subtitle: 'Culture & Team Fit', icon: Briefcase, role: 'hr', color: 'bg-blue-600/80 hover:bg-blue-600' },
+  { name: 'Data Professional', subtitle: 'Technical Deep Dive', icon: Database, role: 'data-professional', color: 'bg-green-600/80 hover:bg-green-600' },
+  { name: 'Just Curious', subtitle: 'General Browse', icon: Eye, role: 'stalker', color: 'bg-purple-600/80 hover:bg-purple-600' },
+  { name: 'Hiring Manager', subtitle: 'Business Impact Focus', icon: UserCheck, role: 'hiring-manager', color: 'bg-orange-600/80 hover:bg-orange-600' },
 ];
 
 export function LandingPageClient() {
-  const [celebrate, setCelebrate] = useState(false);
-
-  const handleRoleSelection = () => {
-    setCelebrate(true);
-  };
-
   return (
     <div className="relative z-10 flex flex-col items-center text-center">
-      {celebrate && <ConfettiCelebration />}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+        className="mb-8"
+      >
+        <Plane className="h-12 w-12 text-primary" />
+      </motion.div>
       <motion.h1
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         className="text-5xl font-headline font-bold tracking-tight text-foreground md:text-7xl"
       >
-        Altitude Portfolio
+        Flight Control
       </motion.h1>
       <motion.p
         initial={{ opacity: 0, y: 20 }}
@@ -38,16 +36,27 @@ export function LandingPageClient() {
         transition={{ duration: 0.5, delay: 0.2 }}
         className="mt-4 max-w-xl text-lg text-muted-foreground"
       >
-        Welcome to my digital cockpit. Please identify your role to tailor your flight experience through my professional journey.
+        Who's viewing this portfolio?
       </motion.p>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.4 }}
-        className="mt-8"
+        transition={{ duration: 0.5, delay: 0.3 }}
+        className="mt-2 flex items-center gap-2 text-sm text-green-400"
       >
-        <h2 className="text-xl font-semibold text-foreground">Who is viewing this portfolio?</h2>
-        <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <span className="relative flex h-3 w-3">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+        </span>
+        System Ready - Awaiting Selection
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.4 }}
+        className="mt-12 w-full max-w-4xl"
+      >
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           {roles.map((role, index) => (
             <motion.div
               key={role.name}
@@ -55,17 +64,18 @@ export function LandingPageClient() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3, delay: 0.5 + index * 0.1 }}
             >
-              <Button
-                asChild
-                variant="outline"
-                className="w-full h-24 flex-col justify-center gap-2 transform transition-all hover:scale-105 hover:bg-accent/50"
-                onClick={handleRoleSelection}
-              >
-                <Link href={`/portfolio?role=${role.role}`}>
-                  <role.icon className="h-8 w-8 text-primary" />
-                  <span className="text-base font-medium">{role.name}</span>
-                </Link>
-              </Button>
+              <Link href={`/portfolio?role=${role.role}`} className={`group relative block p-8 rounded-lg border border-white/10 text-left transition-all duration-300 ${role.color} backdrop-blur-sm`}>
+                <div className="absolute top-4 right-4 text-white/20">
+                   <role.icon className="h-8 w-8" />
+                </div>
+                <h3 className="text-xl font-bold text-white">{role.name}</h3>
+                <p className="mt-1 text-white/70">{role.subtitle}</p>
+                <div className="mt-4 flex items-center text-sm text-white/70 transition-all group-hover:text-white group-hover:gap-2">
+                  Click to proceed <ArrowRight className="h-4 w-4 opacity-0 transition-opacity group-hover:opacity-100" />
+                </div>
+                <div className="absolute top-2 left-2 w-4 h-4 border-t border-l border-white/20 rounded-tl-md"></div>
+                <div className="absolute bottom-2 right-2 w-4 h-4 border-b border-r border-white/20 rounded-br-md"></div>
+              </Link>
             </motion.div>
           ))}
         </div>
