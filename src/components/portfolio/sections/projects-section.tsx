@@ -2,14 +2,15 @@
 
 import { useState, useRef, type MouseEvent } from 'react';
 import Image from 'next/image';
-import { projectsData } from '@/lib/data';
+import { projectsData, testimonialsData } from '@/lib/data';
 import { placeholderImages } from '@/lib/placeholder-images.json';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { ExternalLink, Github } from 'lucide-react';
+import { ExternalLink, Github, MessageSquareQuote } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 function TiltCard({ project, onOpenModal }: { project: typeof projectsData[0]; onOpenModal: () => void }) {
   const cardRef = useRef<HTMLDivElement>(null);
@@ -66,14 +67,43 @@ function TiltCard({ project, onOpenModal }: { project: typeof projectsData[0]; o
 
 export function ProjectsSection() {
   const [selectedProject, setSelectedProject] = useState<typeof projectsData[0] | null>(null);
+  const avatarImage = placeholderImages.find(p => p.id === 'avatar-placeholder');
 
   return (
-    <section id="projects" className="py-8">
+    <section id="projects" className="py-8 space-y-12">
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 perspective-1000">
         {projectsData.map((project) => (
           <TiltCard key={project.id} project={project} onOpenModal={() => setSelectedProject(project)} />
         ))}
       </div>
+
+      <Card>
+        <CardHeader>
+            <CardTitle className="flex items-center gap-2 font-headline">
+                <MessageSquareQuote />
+                Testimonials
+            </CardTitle>
+        </CardHeader>
+        <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {testimonialsData.map((testimonial) => {
+                 const testimonialAvatar = placeholderImages.find(p => p.id === 'testimonial-avatar-placeholder') || avatarImage;
+                return(
+                <div key={testimonial.id} className="bg-secondary/30 p-6 rounded-lg border border-border">
+                    <div className="flex items-center gap-4 mb-4">
+                        <Avatar>
+                            {testimonialAvatar && <AvatarImage src={testimonialAvatar.imageUrl} alt={testimonial.name} data-ai-hint={testimonialAvatar.imageHint}/>}
+                            <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
+                        </Avatar>
+                        <div>
+                            <p className="font-semibold text-foreground">{testimonial.name}</p>
+                            <p className="text-sm text-muted-foreground">{testimonial.title}</p>
+                        </div>
+                    </div>
+                    <p className="text-muted-foreground font-body italic">"{testimonial.quote}"</p>
+                </div>
+            )})}
+        </CardContent>
+      </Card>
 
       <Dialog open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
         <AnimatePresence>
