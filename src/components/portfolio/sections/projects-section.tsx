@@ -1,95 +1,100 @@
 'use client';
 
-import { useState, useRef, type MouseEvent } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
-import { projectsData, testimonialsData } from '@/lib/data';
+import { projectsData, testimonialsData, techStackData } from '@/lib/data';
 import { placeholderImages } from '@/lib/placeholder-images.json';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { ExternalLink, Github, MessageSquareQuote } from 'lucide-react';
+import { ExternalLink, Github, MessageSquareQuote, Folder, TrendingUp, Code, Database, Cloud, Cpu, BarChart2, Zap, Star, Plane, ChevronLeft, ChevronRight, Briefcase, FileCode, BarChart, Rocket } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Progress } from '@/components/ui/progress';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 
-function TiltCard({ project, onOpenModal }: { project: typeof projectsData[0]; onOpenModal: () => void }) {
-  const cardRef = useRef<HTMLDivElement>(null);
 
-  const onMouseMove = (e: MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
-    const { left, top, width, height } = cardRef.current.getBoundingClientRect();
-    const x = (e.clientX - left - width / 2) / (width / 2);
-    const y = (e.clientY - top - height / 2) / (height / 2);
-    cardRef.current.style.transform = `perspective(1000px) rotateY(${x * 10}deg) rotateX(${-y * 10}deg) scale3d(1.05, 1.05, 1.05)`;
-  };
-
-  const onMouseLeave = () => {
-    if (cardRef.current) {
-      cardRef.current.style.transform = `perspective(1000px) rotateY(0) rotateX(0) scale3d(1, 1, 1)`;
-    }
-  };
-
-  const image = placeholderImages.find(p => p.id === 'project-placeholder');
-
-  return (
-    <div
-      ref={cardRef}
-      onMouseMove={onMouseMove}
-      onMouseLeave={onMouseLeave}
-      onClick={onOpenModal}
-      className="transform-style-3d transition-transform duration-200 ease-out cursor-pointer"
-    >
-      <Card className="h-full overflow-hidden">
-        <CardHeader className="p-0 relative">
-          {image && (
-            <Image
-                src={image.imageUrl}
-                alt={project.title}
-                width={600}
-                height={400}
-                className="w-full h-48 object-cover"
-                data-ai-hint={image.imageHint}
-            />
-          )}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-        </CardHeader>
-        <CardContent className="p-6">
-          <CardTitle className="mb-2">{project.title}</CardTitle>
-          <p className="text-sm text-muted-foreground line-clamp-2">{project.description}</p>
-          <div className="mt-4 flex flex-wrap gap-2">
-            {project.tags.slice(0, 3).map((tag) => <Badge key={tag} variant="secondary">{tag}</Badge>)}
-          </div>
-        </CardContent>
-      </Card>
-    </div>
-  );
-}
+const iconMap: { [key: string]: React.ElementType } = {
+  Python: Code,
+  'SQL/PostgreSQL': Database,
+  'AWS/Azure': Cloud,
+  'Machine Learning': Cpu,
+  'Data Visualization': BarChart2,
+  'ETL Pipelines': Zap,
+  Briefcase: Briefcase,
+  FileCode: FileCode,
+  BarChart: BarChart,
+  Rocket: Rocket,
+};
 
 export function ProjectsSection() {
   const [selectedProject, setSelectedProject] = useState<typeof projectsData[0] | null>(null);
   const avatarImage = placeholderImages.find(p => p.id === 'avatar-placeholder');
 
   return (
-    <section id="projects" className="py-8 space-y-12">
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 perspective-1000">
-        {projectsData.map((project) => (
-          <TiltCard key={project.id} project={project} onOpenModal={() => setSelectedProject(project)} />
-        ))}
+    <section id="projects" className="py-8 space-y-16">
+      <div>
+        <h2 className="text-2xl font-bold font-headline mb-8 flex items-center gap-2"><Briefcase/> Technology Stack</h2>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+          {techStackData.map((tech) => {
+            const Icon = iconMap[tech.name] || Code;
+            return (
+              <Card key={tech.name} className="bg-secondary/30 text-center p-4 flex flex-col items-center justify-center">
+                <Icon className="w-8 h-8 text-primary mb-2" />
+                <p className="font-semibold text-sm mb-2">{tech.name}</p>
+                <Progress value={tech.proficiency} className="h-1" />
+              </Card>
+            )
+          })}
+        </div>
+      </div>
+      
+      <div>
+        <h2 className="text-2xl font-bold font-headline mb-8 flex items-center gap-2"><Folder /> Featured Projects</h2>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projectsData.map((project) => (
+            <Card key={project.id} className="bg-secondary/30 flex flex-col overflow-hidden group hover:border-primary/50 transition-all cursor-pointer" onClick={() => setSelectedProject(project)}>
+              <CardHeader>
+                <div className="flex items-start gap-4">
+                  <div className="bg-primary/20 p-2 rounded-md">
+                    <Folder className="w-6 h-6 text-primary" />
+                  </div>
+                  <div>
+                    <CardTitle className="mb-1 text-lg">{project.title}</CardTitle>
+                    <p className="text-sm text-muted-foreground line-clamp-2">{project.description}</p>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent className="flex-grow space-y-4">
+                <div className="flex flex-wrap gap-2">
+                  {project.tags.slice(0, 4).map((tag) => <Badge key={tag} variant="outline">{tag}</Badge>)}
+                </div>
+                <div className="flex items-center gap-2 text-green-400 text-sm font-medium">
+                  <TrendingUp className="w-4 h-4"/>
+                  <span>{project.impact}</span>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
       </div>
 
-      <Card>
-        <CardHeader>
-            <CardTitle className="flex items-center gap-2 font-headline">
-                <MessageSquareQuote />
-                Testimonials
-            </CardTitle>
-        </CardHeader>
-        <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div>
+        <h2 className="text-2xl font-bold font-headline mb-8 text-center flex items-center justify-center gap-2">What People Say <Plane className="w-6 h-6 text-primary"/></h2>
+        <Carousel className="w-full max-w-3xl mx-auto" opts={{loop: true}}>
+          <CarouselContent>
             {testimonialsData.map((testimonial) => {
-                 const testimonialAvatar = placeholderImages.find(p => p.id === 'testimonial-avatar-placeholder') || avatarImage;
-                return(
-                <div key={testimonial.id} className="bg-secondary/30 p-6 rounded-lg border border-border">
-                    <div className="flex items-center gap-4 mb-4">
+              const testimonialAvatar = placeholderImages.find(p => p.id === 'testimonial-avatar-placeholder') || avatarImage;
+              return(
+                <CarouselItem key={testimonial.id}>
+                  <div className="p-1">
+                    <Card className="bg-secondary/30 border-border/50 p-8 relative">
+                      <div className="flex justify-center mb-4">
+                        {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 text-yellow-400 fill-yellow-400" />)}
+                      </div>
+                      <p className="text-center text-lg italic text-foreground/80 mb-6">"{testimonial.quote}"</p>
+                       <div className="flex items-center justify-center gap-4">
                         <Avatar>
                             {testimonialAvatar && <AvatarImage src={testimonialAvatar.imageUrl} alt={testimonial.name} data-ai-hint={testimonialAvatar.imageHint}/>}
                             <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
@@ -99,11 +104,16 @@ export function ProjectsSection() {
                             <p className="text-sm text-muted-foreground">{testimonial.title}</p>
                         </div>
                     </div>
-                    <p className="text-muted-foreground font-body italic">"{testimonial.quote}"</p>
-                </div>
+                    <div className="absolute top-4 right-4 text-8xl font-bold text-foreground/5 opacity-50 select-none">”</div>
+                    </Card>
+                  </div>
+                </CarouselItem>
             )})}
-        </CardContent>
-      </Card>
+          </CarouselContent>
+          <CarouselPrevious className="left-[-50px]"/>
+          <CarouselNext className="right-[-50px]"/>
+        </Carousel>
+      </div>
 
       <Dialog open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
         <AnimatePresence>

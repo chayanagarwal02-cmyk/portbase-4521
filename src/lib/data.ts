@@ -1,4 +1,4 @@
-import type { Project, Skill, Leadership, Certificate, Blog, Role, AnalyticsData, CodeSample, PerformanceMetric, SkillOverview, Testimonial } from './types';
+import type { Project, Skill, Leadership, Certificate, Blog, Role, AnalyticsData, CodeSample, PerformanceMetric, SkillOverview, Testimonial, TechStack } from './types';
 
 export const contentVisibility: Record<Role, string[]> = {
   'hr': ['About Me', 'Team Projects', 'Certifications', 'Contact'],
@@ -37,36 +37,39 @@ export const heroData: Record<Role, {title: string; subtitle: string; badges: {t
 export const projectsData: Project[] = [
   {
     id: 1,
-    title: 'Flight-Deck Predictive Maintenance',
-    description: 'An ML-powered system to predict aircraft component failures before they happen, reducing downtime and maintenance costs.',
-    tags: ['Python', 'scikit-learn', 'TensorFlow', 'SQL', 'Tableau'],
+    title: 'Aviation Data Analytics Platform',
+    description: 'Built a real-time analytics dashboard for flight operations monitoring.',
+    tags: ['Python', 'React', 'PostgreSQL', 'AWS'],
     achievements: ['Reduced unscheduled maintenance by 18%', 'Achieved 94% prediction accuracy', 'Deployed as a microservice on AWS'],
     duration: '6 Months',
     teamSize: 4,
     liveUrl: '#',
     repoUrl: '#',
+    impact: '40% efficiency increase'
   },
   {
     id: 2,
-    title: 'Air-Traffic Flow Optimization',
-    description: 'A real-time analytics dashboard to monitor and optimize air traffic flow, leveraging ADS-B data streams.',
-    tags: ['Kafka', 'Spark Streaming', 'React', 'D3.js', 'PostgreSQL'],
+    title: 'Predictive Maintenance System',
+    description: 'ML-powered system to predict aircraft maintenance needs.',
+    tags: ['Machine Learning', 'TensorFlow', 'Azure', 'PowerBI'],
     achievements: ['Decreased average flight delays by 8% in simulated environments', 'Processed over 1 million data points per minute', 'Visualized data on a live interactive map'],
     duration: '9 Months',
     teamSize: 6,
     liveUrl: '#',
     repoUrl: '#',
+    impact: '$2M cost savings'
   },
   {
     id: 3,
-    title: 'Automated Pilot Logbook',
-    description: 'A mobile application that automatically logs flight hours using GPS and aircraft data, simplifying record-keeping for pilots.',
-    tags: ['React Native', 'Firebase', 'Google Maps API', 'Node.js'],
+    title: 'Flight Route Optimization',
+    description: 'Algorithm to optimize flight routes for fuel efficiency.',
+    tags: ['Optimization', 'Python', 'Algorithms', 'GIS'],
     achievements: ['Acquired 500+ beta users within 3 months', 'Featured on a popular aviation blog', 'Automated over 10,000 log entries'],
     duration: '1 Year',
     teamSize: 2,
     liveUrl: '#',
     repoUrl: '#',
+    impact: '15% fuel reduction'
   },
 ];
 
@@ -256,9 +259,9 @@ ORDER BY
 ];
 
 export const performanceMetrics: PerformanceMetric[] = [
-    { name: "Team Player", value: 95 },
-    { name: "Communication", value: 88 },
-    { name: "Adaptability", value: 92 },
+    { name: "Team Player", value: 95, color: "hsl(var(--chart-1))" },
+    { name: "Communication", value: 88, color: "hsl(var(--chart-2))" },
+    { name: "Adaptability", value: 92, color: "hsl(var(--chart-3))" },
 ];
 
 export const skillsOverview: SkillOverview[] = [
@@ -273,14 +276,29 @@ export const skillsOverview: SkillOverview[] = [
 export const testimonialsData: Testimonial[] = [
     {
         id: 1,
+        name: 'Sarah Johnson',
+        title: 'VP of Operations at SkyTech Airlines',
+        quote: 'An exceptional data analyst who transformed our operations. The insights provided led to a 40% improvement in efficiency and significant cost savings.'
+    },
+    {
+        id: 2,
         name: 'Alex Johnson',
         title: 'Project Manager, SkyHigh Ventures',
         quote: 'Working with them was a breeze. Their ability to translate complex data into actionable insights was instrumental to our project\'s success. A true team player.'
     },
     {
-        id: 2,
+        id: 3,
         name: 'Samantha Carter',
         title: 'Lead Engineer, QuantumLeap Dynamics',
         quote: 'Their technical expertise is matched only by their communication skills. They have a unique talent for explaining intricate concepts clearly and concisely.'
     }
+];
+
+export const techStackData: TechStack[] = [
+    { name: 'Python', proficiency: 90, icon: 'Code' },
+    { name: 'SQL/PostgreSQL', proficiency: 85, icon: 'Database' },
+    { name: 'AWS/Azure', proficiency: 80, icon: 'Cloud' },
+    { name: 'Machine Learning', proficiency: 88, icon: 'Cpu' },
+    { name: 'Data Visualization', proficiency: 75, icon: 'BarChart2' },
+    { name: 'ETL Pipelines', proficiency: 82, icon: 'Zap' },
 ];

@@ -10,6 +10,7 @@ export interface Project {
   teamSize: number;
   liveUrl: string;
   repoUrl: string;
+  impact: string;
 }
 
 export interface Skill {
@@ -59,6 +60,7 @@ export interface CodeSample {
 export interface PerformanceMetric {
     name: string;
     value: number;
+    color: string;
 }
 
 export interface SkillOverview {
@@ -71,4 +73,10 @@ export interface Testimonial {
     name: string;
     title: string;
     quote: string;
+}
+
+export interface TechStack {
+    name: string;
+    proficiency: number;
+    icon: string;
 }
