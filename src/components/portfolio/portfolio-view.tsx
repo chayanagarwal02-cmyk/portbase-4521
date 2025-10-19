@@ -11,7 +11,6 @@ import { CertificatesSection } from '@/components/portfolio/sections/certificate
 import { ProjectsSection } from '@/components/portfolio/sections/projects-section';
 import { Chatbot } from '@/components/portfolio/chatbot';
 import { contentVisibility, type Role } from '@/lib/data';
-import { Button } from '../ui/button';
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 
@@ -42,16 +41,19 @@ export function PortfolioView({ role }: { role: string }) {
   }, [router]);
 
   useEffect(() => {
-    const scrollProgress = document.getElementById('scroll-progress-bar');
+    const scrollProgress = document.getElementById('scroll-progress');
     if (!scrollProgress) return;
-
+  
+    const bar = scrollProgress.querySelector('#scroll-progress-bar');
+    if (!bar) return;
+  
     const handleScroll = () => {
       const totalHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       const scrollPosition = window.scrollY;
       const progress = (scrollPosition / totalHeight) * 100;
-      scrollProgress.style.width = `${progress}%`;
+      (bar as HTMLDivElement).style.width = `${progress}%`;
     };
-
+  
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -65,7 +67,7 @@ export function PortfolioView({ role }: { role: string }) {
   
   return (
     <div className="flex flex-col min-h-screen bg-background">
-      <div id="scroll-progress"><div id="scroll-progress-bar"></div></div>
+      <div id="scroll-progress" className="fixed top-[4rem] left-0 w-full h-[2px] bg-border/20 z-50"><div id="scroll-progress-bar" className="h-full bg-primary"></div></div>
       <PortfolioHeader />
       <main className="container mx-auto px-4 py-8 mt-16">
         <Link href="/" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-8">

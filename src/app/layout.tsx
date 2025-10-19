@@ -3,6 +3,7 @@ import './globals.css';
 import { cn } from '@/lib/utils';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
+import { AviationCursor } from '@/components/aviation-cursor';
 
 export const metadata: Metadata = {
   title: 'Flight Control',
@@ -43,7 +44,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <AviationCursor>
+            {children}
+          </AviationCursor>
           <Toaster />
         </ThemeProvider>
       </body>
