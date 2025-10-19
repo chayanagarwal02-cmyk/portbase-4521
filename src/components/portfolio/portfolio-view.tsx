@@ -6,6 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { PortfolioHeader } from '@/components/portfolio/header';
 import { HeroSection } from '@/components/portfolio/sections/hero-section';
 import { AboutSection } from '@/components/portfolio/sections/about-section';
+import { OverviewSection } from '@/components/portfolio/sections/overview-section';
 import { LeadershipSection } from '@/components/portfolio/sections/leadership-section';
 import { CertificatesSection } from '@/components/portfolio/sections/certificates-section';
 import { ProjectsSection } from '@/components/portfolio/sections/projects-section';
@@ -61,7 +62,7 @@ export function PortfolioView({ role }: { role: string }) {
 
   const TABS_CONTENT: { [key: string]: React.ReactNode } = {
     'About Me': <AboutSection />,
-    'Overview': <AboutSection />,
+    'Overview': <OverviewSection />,
     'Team Projects': <ProjectsSection />,
     'Leadership': <LeadershipSection />,
     'Certifications': <CertificatesSection />,
