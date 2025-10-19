@@ -88,7 +88,7 @@ export function AboutSection() {
                 <MessageSquareQuote />
                 Testimonials
             </CardTitle>
-        </Header>
+        </CardHeader>
         <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {testimonialsData.map((testimonial) => (
                 <div key={testimonial.id} className="bg-secondary/50 p-6 rounded-lg">
