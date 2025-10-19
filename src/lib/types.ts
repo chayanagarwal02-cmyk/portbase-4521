@@ -65,3 +65,10 @@ export interface SkillOverview {
     subject: string;
     value: number;
 }
+
+export interface Testimonial {
+    id: number;
+    name: string;
+    title: string;
+    quote: string;
+}

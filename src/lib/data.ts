@@ -1,4 +1,4 @@
-import type { Project, Skill, Leadership, Certificate, Blog, Role, AnalyticsData, CodeSample, PerformanceMetric, SkillOverview } from './types';
+import type { Project, Skill, Leadership, Certificate, Blog, Role, AnalyticsData, CodeSample, PerformanceMetric, SkillOverview, Testimonial } from './types';
 
 export const contentVisibility: Record<Role, string[]> = {
   'hr': ['About Me', 'Team Projects', 'Certifications', 'Contact'],
@@ -269,3 +269,18 @@ export const skillsOverview: SkillOverview[] = [
     { subject: "ETL", value: 88 },
     { subject: "BI Tools", value: 70 },
 ]
+
+export const testimonialsData: Testimonial[] = [
+    {
+        id: 1,
+        name: 'Alex Johnson',
+        title: 'Project Manager, SkyHigh Ventures',
+        quote: 'Working with them was a breeze. Their ability to translate complex data into actionable insights was instrumental to our project\'s success. A true team player.'
+    },
+    {
+        id: 2,
+        name: 'Samantha Carter',
+        title: 'Lead Engineer, QuantumLeap Dynamics',
+        quote: 'Their technical expertise is matched only by their communication skills. They have a unique talent for explaining intricate concepts clearly and concisely.'
+    }
+];
