@@ -62,6 +62,7 @@ export function PortfolioView({ role }: { role: string }) {
   const TABS_CONTENT: { [key: string]: React.ReactNode } = {
     'About Me': <AboutSection />,
     'Team Projects': <ProjectsSection />,
+    'Leadership': <LeadershipSection />,
     'Certifications': <CertificatesSection />,
     'Contact': <ContactSection />,
   };
@@ -78,7 +79,7 @@ export function PortfolioView({ role }: { role: string }) {
         <HeroSection role={validRole} />
         
         <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-12">
-          <TabsList className="grid w-full grid-cols-2 md:grid-cols-4">
+          <TabsList className="grid w-full grid-cols-2 md:grid-cols-5">
             {visibleTabs.map((tabName) => (
               <TabsTrigger key={tabName} value={tabName}>{tabName}</TabsTrigger>
             ))}

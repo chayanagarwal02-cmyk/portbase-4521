@@ -1,7 +1,7 @@
 import type { Project, Skill, Leadership, Certificate, Blog, Role, AnalyticsData, CodeSample, PerformanceMetric, SkillOverview, Testimonial, TechStack } from './types';
 
 export const contentVisibility: Record<Role, string[]> = {
-  'hr': ['About Me', 'Team Projects', 'Certifications', 'Contact'],
+  'hr': ['About Me', 'Team Projects', 'Leadership', 'Certifications', 'Contact'],
   'data-professional': ['Projects', 'Code', 'Analytics', 'Certifications'],
   'hiring-manager': ['Projects', 'Analytics', 'Leadership', 'Certifications'],
   'stalker': ['Blog'],
