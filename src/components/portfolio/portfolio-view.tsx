@@ -61,6 +61,7 @@ export function PortfolioView({ role }: { role: string }) {
 
   const TABS_CONTENT: { [key: string]: React.ReactNode } = {
     'About Me': <AboutSection />,
+    'Overview': <AboutSection />,
     'Team Projects': <ProjectsSection />,
     'Leadership': <LeadershipSection />,
     'Certifications': <CertificatesSection />,
