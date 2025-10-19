@@ -90,11 +90,13 @@ export function AboutSection() {
             </CardTitle>
         </CardHeader>
         <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {testimonialsData.map((testimonial) => (
+            {testimonialsData.map((testimonial) => {
+                 const testimonialAvatar = placeholderImages.find(p => p.id === 'testimonial-avatar-placeholder') || avatarImage;
+                return(
                 <div key={testimonial.id} className="bg-secondary/50 p-6 rounded-lg">
                     <div className="flex items-center gap-4 mb-4">
                         <Avatar>
-                            {avatarImage && <AvatarImage src={avatarImage.imageUrl} alt={testimonial.name} data-ai-hint={avatarImage.imageHint}/>}
+                            {testimonialAvatar && <AvatarImage src={testimonialAvatar.imageUrl} alt={testimonial.name} data-ai-hint={testimonialAvatar.imageHint}/>}
                             <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
                         </Avatar>
                         <div>
@@ -104,7 +106,7 @@ export function AboutSection() {
                     </div>
                     <p className="text-muted-foreground font-body italic">"{testimonial.quote}"</p>
                 </div>
-            ))}
+            )})}
         </CardContent>
       </Card>
     </div>
