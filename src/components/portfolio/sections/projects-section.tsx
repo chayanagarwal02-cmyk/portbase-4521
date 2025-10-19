@@ -68,9 +68,7 @@ export function ProjectsSection() {
   const [selectedProject, setSelectedProject] = useState<typeof projectsData[0] | null>(null);
 
   return (
-    <section id="projects" className="py-16">
-      <h2 className="text-3xl font-bold text-center font-headline">Featured Projects</h2>
-      <p className="mt-2 text-center text-muted-foreground mb-12">A selection of my proudest work.</p>
+    <section id="projects" className="py-8">
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 perspective-1000">
         {projectsData.map((project) => (
           <TiltCard key={project.id} project={project} onOpenModal={() => setSelectedProject(project)} />

@@ -7,7 +7,7 @@ export default function PortfolioPage({
 }: {
   searchParams: { role?: string };
 }) {
-  const role = searchParams.role || 'data-professional';
+  const role = searchParams.role || 'hr';
 
   return (
     <Suspense fallback={<PortfolioSkeleton />}>

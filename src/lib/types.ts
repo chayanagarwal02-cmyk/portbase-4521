@@ -55,3 +55,13 @@ export interface CodeSample {
   title: string;
   code: string;
 }
+
+export interface PerformanceMetric {
+    name: string;
+    value: number;
+}
+
+export interface SkillOverview {
+    subject: string;
+    value: number;
+}

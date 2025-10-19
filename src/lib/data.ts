@@ -1,28 +1,36 @@
-import type { Project, Skill, Leadership, Certificate, Blog, Role, AnalyticsData, CodeSample } from './types';
+import type { Project, Skill, Leadership, Certificate, Blog, Role, AnalyticsData, CodeSample, PerformanceMetric, SkillOverview } from './types';
 
 export const contentVisibility: Record<Role, string[]> = {
-  'hr': ['Projects', 'Leadership', 'Certificates'],
-  'data-professional': ['Projects', 'Code', 'Analytics', 'Certificates'],
-  'hiring-manager': ['Projects', 'Analytics', 'Leadership', 'Certificates'],
+  'hr': ['About Me', 'Team Projects', 'Certifications', 'Contact'],
+  'data-professional': ['Projects', 'Code', 'Analytics', 'Certifications'],
+  'hiring-manager': ['Projects', 'Analytics', 'Leadership', 'Certifications'],
   'stalker': ['Blog'],
 };
 
-export const heroData = {
+export const heroData: Record<Role, {title: string; subtitle: string; badges: {text: string, className: string}[]}> = {
   'hr': {
-    title: "Evaluating Talent for Future Growth",
-    subtitle: "Discover a candidate with a proven track record of skill, leadership, and certified expertise. This portfolio highlights key qualifications and professional achievements."
+    title: "HR Professional View",
+    subtitle: "Culture, Team Dynamics & Professional Growth",
+    badges: [
+        { text: "Data Analyst", className: "bg-blue-900/50 text-blue-300 border-blue-700" },
+        { text: "Aviation Enthusiast", className: "bg-green-900/50 text-green-300 border-green-700"},
+        { text: "Problem Solver", className: "bg-purple-900/50 text-purple-300 border-purple-700"}
+    ]
   },
   'data-professional': {
     title: "Exploring a Data-Driven Mindset",
-    subtitle: "Dive deep into complex projects, analytical insights, and robust code. This portfolio is a testament to a passion for turning data into actionable intelligence."
+    subtitle: "Dive deep into complex projects, analytical insights, and robust code. This portfolio is a testament to a passion for turning data into actionable intelligence.",
+    badges: []
   },
   'hiring-manager': {
     title: "Finding the Right Fit for Your Team",
-    subtitle: "Assess a candidate's practical skills through detailed project walkthroughs, analytics dashboards, and leadership examples. See the impact I can bring to your organization."
+    subtitle: "Assess a candidate's practical skills through detailed project walkthroughs, analytics dashboards, and leadership examples. See the impact I can bring to your organization.",
+    badges: []
   },
   'stalker': {
     title: "A Glimpse into a Professional's Journey",
-    subtitle: "Welcome to my public-facing blog. Here you'll find my thoughts on technology, aviation, and continuous learning."
+    subtitle: "Welcome to my public-facing blog. Here you'll find my thoughts on technology, aviation, and continuous learning.",
+    badges: []
   }
 }
 
@@ -246,3 +254,18 @@ ORDER BY
 `
     }
 ];
+
+export const performanceMetrics: PerformanceMetric[] = [
+    { name: "Team Player", value: 95 },
+    { name: "Communication", value: 88 },
+    { name: "Adaptability", value: 92 },
+];
+
+export const skillsOverview: SkillOverview[] = [
+    { subject: "Python", value: 90 },
+    { subject: "SQL", value: 85 },
+    { subject: "Cloud", value: 80 },
+    { subject: "Data Viz", value: 75 },
+    { subject: "ETL", value: 88 },
+    { subject: "BI Tools", value: 70 },
+]

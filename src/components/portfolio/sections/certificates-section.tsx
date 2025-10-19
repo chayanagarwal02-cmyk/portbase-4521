@@ -8,9 +8,7 @@ import { placeholderImages } from '@/lib/placeholder-images.json';
 
 export function CertificatesSection() {
   return (
-    <section id="certificates" className="py-16">
-      <h2 className="text-3xl font-bold text-center font-headline">Certifications</h2>
-      <p className="mt-2 text-center text-muted-foreground mb-12">Validation of my skills and knowledge.</p>
+    <section id="certificates" className="py-8">
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {certificatesData.map((cert) => {
            const image = placeholderImages.find(p => p.id === 'certificate-placeholder');

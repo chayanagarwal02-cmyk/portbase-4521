@@ -1,30 +1,34 @@
 import { Button } from '@/components/ui/button';
-import { Download, Mouse } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import { Plane } from 'lucide-react';
 import { heroData, type Role } from '@/lib/data';
 
 export function HeroSection({ role }: { role: Role }) {
-  const { title, subtitle } = heroData[role];
+  const { title, subtitle, badges } = heroData[role];
 
   return (
-    <section id="hero" className="py-20 text-center">
-      <h1 className="text-4xl md:text-6xl font-bold font-headline leading-tight">
-        {title}
-      </h1>
-      <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
-        {subtitle}
-      </p>
-      <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-        <Button size="lg">
-          <Download className="mr-2 h-5 w-5" />
-          Download Resume
-        </Button>
-        <Button size="lg" variant="outline">
-          Contact Me
-        </Button>
-      </div>
-      <div className="mt-16 flex justify-center items-center gap-2 text-muted-foreground animate-bounce">
-        <Mouse className="h-5 w-5" />
-        <span className="text-sm">Scroll to explore</span>
+    <section id="hero" className="py-12">
+      <div className="flex flex-col md:flex-row items-center gap-8">
+        <div className="flex-shrink-0">
+          <div className="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center">
+            <div className="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center">
+              <Plane className="h-10 w-10 text-primary" />
+            </div>
+          </div>
+        </div>
+        <div className="text-center md:text-left">
+          <h1 className="text-3xl md:text-4xl font-bold font-headline leading-tight">
+            {title}
+          </h1>
+          <p className="mt-2 max-w-2xl text-md text-muted-foreground">
+            {subtitle}
+          </p>
+          <div className="mt-4 flex flex-wrap gap-2 justify-center md:justify-start">
+            {badges.map(badge => (
+                <Badge key={badge.text} variant="secondary" className={badge.className}>{badge.text}</Badge>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
