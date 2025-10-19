@@ -30,25 +30,30 @@ export function AboutSection() {
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             {performanceMetrics.map((metric) => (
-              <div key={metric.name} className="flex flex-col items-center p-4 rounded-lg bg-secondary/50">
-                 <div className="w-32 h-32">
+              <div key={metric.name} className="flex flex-col items-center p-4 rounded-lg bg-card">
+                 <div className="w-32 h-32 relative">
                     <ResponsiveContainer width="100%" height="100%">
                         <RadialBarChart
-                        innerRadius="70%"
-                        outerRadius="100%"
-                        data={[{ ...metric, fill: 'hsl(var(--primary))' }]}
-                        startAngle={90}
-                        endAngle={-270}
+                            innerRadius="70%"
+                            outerRadius="100%"
+                            data={[{ ...metric, fill: 'hsl(var(--primary))' }]}
+                            startAngle={90}
+                            endAngle={-270}
                         >
+                        <PolarAngleAxis type="number" domain={[0, 100]} angleAxisId={0} tick={false} />
                         <RadialBar
                             background
                             dataKey="value"
                             cornerRadius={10}
+                            className="fill-primary"
                         />
                         </RadialBarChart>
                     </ResponsiveContainer>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                        <span className="text-3xl font-bold text-foreground">{metric.value}</span>
+                        <span className="text-sm text-muted-foreground">%</span>
+                    </div>
                  </div>
-                 <p className="text-2xl font-bold mt-[-2.5rem] relative">{metric.value}%</p>
                 <p className="text-muted-foreground mt-2 font-body">{metric.name}</p>
               </div>
             ))}
@@ -62,9 +67,9 @@ export function AboutSection() {
         </CardHeader>
         <CardContent className="h-96">
           <ResponsiveContainer width="100%" height="100%">
-            <RadarChart data={skillsOverview}>
-              <PolarGrid />
-              <PolarAngleAxis dataKey="subject" className="font-body"/>
+            <RadarChart data={skillsOverview} outerRadius="80%">
+              <PolarGrid stroke="hsl(var(--border))" />
+              <PolarAngleAxis dataKey="subject" className="font-body text-xs fill-muted-foreground" />
               <Radar
                 name="Skills"
                 dataKey="value"
@@ -93,7 +98,7 @@ export function AboutSection() {
             {testimonialsData.map((testimonial) => {
                  const testimonialAvatar = placeholderImages.find(p => p.id === 'testimonial-avatar-placeholder') || avatarImage;
                 return(
-                <div key={testimonial.id} className="bg-secondary/50 p-6 rounded-lg">
+                <div key={testimonial.id} className="bg-secondary/30 p-6 rounded-lg border border-border">
                     <div className="flex items-center gap-4 mb-4">
                         <Avatar>
                             {testimonialAvatar && <AvatarImage src={testimonialAvatar.imageUrl} alt={testimonial.name} data-ai-hint={testimonialAvatar.imageHint}/>}
