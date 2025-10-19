@@ -9,6 +9,7 @@ import { AboutSection } from '@/components/portfolio/sections/about-section';
 import { LeadershipSection } from '@/components/portfolio/sections/leadership-section';
 import { CertificatesSection } from '@/components/portfolio/sections/certificates-section';
 import { ProjectsSection } from '@/components/portfolio/sections/projects-section';
+import { ContactSection } from '@/components/portfolio/sections/contact-section';
 import { Chatbot } from '@/components/portfolio/chatbot';
 import { contentVisibility, type Role } from '@/lib/data';
 import { ArrowLeft } from 'lucide-react';
@@ -62,7 +63,7 @@ export function PortfolioView({ role }: { role: string }) {
     'About Me': <AboutSection />,
     'Team Projects': <ProjectsSection />,
     'Certifications': <CertificatesSection />,
-    'Contact': <div>Contact Content</div>,
+    'Contact': <ContactSection />,
   };
   
   return (
