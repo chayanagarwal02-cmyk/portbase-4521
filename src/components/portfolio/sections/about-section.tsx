@@ -12,7 +12,8 @@ import {
   RadialBar,
 } from 'recharts';
 import { TrendingUp, Users, Award, Star, Zap, Rocket, Briefcase } from 'lucide-react';
-import { skillsOverview, hrPerformanceMetrics } from '@/lib/data';
+import { hrPerformanceMetrics } from '@/lib/data';
+import { skillsOverview } from '@/lib/data';
 
 const quickStats = [
     { label: 'Projects Completed', value: '15+' },
@@ -20,10 +21,33 @@ const quickStats = [
     { label: 'Technologies', value: '20+' },
 ];
 
+const CultNinjaIcon = (props: React.SVGProps<SVGSVGElement>) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" {...props}>
+      <circle cx="50" cy="50" r="48" fill="none" stroke="currentColor" strokeWidth="2"/>
+      <path id="top" d="M 20, 50 a 30,30 0 1,1 60,0" fill="none" />
+      <text>
+        <textPath href="#top" startOffset="50%" textAnchor="middle" fontSize="10" fill="currentColor">
+          EARNED NOT BOUGHT
+        </textPath>
+      </text>
+      <path id="bottom" d="M 20, 50 a 30,30 0 0,0 60,0" fill="none" />
+      <text>
+        <textPath href="#bottom" startOffset="50%" textAnchor="middle" fontSize="10" fill="currentColor">
+          CULT NINJA
+        </textPath>
+      </text>
+      <g transform="translate(50 50) scale(0.4)">
+        <circle cx="0" cy="-15" r="5" fill="currentColor" />
+        <path d="M -20 0 L 20 0" stroke="currentColor" strokeWidth="4" />
+        <path d="M -15 15 L 0 5 L 15 15 Z" fill="currentColor" />
+      </g>
+    </svg>
+  );
+
 const achievements = [
     { icon: Award, color: 'text-yellow-400 bg-yellow-900/50' },
     { icon: Star, color: 'text-orange-400 bg-orange-900/50' },
-    { icon: Zap, color: 'text-purple-400 bg-purple-900/50' },
+    { icon: CultNinjaIcon, color: 'text-rose-400 bg-rose-900/50' },
     { icon: Rocket, color: 'text-blue-400 bg-blue-900/50' },
 ]
 
