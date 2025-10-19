@@ -1,3 +1,28 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "project-placeholder",
+      "description": "A placeholder image for a project card.",
+      "imageUrl": "https://images.unsplash.com/photo-1682971829405-42b40b5f0895?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx0ZWNobm9sb2d5JTIwcHJvamVjdHxlbnwwfHx8fDE3NjA4ODU3OTh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "technology project"
+    },
+    {
+      "id": "certificate-placeholder",
+      "description": "A placeholder image for a certificate.",
+      "imageUrl": "https://images.unsplash.com/photo-1559588501-59a118c47e59?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjZXJ0aWZpY2F0ZSUyMGRvY3VtZW50fGVufDB8fHx8MTc2MDg2MTI3Mnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "certificate document"
+    },
+    {
+      "id": "blog-placeholder",
+      "description": "A placeholder image for a blog post.",
+      "imageUrl": "https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3cml0aW5nJTIwZGVza3xlbnwwfHx8fDE3NjA4NDA0ODd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "writing desk"
+    },
+    {
+      "id": "avatar-placeholder",
+      "description": "A placeholder avatar for testimonials.",
+      "imageUrl": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxwZXJzb24lMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjA4MjUzNjZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "person portrait"
+    }
+  ]
 }
