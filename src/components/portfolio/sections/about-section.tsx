@@ -12,7 +12,7 @@ import {
   RadialBar,
 } from 'recharts';
 import { TrendingUp, Users, Award, Star, Zap, Rocket, Briefcase } from 'lucide-react';
-import { skillsOverview, performanceMetrics } from '@/lib/data';
+import { skillsOverview, hrPerformanceMetrics } from '@/lib/data';
 
 const quickStats = [
     { label: 'Projects Completed', value: '15+' },
@@ -42,7 +42,7 @@ export function AboutSection() {
             </CardHeader>
             <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                    {performanceMetrics.map((metric) => (
+                    {hrPerformanceMetrics.map((metric) => (
                     <div key={metric.name}>
                         <div className="h-40 w-40 mx-auto">
                         <ResponsiveContainer width="100%" height="100%">
@@ -184,3 +184,5 @@ export function AboutSection() {
     </div>
   );
 }
+
+    

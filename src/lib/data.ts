@@ -288,6 +288,18 @@ export const performanceMetrics: PerformanceMetric[] = [
     { name: "Adaptability", value: 92, color: "hsl(var(--chart-3))" },
 ];
 
+export const hrPerformanceMetrics: PerformanceMetric[] = [
+    { name: "Team Player", value: 95, color: "hsl(var(--chart-1))" },
+    { name: "Communication", value: 88, color: "hsl(var(--chart-2))" },
+    { name: "Adaptability", value: 92, color: "hsl(var(--chart-3))" },
+];
+
+export const dataProfessionalPerformanceMetrics: PerformanceMetric[] = [
+    { name: "Problem Solving", value: 98, color: "hsl(var(--chart-4))" },
+    { name: "Analytical Skills", value: 95, color: "hsl(var(--chart-5))" },
+    { name: "Attention to Detail", value: 91, color: "hsl(var(--chart-1))" },
+];
+
 export const skillsOverview: SkillOverview[] = [
     { subject: "Python", value: 90 },
     { subject: "SQL", value: 85 },
@@ -326,3 +338,5 @@ export const techStackData: TechStack[] = [
     { name: 'Data Visualization', proficiency: 75, icon: 'BarChart2' },
     { name: 'ETL Pipelines', proficiency: 82, icon: 'Zap' },
 ];
+
+    
