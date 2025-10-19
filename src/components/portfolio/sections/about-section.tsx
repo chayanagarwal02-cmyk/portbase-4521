@@ -13,7 +13,6 @@ import {
 } from 'recharts';
 import { Target, MessageSquareQuote } from 'lucide-react';
 import { performanceMetrics, skillsOverview, testimonialsData } from '@/lib/data';
-import Image from 'next/image';
 import { placeholderImages } from '@/lib/placeholder-images.json';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
@@ -49,7 +48,7 @@ export function AboutSection() {
                         </RadialBarChart>
                     </ResponsiveContainer>
                  </div>
-                 <p className="text-2xl font-bold mt-[-2rem]">{metric.value}%</p>
+                 <p className="text-2xl font-bold mt-[-2.5rem] relative">{metric.value}%</p>
                 <p className="text-muted-foreground mt-2 font-body">{metric.name}</p>
               </div>
             ))}
@@ -74,7 +73,7 @@ export function AboutSection() {
                 fillOpacity={0.6}
               />
               <RechartsTooltip contentStyle={{
-                background: 'hsl(var(--background))',
+                background: 'hsl(var(--card))',
                 borderColor: 'hsl(var(--border))',
                 borderRadius: 'var(--radius)',
               }}/>
@@ -89,7 +88,7 @@ export function AboutSection() {
                 <MessageSquareQuote />
                 Testimonials
             </CardTitle>
-        </CardHeader>
+        </Header>
         <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {testimonialsData.map((testimonial) => (
                 <div key={testimonial.id} className="bg-secondary/50 p-6 rounded-lg">
