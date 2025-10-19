@@ -54,7 +54,7 @@ export function LandingPageClient() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.4 }}
-        className="mt-12 w-full max-w-4xl"
+        className="mt-12 w-full max-w-5xl"
       >
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           {roles.map((role, index) => (
