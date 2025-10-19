@@ -9,13 +9,6 @@ import { Badge } from '@/components/ui/badge';
 import { portfolioAssistant } from '@/ai/flows/ai-portfolio-assistant';
 import type { Role } from '@/lib/data';
 
-// Mock framer-motion for compatibility
-const motionDiv = ({ children, ...props }: any) => <div {...props}>{children}</div>;
-motion.div = motionDiv as any;
-const AnimatePresenceDiv = ({ children, ...props }: any) => <div {...props}>{children}</div>;
-AnimatePresence = AnimatePresenceDiv as any;
-
-
 interface Message {
   text: string;
   sender: 'user' | 'bot';

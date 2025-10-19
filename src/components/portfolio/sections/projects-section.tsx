@@ -11,13 +11,6 @@ import { Button } from '@/components/ui/button';
 import { ExternalLink, Github } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 
-// Mock framer-motion for compatibility
-const motionDiv = ({ children, ...props }: any) => <div {...props}>{children}</div>;
-motion.div = motionDiv as any;
-const AnimatePresenceDiv = ({ children, ...props }: any) => <div {...props}>{children}</div>;
-AnimatePresence = AnimatePresenceDiv as any;
-
-
 function TiltCard({ project, onOpenModal }: { project: typeof projectsData[0]; onOpenModal: () => void }) {
   const cardRef = useRef<HTMLDivElement>(null);
 

@@ -7,11 +7,6 @@ import { Button } from '@/components/ui/button';
 import { ConfettiCelebration } from '@/components/confetti-celebration';
 import { motion } from 'framer-motion';
 
-// Mock framer-motion for compatibility
-const motionDiv = ({ children, ...props }: any) => <div {...props}>{children}</div>;
-motion.div = motionDiv as any;
-
-
 const roles = [
   { name: 'HR', icon: Briefcase, role: 'hr' },
   { name: 'Data Professional', icon: Bot, role: 'data-professional' },
