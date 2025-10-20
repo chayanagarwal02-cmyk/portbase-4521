@@ -1,3 +1,4 @@
+
 import { LandingPageClient } from '@/components/landing-page-client';
 import { Plane } from 'lucide-react';
 
@@ -45,7 +46,6 @@ export default function Home() {
           className="-rotate-45"
           pathClassName="bg-gradient-to-b from-primary/30 to-transparent"
           duration={35}
-          reverse
         />
         <AnimatedPlane
           className="rotate-45"
@@ -56,7 +56,6 @@ export default function Home() {
           className="rotate-90"
           pathClassName="bg-gradient-to-b from-primary/30 to-transparent"
           duration={42}
-          reverse
         />
         <AnimatedPlane
           className="rotate-[135deg]"
@@ -72,7 +71,6 @@ export default function Home() {
           className="-rotate-[20deg] right-1/3"
           pathClassName="bg-gradient-to-b from-primary/30 to-transparent"
           duration={43}
-          reverse
         />
       </div>
       
