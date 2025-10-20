@@ -1,6 +1,7 @@
 
 import { LandingPageClient } from '@/components/landing-page-client';
 import { Plane } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 const AnimatedPlane = ({
   className,
@@ -13,23 +14,25 @@ const AnimatedPlane = ({
   duration: number;
   reverse?: boolean;
 }) => {
-  const animationStyle = {
-    animationDuration: `${duration}s`,
-    animationTimingFunction: 'linear',
-    animationIterationCount: 'infinite',
-    animationDirection: reverse ? 'reverse' : 'normal',
-  };
-
   return (
     <div
-      className={`absolute w-full h-full animate-fly-path ${className}`}
-      style={animationStyle}
+      className={cn(
+        `absolute w-full h-full`,
+        reverse ? 'animate-reverse-fly-path' : 'animate-fly-path',
+        className
+      )}
+      style={{
+        animationDuration: `${duration}s`,
+        animationTimingFunction: 'linear',
+        animationIterationCount: 'infinite',
+      }}
     >
       <div className={`absolute w-px h-full bg-repeat-y bg-[length:1px_8px] ${pathClassName}`}></div>
-      <Plane className="absolute w-4 h-4 text-primary/80 -rotate-45 top-0 left-1/2 -translate-x-1/2" />
+      <Plane className={cn("absolute w-4 h-4 text-primary/80 top-0 left-1/2 -translate-x-1/2", reverse ? 'rotate-[135deg]' : '-rotate-45')} />
     </div>
   );
 };
+
 
 export default function Home() {
   return (
@@ -51,6 +54,7 @@ export default function Home() {
           className="rotate-45"
           pathClassName="bg-gradient-to-b from-primary/30 to-transparent"
           duration={38}
+          reverse={true}
         />
         <AnimatedPlane
           className="rotate-90"
@@ -61,6 +65,7 @@ export default function Home() {
           className="rotate-[135deg]"
           pathClassName="bg-gradient-to-b from-primary/30 to-transparent"
           duration={45}
+          reverse={true}
         />
          <AnimatedPlane
           className="rotate-[20deg] left-1/3"
@@ -71,6 +76,7 @@ export default function Home() {
           className="-rotate-[20deg] right-1/3"
           pathClassName="bg-gradient-to-b from-primary/30 to-transparent"
           duration={43}
+          reverse={true}
         />
       </div>
       
