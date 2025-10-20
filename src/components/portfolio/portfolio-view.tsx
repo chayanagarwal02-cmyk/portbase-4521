@@ -15,6 +15,9 @@ import { Chatbot } from '@/components/portfolio/chatbot';
 import { contentVisibility, type Role } from '@/lib/data';
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
+import { CodeSection } from './sections/code-section';
+import { AnalyticsSection } from './sections/analytics-section';
+import { BlogSection } from './sections/blog-section';
 
 export function PortfolioView({ role }: { role: string }) {
   const router = useRouter();
@@ -67,6 +70,10 @@ export function PortfolioView({ role }: { role: string }) {
     'Leadership': <LeadershipSection />,
     'Certifications': <CertificatesSection />,
     'Contact': <ContactSection />,
+    'Projects': <ProjectsSection />,
+    'Code': <CodeSection />,
+    'Analytics': <AnalyticsSection />,
+    'Blog': <BlogSection />,
   };
   
   return (
