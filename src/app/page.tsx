@@ -39,39 +39,39 @@ export default function Home() {
         <AnimatedPlane
           className="left-1/4"
           pathClassName="bg-gradient-to-b from-primary/30 to-transparent"
-          duration={20}
+          duration={40}
         />
         <AnimatedPlane
           className="-rotate-45"
           pathClassName="bg-gradient-to-b from-primary/30 to-transparent"
-          duration={15}
+          duration={35}
           reverse
         />
         <AnimatedPlane
           className="rotate-45"
           pathClassName="bg-gradient-to-b from-primary/30 to-transparent"
-          duration={18}
+          duration={38}
         />
         <AnimatedPlane
           className="rotate-90"
           pathClassName="bg-gradient-to-b from-primary/30 to-transparent"
-          duration={22}
+          duration={42}
           reverse
         />
         <AnimatedPlane
           className="rotate-[135deg]"
           pathClassName="bg-gradient-to-b from-primary/30 to-transparent"
-          duration={25}
+          duration={45}
         />
          <AnimatedPlane
           className="rotate-[20deg] left-1/3"
           pathClassName="bg-gradient-to-b from-primary/30 to-transparent"
-          duration={17}
+          duration={37}
         />
         <AnimatedPlane
           className="-rotate-[20deg] right-1/3"
           pathClassName="bg-gradient-to-b from-primary/30 to-transparent"
-          duration={23}
+          duration={43}
           reverse
         />
       </div>

@@ -86,8 +86,8 @@ export default {
           },
         },
         'fly-path': {
-          '0%': { transform: 'translateY(-100%) rotate(0deg)' },
-          '100%': { transform: 'translateY(100%) rotate(360deg)' },
+          '0%': { transform: 'translateY(-100%)' },
+          '100%': { transform: 'translateY(100%)' },
         },
       },
       animation: {
