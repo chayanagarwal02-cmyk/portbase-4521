@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 const roles = [
   { name: 'HR Professional', subtitle: 'Culture & Team Fit', icon: Briefcase, role: 'hr', color: 'bg-blue-600/80 hover:bg-blue-600' },
   { name: 'Data Professional', subtitle: 'Technical Deep Dive', icon: Database, role: 'data-professional', color: 'bg-green-600/80 hover:bg-green-600' },
-  { name: 'Just Curious', subtitle: 'General Browse', icon: Eye, role: 'stalker', color: 'bg-purple-600/80 hover:bg-purple-600' },
+  { name: 'Cockpit Visitor', subtitle: 'Stalker', icon: Eye, role: 'stalker', color: 'bg-purple-600/80 hover:bg-purple-600' },
   { name: 'Hiring Manager', subtitle: 'Business Impact Focus', icon: UserCheck, role: 'hiring-manager', color: 'bg-orange-600/80 hover:bg-orange-600' },
 ];
 
