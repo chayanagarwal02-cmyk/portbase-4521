@@ -5,15 +5,18 @@ const AnimatedPlane = ({
   className,
   pathClassName,
   duration,
+  reverse = false,
 }: {
   className?: string;
   pathClassName?: string;
   duration: number;
+  reverse?: boolean;
 }) => {
   const animationStyle = {
     animationDuration: `${duration}s`,
     animationTimingFunction: 'linear',
     animationIterationCount: 'infinite',
+    animationDirection: reverse ? 'reverse' : 'normal',
   };
 
   return (
@@ -32,31 +35,44 @@ export default function Home() {
     <main className="relative flex h-screen-svh flex-col items-center justify-center overflow-hidden p-4 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]">
       <div className="absolute inset-0 bg-[url(/grid.svg)] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
 
-      <div className="absolute inset-0 perspective-1000 transform-style-3d">
+      <div className="absolute inset-0">
         <AnimatedPlane
-          className="rotate-x-60"
-          pathClassName="bg-gradient-to-b from-primary/50 to-transparent"
+          className="left-1/4"
+          pathClassName="bg-gradient-to-b from-primary/30 to-transparent"
           duration={20}
         />
         <AnimatedPlane
-          className="rotate-x-60 -rotate-z-30"
-          pathClassName="bg-gradient-to-b from-primary/50 to-transparent"
+          className="-rotate-45"
+          pathClassName="bg-gradient-to-b from-primary/30 to-transparent"
           duration={15}
+          reverse
         />
         <AnimatedPlane
-          className="rotate-x-60 rotate-z-30"
-          pathClassName="bg-gradient-to-b from-primary/50 to-transparent"
+          className="rotate-45"
+          pathClassName="bg-gradient-to-b from-primary/30 to-transparent"
           duration={18}
         />
-         <AnimatedPlane
-          className="rotate-x-60 rotate-z-60"
-          pathClassName="bg-gradient-to-b from-primary/50 to-transparent"
+        <AnimatedPlane
+          className="rotate-90"
+          pathClassName="bg-gradient-to-b from-primary/30 to-transparent"
           duration={22}
+          reverse
+        />
+        <AnimatedPlane
+          className="rotate-[135deg]"
+          pathClassName="bg-gradient-to-b from-primary/30 to-transparent"
+          duration={25}
         />
          <AnimatedPlane
-          className="rotate-x-60 -rotate-z-60"
-          pathClassName="bg-gradient-to-b from-primary/50 to-transparent"
-          duration={25}
+          className="rotate-[20deg] left-1/3"
+          pathClassName="bg-gradient-to-b from-primary/30 to-transparent"
+          duration={17}
+        />
+        <AnimatedPlane
+          className="-rotate-[20deg] right-1/3"
+          pathClassName="bg-gradient-to-b from-primary/30 to-transparent"
+          duration={23}
+          reverse
         />
       </div>
       
