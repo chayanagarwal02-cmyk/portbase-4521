@@ -6,7 +6,7 @@ import { Toaster } from '@/components/ui/toaster';
 import { AviationCursor } from '@/components/aviation-cursor';
 
 export const metadata: Metadata = {
-  title: 'Flight Control',
+  title: 'Flight Management System',
   description: 'An aviation-themed portfolio system.',
 };
 

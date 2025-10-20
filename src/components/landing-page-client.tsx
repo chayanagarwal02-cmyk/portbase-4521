@@ -26,9 +26,11 @@ export function LandingPageClient() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="text-5xl font-headline font-bold tracking-tight text-foreground md:text-7xl"
+        className="text-4xl font-headline font-bold tracking-tight text-foreground md:text-6xl"
       >
-        Flight Control
+        Welcome to Chayan's
+        <br />
+        <span className="text-5xl md:text-7xl text-primary">Flight Management System</span>
       </motion.h1>
       <motion.p
         initial={{ opacity: 0, y: 20 }}
