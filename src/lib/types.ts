@@ -11,6 +11,14 @@ export interface Project {
   liveUrl: string;
   repoUrl: string;
   impact: string;
+  visuals?: {
+    kpi: {
+      label: string;
+      value: string;
+    },
+    chartData: { name: string; value: number }[];
+    chartDescription: string;
+  }
 }
 
 export interface Skill {

@@ -13,6 +13,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Progress } from '@/components/ui/progress';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import { ResponsiveContainer, BarChart as RechartsBarChart, XAxis, YAxis, Tooltip, Bar as RechartsBar } from 'recharts';
 
 
 const iconMap: { [key: string]: React.ElementType } = {
@@ -29,7 +30,7 @@ const iconMap: { [key: string]: React.ElementType } = {
 };
 
 export function ProjectsSection() {
-  const [selectedProject, setSelectedProject] = useState<typeof projectsData[0] | null>(null);
+  const [selectedProject, setSelectedProject] = useState<(typeof projectsData[0]) | null>(null);
   const avatarImage = placeholderImages.find(p => p.id === 'avatar-placeholder');
 
   return (
@@ -124,35 +125,64 @@ export function ProjectsSection() {
                   <DialogTitle className="text-2xl font-headline">{selectedProject.title}</DialogTitle>
                   <DialogDescription>{selectedProject.description}</DialogDescription>
                 </DialogHeader>
-                <div className="mt-4 space-y-4">
-                  <div>
-                    <h4 className="font-semibold">Key Achievements</h4>
-                    <ul className="list-disc list-inside text-muted-foreground text-sm mt-1">
-                      {selectedProject.achievements.map((ach, i) => <li key={i}>{ach}</li>)}
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold">Tech Stack</h4>
-                    <div className="flex flex-wrap gap-2 mt-2">
-                       {selectedProject.tags.map((tag) => <Badge key={tag}>{tag}</Badge>)}
+                <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="font-semibold mb-2">Key Achievements</h4>
+                      <ul className="list-disc list-inside text-muted-foreground text-sm space-y-1">
+                        {selectedProject.achievements.map((ach, i) => <li key={i}>{ach}</li>)}
+                      </ul>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold mb-2">Tech Stack</h4>
+                      <div className="flex flex-wrap gap-2">
+                         {selectedProject.tags.map((tag) => <Badge key={tag}>{tag}</Badge>)}
+                      </div>
+                    </div>
+                     <div className="text-sm space-y-2">
+                        <div><span className="font-semibold">Duration:</span> {selectedProject.duration}</div>
+                        <div><span className="font-semibold">Team Size:</span> {selectedProject.teamSize}</div>
                     </div>
                   </div>
-                  <div className="grid grid-cols-2 gap-4 text-sm">
-                    <div><span className="font-semibold">Duration:</span> {selectedProject.duration}</div>
-                    <div><span className="font-semibold">Team Size:</span> {selectedProject.teamSize}</div>
+                  <div className="space-y-6">
+                     {selectedProject.visuals && (
+                        <Card className="bg-secondary/50">
+                           <CardHeader>
+                              <CardTitle className="text-base">Project Impact</CardTitle>
+                           </CardHeader>
+                           <CardContent>
+                              <div className="text-center">
+                                <p className="text-sm text-muted-foreground">{selectedProject.visuals.kpi.label}</p>
+                                <p className="text-4xl font-bold text-primary">{selectedProject.visuals.kpi.value}</p>
+                              </div>
+                              <div className="h-40 mt-4">
+                                <ResponsiveContainer width="100%" height="100%">
+                                  <RechartsBarChart data={selectedProject.visuals.chartData}>
+                                    <XAxis dataKey="name" stroke="#888888" fontSize={12} tickLine={false} axisLine={false}/>
+                                    <YAxis stroke="#888888" fontSize={12} tickLine={false} axisLine={false} />
+                                    <Tooltip contentStyle={{ background: 'hsl(var(--background))', border: '1px solid hsl(var(--border))' }}/>
+                                    <RechartsBar dataKey="value" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} />
+                                  </RechartsBarChart>
+                                </ResponsiveContainer>
+                              </div>
+                               <p className="text-center text-xs text-muted-foreground mt-2">{selectedProject.visuals.chartDescription}</p>
+                           </CardContent>
+                        </Card>
+                     )}
                   </div>
-                  <div className="flex gap-4 mt-6">
-                      <Button asChild>
-                          <a href={selectedProject.liveUrl} target="_blank" rel="noopener noreferrer">
-                              <ExternalLink className="mr-2 h-4 w-4" /> Live Demo
-                          </a>
-                      </Button>
-                      <Button asChild variant="secondary">
-                           <a href={selectedProject.repoUrl} target="_blank" rel="noopener noreferrer">
-                              <Github className="mr-2 h-4 w-4" /> Source Code
-                          </a>
-                      </Button>
-                  </div>
+                </div>
+
+                <div className="flex gap-4 mt-6">
+                    <Button asChild>
+                        <a href={selectedProject.liveUrl} target="_blank" rel="noopener noreferrer">
+                            <ExternalLink className="mr-2 h-4 w-4" /> Live Demo
+                        </a>
+                    </Button>
+                    <Button asChild variant="secondary">
+                         <a href={selectedProject.repoUrl} target="_blank" rel="noopener noreferrer">
+                            <Github className="mr-2 h-4 w-4" /> Source Code
+                        </a>
+                    </Button>
                 </div>
                 </motion.div>
               </DialogContent>

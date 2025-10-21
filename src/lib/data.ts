@@ -45,7 +45,18 @@ export const projectsData: Project[] = [
     teamSize: 4,
     liveUrl: '#',
     repoUrl: '#',
-    impact: '40% efficiency increase'
+    impact: '40% efficiency increase',
+    visuals: {
+      kpi: {
+        label: "Prediction Accuracy",
+        value: "94%",
+      },
+      chartData: [
+        { name: "Before", value: 350 },
+        { name: "After", value: 287 }
+      ],
+      chartDescription: "Unscheduled Maintenance Events"
+    }
   },
   {
     id: 2,
@@ -57,7 +68,20 @@ export const projectsData: Project[] = [
     teamSize: 6,
     liveUrl: '#',
     repoUrl: '#',
-    impact: '$2M cost savings'
+    impact: '$2M cost savings',
+    visuals: {
+      kpi: {
+        label: "Cost Savings",
+        value: "$2M+",
+      },
+      chartData: [
+        { name: "Q1", value: 0.5 },
+        { name: "Q2", value: 1.2 },
+        { name: "Q3", value: 1.8 },
+        { name: "Q4", value: 2.1 }
+      ],
+      chartDescription: "Cumulative Savings (in Millions)"
+    }
   },
   {
     id: 3,
@@ -69,7 +93,18 @@ export const projectsData: Project[] = [
     teamSize: 2,
     liveUrl: '#',
     repoUrl: '#',
-    impact: '15% fuel reduction'
+    impact: '15% fuel reduction',
+    visuals: {
+      kpi: {
+        label: "Fuel Efficiency Gain",
+        value: "15%",
+      },
+      chartData: [
+        { name: "Baseline", value: 100 },
+        { name: "Optimized", value: 85 }
+      ],
+      chartDescription: "Average Fuel Consumption per Flight"
+    }
   },
 ];
 
@@ -280,12 +315,6 @@ ORDER BY
     m.month, m.flight_count DESC;
 `
     }
-];
-
-export const performanceMetrics: PerformanceMetric[] = [
-    { name: "Team Player", value: 95, color: "hsl(var(--chart-1))" },
-    { name: "Communication", value: 88, color: "hsl(var(--chart-2))" },
-    { name: "Adaptability", value: 92, color: "hsl(var(--chart-3))" },
 ];
 
 export const hrPerformanceMetrics: PerformanceMetric[] = [
