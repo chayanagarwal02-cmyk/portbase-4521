@@ -34,6 +34,27 @@ export const heroData: Record<Role, {title: string; subtitle: string; badges: {t
   }
 }
 
+export const testimonialsData: Testimonial[] = [
+    {
+        id: 1,
+        name: 'Sarah Johnson',
+        title: 'VP of Operations at SkyTech Airlines',
+        quote: 'An exceptional data analyst who transformed our operations. The insights provided led to a 40% improvement in efficiency and significant cost savings.'
+    },
+    {
+        id: 2,
+        name: 'Alex Johnson',
+        title: 'Project Manager, SkyHigh Ventures',
+        quote: 'Working with them was a breeze. Their ability to translate complex data into actionable insights was instrumental to our project\'s success. A true team player.'
+    },
+    {
+        id: 3,
+        name: 'Samantha Carter',
+        title: 'Lead Engineer, QuantumLeap Dynamics',
+        quote: 'Their technical expertise is matched only by their communication skills. They have a unique talent for explaining intricate concepts clearly and concisely.'
+    }
+];
+
 export const projectsData: Project[] = [
   {
     id: 1,
@@ -56,7 +77,8 @@ export const projectsData: Project[] = [
         { name: "After", value: 287 }
       ],
       chartDescription: "Unscheduled Maintenance Events"
-    }
+    },
+    testimonials: [testimonialsData[0]]
   },
   {
     id: 2,
@@ -81,7 +103,8 @@ export const projectsData: Project[] = [
         { name: "Q4", value: 2.1 }
       ],
       chartDescription: "Cumulative Savings (in Millions)"
-    }
+    },
+    testimonials: [testimonialsData[1]]
   },
   {
     id: 3,
@@ -104,7 +127,8 @@ export const projectsData: Project[] = [
         { name: "Optimized", value: 85 }
       ],
       chartDescription: "Average Fuel Consumption per Flight"
-    }
+    },
+    testimonials: [testimonialsData[2]]
   },
 ];
 
@@ -337,27 +361,6 @@ export const skillsOverview: SkillOverview[] = [
     { subject: "ETL", value: 88 },
     { subject: "BI Tools", value: 70 },
 ]
-
-export const testimonialsData: Testimonial[] = [
-    {
-        id: 1,
-        name: 'Sarah Johnson',
-        title: 'VP of Operations at SkyTech Airlines',
-        quote: 'An exceptional data analyst who transformed our operations. The insights provided led to a 40% improvement in efficiency and significant cost savings.'
-    },
-    {
-        id: 2,
-        name: 'Alex Johnson',
-        title: 'Project Manager, SkyHigh Ventures',
-        quote: 'Working with them was a breeze. Their ability to translate complex data into actionable insights was instrumental to our project\'s success. A true team player.'
-    },
-    {
-        id: 3,
-        name: 'Samantha Carter',
-        title: 'Lead Engineer, QuantumLeap Dynamics',
-        quote: 'Their technical expertise is matched only by their communication skills. They have a unique talent for explaining intricate concepts clearly and concisely.'
-    }
-];
 
 export const techStackData: TechStack[] = [
     { name: 'Python', proficiency: 90, icon: 'Code' },

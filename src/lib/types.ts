@@ -18,7 +18,8 @@ export interface Project {
     },
     chartData: { name: string; value: number }[];
     chartDescription: string;
-  }
+  };
+  testimonials?: Testimonial[];
 }
 
 export interface Skill {

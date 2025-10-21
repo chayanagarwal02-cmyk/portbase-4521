@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { projectsData, testimonialsData, techStackData } from '@/lib/data';
+import { projectsData, testimonialsData } from '@/lib/data';
 import { placeholderImages } from '@/lib/placeholder-images.json';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -14,6 +14,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Progress } from '@/components/ui/progress';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { ResponsiveContainer, BarChart as RechartsBarChart, XAxis, YAxis, Tooltip, Bar as RechartsBar } from 'recharts';
+import { techStackData } from '@/lib/data';
 
 
 const iconMap: { [key: string]: React.ElementType } = {
@@ -119,71 +120,102 @@ export function ProjectsSection() {
       <Dialog open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
         <AnimatePresence>
           {selectedProject && (
-              <DialogContent className="max-w-2xl">
-                 <motion.div initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}}>
-                <DialogHeader>
-                  <DialogTitle className="text-2xl font-headline">{selectedProject.title}</DialogTitle>
-                  <DialogDescription>{selectedProject.description}</DialogDescription>
-                </DialogHeader>
-                <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6">
+              <DialogContent className="max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-8">
+                 <motion.div initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}} className="space-y-6 py-6 pr-6 border-r border-border">
+                  <DialogHeader>
+                    <DialogTitle className="text-2xl font-headline">{selectedProject.title}</DialogTitle>
+                    <DialogDescription>{selectedProject.description}</DialogDescription>
+                  </DialogHeader>
                   <div className="space-y-6">
-                    <div>
-                      <h4 className="font-semibold mb-2">Key Achievements</h4>
-                      <ul className="list-disc list-inside text-muted-foreground text-sm space-y-1">
-                        {selectedProject.achievements.map((ach, i) => <li key={i}>{ach}</li>)}
-                      </ul>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-2">Tech Stack</h4>
-                      <div className="flex flex-wrap gap-2">
-                         {selectedProject.tags.map((tag) => <Badge key={tag}>{tag}</Badge>)}
+                      <div>
+                        <h4 className="font-semibold mb-2">Key Achievements</h4>
+                        <ul className="list-disc list-inside text-muted-foreground text-sm space-y-1">
+                          {selectedProject.achievements.map((ach, i) => <li key={i}>{ach}</li>)}
+                        </ul>
                       </div>
-                    </div>
-                     <div className="text-sm space-y-2">
-                        <div><span className="font-semibold">Duration:</span> {selectedProject.duration}</div>
-                        <div><span className="font-semibold">Team Size:</span> {selectedProject.teamSize}</div>
-                    </div>
+                      <div>
+                        <h4 className="font-semibold mb-2">Tech Stack</h4>
+                        <div className="flex flex-wrap gap-2">
+                          {selectedProject.tags.map((tag) => <Badge key={tag}>{tag}</Badge>)}
+                        </div>
+                      </div>
+                      <div className="text-sm space-y-2">
+                          <div><span className="font-semibold">Duration:</span> {selectedProject.duration}</div>
+                          <div><span className="font-semibold">Team Size:</span> {selectedProject.teamSize}</div>
+                      </div>
                   </div>
-                  <div className="space-y-6">
-                     {selectedProject.visuals && (
-                        <Card className="bg-secondary/50">
-                           <CardHeader>
-                              <CardTitle className="text-base">Project Impact</CardTitle>
-                           </CardHeader>
-                           <CardContent>
-                              <div className="text-center">
-                                <p className="text-sm text-muted-foreground">{selectedProject.visuals.kpi.label}</p>
-                                <p className="text-4xl font-bold text-primary">{selectedProject.visuals.kpi.value}</p>
-                              </div>
-                              <div className="h-40 mt-4">
-                                <ResponsiveContainer width="100%" height="100%">
-                                  <RechartsBarChart data={selectedProject.visuals.chartData}>
-                                    <XAxis dataKey="name" stroke="#888888" fontSize={12} tickLine={false} axisLine={false}/>
-                                    <YAxis stroke="#888888" fontSize={12} tickLine={false} axisLine={false} />
-                                    <Tooltip contentStyle={{ background: 'hsl(var(--background))', border: '1px solid hsl(var(--border))' }}/>
-                                    <RechartsBar dataKey="value" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} />
-                                  </RechartsBarChart>
-                                </ResponsiveContainer>
-                              </div>
-                               <p className="text-center text-xs text-muted-foreground mt-2">{selectedProject.visuals.chartDescription}</p>
-                           </CardContent>
-                        </Card>
-                     )}
+                  <div className="flex gap-4 pt-6 border-t border-border">
+                      <Button asChild>
+                          <a href={selectedProject.liveUrl} target="_blank" rel="noopener noreferrer">
+                              <ExternalLink className="mr-2 h-4 w-4" /> Live Demo
+                          </a>
+                      </Button>
+                      <Button asChild variant="secondary">
+                          <a href={selectedProject.repoUrl} target="_blank" rel="noopener noreferrer">
+                              <Github className="mr-2 h-4 w-4" /> Source Code
+                          </a>
+                      </Button>
                   </div>
-                </div>
-
-                <div className="flex gap-4 mt-6">
-                    <Button asChild>
-                        <a href={selectedProject.liveUrl} target="_blank" rel="noopener noreferrer">
-                            <ExternalLink className="mr-2 h-4 w-4" /> Live Demo
-                        </a>
-                    </Button>
-                    <Button asChild variant="secondary">
-                         <a href={selectedProject.repoUrl} target="_blank" rel="noopener noreferrer">
-                            <Github className="mr-2 h-4 w-4" /> Source Code
-                        </a>
-                    </Button>
-                </div>
+                </motion.div>
+                <motion.div initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}} className="space-y-6 py-6">
+                   {selectedProject.visuals && (
+                      <Card className="bg-secondary/50">
+                         <CardHeader>
+                            <CardTitle className="text-base">Project Impact</CardTitle>
+                         </CardHeader>
+                         <CardContent>
+                            <div className="text-center">
+                              <p className="text-sm text-muted-foreground">{selectedProject.visuals.kpi.label}</p>
+                              <p className="text-4xl font-bold text-primary">{selectedProject.visuals.kpi.value}</p>
+                            </div>
+                            <div className="h-40 mt-4">
+                              <ResponsiveContainer width="100%" height="100%">
+                                <RechartsBarChart data={selectedProject.visuals.chartData}>
+                                  <XAxis dataKey="name" stroke="#888888" fontSize={12} tickLine={false} axisLine={false}/>
+                                  <YAxis stroke="#888888" fontSize={12} tickLine={false} axisLine={false} />
+                                  <Tooltip contentStyle={{ background: 'hsl(var(--background))', border: '1px solid hsl(var(--border))' }}/>
+                                  <RechartsBar dataKey="value" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} />
+                                </RechartsBarChart>
+                              </ResponsiveContainer>
+                            </div>
+                             <p className="text-center text-xs text-muted-foreground mt-2">{selectedProject.visuals.chartDescription}</p>
+                         </CardContent>
+                      </Card>
+                   )}
+                   {selectedProject.testimonials && (
+                     <div>
+                      <h4 className="font-semibold mb-4 text-center">Stakeholder Feedback</h4>
+                       <Carousel className="w-full max-w-md mx-auto" opts={{loop: true}}>
+                          <CarouselContent>
+                            {selectedProject.testimonials.map((testimonial) => {
+                              const testimonialAvatar = placeholderImages.find(p => p.id === 'testimonial-avatar-placeholder') || avatarImage;
+                              return(
+                                <CarouselItem key={testimonial.id}>
+                                  <div className="p-1">
+                                    <Card className="bg-secondary/50 border-border/50 p-6 text-center">
+                                      <p className="italic text-foreground/80 mb-4">"{testimonial.quote}"</p>
+                                      <div className="flex items-center justify-center gap-3">
+                                        <Avatar className="w-8 h-8">
+                                            {testimonialAvatar && <AvatarImage src={testimonialAvatar.imageUrl} alt={testimonial.name} data-ai-hint={testimonialAvatar.imageHint}/>}
+                                            <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
+                                        </Avatar>
+                                        <div>
+                                            <p className="font-semibold text-sm text-foreground">{testimonial.name}</p>
+                                            <p className="text-xs text-muted-foreground">{testimonial.title}</p>
+                                        </div>
+                                    </div>
+                                    </Card>
+                                  </div>
+                                </CarouselItem>
+                              )})}
+                          </CarouselContent>
+                          {selectedProject.testimonials.length > 1 && <>
+                            <CarouselPrevious className="left-[-20px] top-1/2 -translate-y-1/2 scale-75"/>
+                            <CarouselNext className="right-[-20px] top-1/2 -translate-y-1/2 scale-75"/>
+                          </>}
+                        </Carousel>
+                      </div>
+                   )}
                 </motion.div>
               </DialogContent>
           )}
