@@ -37,8 +37,8 @@ const sendContactEmailFlow = ai.defineFlow(
   },
   async (input) => {
     if (!process.env.RESEND_API_KEY) {
-        console.log("RESEND_API_KEY is not set. Skipping email sending. Returning success.");
-        return { success: true, message: 'Email sending is not configured, but the form was submitted successfully.' };
+      console.error("RESEND_API_KEY is not set. Cannot send email.");
+      return { success: false, message: 'Email service is not configured. RESEND_API_KEY is missing.' };
     }
     
     const resend = new Resend(process.env.RESEND_API_KEY);

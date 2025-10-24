@@ -115,7 +115,7 @@ export function ContactSection() {
               </div>
               <div className="space-y-2">
                 <Label htmlFor="message">Message</Label>
-                <Textarea id="message" placeholder="Tell me about your project or opportunity..." value={formData.message} onChange={handleInputChange} required />
+                <Textarea id="message" placeholder="Tell me about your project or opportunity..." value={formData.message} onChange={handleInputChange} required minLength={300}/>
               </div>
               <Button type="submit" className="w-full md:w-auto" disabled={isLoading}>
                 {isLoading ? (
