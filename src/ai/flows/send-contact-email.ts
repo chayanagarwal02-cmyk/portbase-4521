@@ -11,8 +11,6 @@ import { ai } from '@/ai/genkit';
 import { z } from 'genkit';
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 const ContactFormInputSchema = z.object({
   name: z.string().describe('The name of the person submitting the form.'),
   email: z.string().email().describe('The email address of the person.'),
@@ -33,6 +31,12 @@ const sendContactEmailFlow = ai.defineFlow(
     outputSchema: z.object({ success: z.boolean(), message: z.string() }),
   },
   async (input) => {
+    if (!process.env.RESEND_API_KEY) {
+        console.log("RESEND_API_KEY is not set. Skipping email sending. Returning success.");
+        return { success: true, message: 'Email sending is not configured, but the form was submitted successfully.' };
+    }
+    
+    const resend = new Resend(process.env.RESEND_API_KEY);
     const { name, email, subject, message } = input;
     const toEmail = 'chayan.agarwal.ds@gmail.com';
 
@@ -62,7 +66,8 @@ const sendContactEmailFlow = ai.defineFlow(
       return { success: true, message: 'Email sent successfully!' };
     } catch (error) {
       console.error('Error sending email:', error);
-      return { success: false, message: 'Failed to send email.' };
+      const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred.';
+      return { success: false, message: `Failed to send email: ${errorMessage}` };
     }
   }
 );

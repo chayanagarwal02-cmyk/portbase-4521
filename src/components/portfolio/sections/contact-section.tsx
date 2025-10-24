@@ -63,10 +63,11 @@ export function ContactSection() {
       }
     } catch (error) {
       console.error(error);
+      const errorMessage = error instanceof Error ? error.message : 'Please try again later.';
       toast({
         variant: 'destructive',
         title: 'Uh oh! Something went wrong.',
-        description: 'There was a problem sending your message. Please try again.',
+        description: `There was a problem sending your message. ${errorMessage}`,
       });
     } finally {
       setIsLoading(false);
