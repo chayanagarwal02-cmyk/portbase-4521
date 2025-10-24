@@ -38,7 +38,7 @@ const sendContactEmailFlow = ai.defineFlow(
     
     const resend = new Resend(process.env.RESEND_API_KEY);
     const { name, email, subject, message } = input;
-    const toEmail = 'chayan.agarwal.ds@gmail.com';
+    const toEmail = 'chayan.agarwal02@gmail.com';
 
     const emailBody = `
       Heyy Chayan!
