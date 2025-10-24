@@ -76,6 +76,10 @@ export function PortfolioView({ role }: { role: string }) {
     'Blog': <BlogSection />,
   };
   
+  const TAB_LABELS: { [key: string]: string } = {
+    'Contact': 'Reach me out',
+  }
+
   return (
     <div className="flex flex-col min-h-screen bg-background">
       <div id="scroll-progress" className="fixed top-[4rem] left-0 w-full h-[2px] bg-border/20 z-50"><div id="scroll-progress-bar" className="h-full bg-primary"></div></div>
@@ -88,9 +92,9 @@ export function PortfolioView({ role }: { role: string }) {
         <HeroSection role={validRole} />
         
         <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-12">
-          <TabsList className="grid w-full grid-cols-2 md:grid-cols-5">
+          <TabsList className={`grid w-full grid-cols-2 md:grid-cols-${visibleTabs.length}`}>
             {visibleTabs.map((tabName) => (
-              <TabsTrigger key={tabName} value={tabName}>{tabName}</TabsTrigger>
+              <TabsTrigger key={tabName} value={tabName}>{TAB_LABELS[tabName] || tabName}</TabsTrigger>
             ))}
           </TabsList>
 
