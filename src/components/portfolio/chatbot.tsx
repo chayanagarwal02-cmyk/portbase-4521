@@ -14,11 +14,12 @@ interface Message {
   sender: 'user' | 'bot';
 }
 
-const quickQuestions: { [key in Role]: string[] } = {
+const quickQuestions: { [key in Role]?: string[] } = {
   hr: ['What is your leadership experience?', 'Which certifications do you have?'],
   'data-professional': ['Show me some code samples.', 'What are your top technical skills?'],
   'hiring-manager': ['Can you summarize your key achievements?', 'What projects are most relevant to data analytics?'],
   stalker: ['Tell me about your latest blog post.', 'What are your hobbies?'],
+  cxo: ['What is the ROI of your work?', 'Summarize your most impactful project.'],
 };
 
 export function Chatbot({ role }: { role: Role }) {
@@ -29,6 +30,8 @@ export function Chatbot({ role }: { role: Role }) {
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<null | HTMLDivElement>(null);
+
+  const currentQuickQuestions = quickQuestions[role] || [];
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -103,7 +106,7 @@ export function Chatbot({ role }: { role: Role }) {
             </div>
             <div className='p-4 border-t border-white/10'>
                <div className="flex flex-wrap gap-2 mb-2">
-                {quickQuestions[role].map((q) => (
+                {currentQuickQuestions.map((q) => (
                   <Badge
                     key={q}
                     variant="outline"

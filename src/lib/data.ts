@@ -5,6 +5,7 @@ export const contentVisibility: Record<Role, string[]> = {
   'data-professional': ['Overview', 'Projects', 'Code', 'Analytics', 'Certifications'],
   'hiring-manager': ['Projects', 'Analytics', 'Leadership', 'Certifications'],
   'stalker': ['Blog'],
+  'cxo': ['Projects', 'Analytics', 'Leadership'],
 };
 
 export const heroData: Record<Role, {title: string; subtitle: string; badges: {text: string, className: string}[]}> = {
@@ -31,6 +32,15 @@ export const heroData: Record<Role, {title: string; subtitle: string; badges: {t
     title: "A Glimpse into a Professional's Journey",
     subtitle: "Welcome to my public-facing blog. Here you'll find my thoughts on technology, aviation, and continuous learning.",
     badges: []
+  },
+  'cxo': {
+    title: "Executive-Level Strategic Overview",
+    subtitle: "A top-line summary of business impact, strategic project outcomes, and leadership capabilities, designed for executive review.",
+    badges: [
+        { text: "Business-Oriented", className: "bg-red-900/50 text-red-300 border-red-700" },
+        { text: "Results-Driven", className: "bg-teal-900/50 text-teal-300 border-teal-700"},
+        { text: "Strategic Thinker", className: "bg-gray-700/50 text-gray-300 border-gray-600"}
+    ]
   }
 }
 

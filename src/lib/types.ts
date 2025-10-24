@@ -1,4 +1,4 @@
-export type Role = 'hr' | 'data-professional' | 'hiring-manager' | 'stalker';
+export type Role = 'hr' | 'data-professional' | 'hiring-manager' | 'stalker' | 'cxo';
 
 export interface Project {
   id: number;
