@@ -14,6 +14,7 @@ import {
 import { TrendingUp, Users, Award, Star, Zap, Rocket, Briefcase } from 'lucide-react';
 import { hrPerformanceMetrics } from '@/lib/data';
 import { skillsOverview } from '@/lib/data';
+import Image from 'next/image';
 
 const quickStats = [
     { label: 'Projects Completed', value: '15+' },
@@ -60,6 +61,27 @@ const careerJourney = [
 export function AboutSection() {
   return (
     <div className="space-y-12">
+        <Card className="overflow-hidden">
+            <div className="flex flex-col md:flex-row bg-card/50">
+                <div className="md:w-1/3 relative h-64 md:h-auto">
+                <Image
+                    src="/images/avatar.png"
+                    alt="Chayan Agarwal"
+                    layout="fill"
+                    objectFit="cover"
+                    className="grayscale hover:grayscale-0 transition-all duration-300"
+                />
+                </div>
+                <div className="md:w-2/3 p-8 flex flex-col justify-center">
+                <h2 className="text-2xl font-headline font-bold mb-2">A Message for HR Professionals</h2>
+                <p className="text-muted-foreground mb-4">
+                    Welcome to my career portfolio. I am passionate about leveraging data to drive meaningful impact and fostering a collaborative, growth-oriented team environment. This portfolio is designed to give you a comprehensive look at my skills, experience, and the professional value I bring.
+                </p>
+                <p className="text-sm font-semibold">Chayan Agarwal</p>
+                <p className="text-xs text-muted-foreground">Data Analyst & Aviation Enthusiast</p>
+                </div>
+            </div>
+        </Card>
         <Card>
             <CardHeader>
                 <CardTitle className="font-headline">Performance Metrics</CardTitle>
@@ -208,5 +230,3 @@ export function AboutSection() {
     </div>
   );
 }
-
-    
