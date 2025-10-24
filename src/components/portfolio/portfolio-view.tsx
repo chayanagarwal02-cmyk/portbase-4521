@@ -18,6 +18,8 @@ import Link from 'next/link';
 import { CodeSection } from './sections/code-section';
 import { AnalyticsSection } from './sections/analytics-section';
 import { BlogSection } from './sections/blog-section';
+import { GallerySection } from './sections/gallery-section';
+import { VideosSection } from './sections/videos-section';
 
 export function PortfolioView({ role }: { role: string }) {
   const router = useRouter();
@@ -74,6 +76,8 @@ export function PortfolioView({ role }: { role: string }) {
     'Code': <CodeSection />,
     'Analytics': <AnalyticsSection />,
     'Blog': <BlogSection />,
+    'Gallery': <GallerySection />,
+    'Videos': <VideosSection />,
   };
   
   const TAB_LABELS: { [key: string]: string } = {
@@ -92,9 +96,9 @@ export function PortfolioView({ role }: { role: string }) {
         <HeroSection role={validRole} />
         
         <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-12">
-          <TabsList className="w-full">
+          <TabsList>
             {visibleTabs.map((tabName) => (
-              <TabsTrigger key={tabName} value={tabName} className="flex-1">{TAB_LABELS[tabName] || tabName}</TabsTrigger>
+              <TabsTrigger key={tabName} value={tabName}>{TAB_LABELS[tabName] || tabName}</TabsTrigger>
             ))}
           </TabsList>
 
@@ -111,3 +115,5 @@ export function PortfolioView({ role }: { role: string }) {
     </div>
   );
 }
+
+    

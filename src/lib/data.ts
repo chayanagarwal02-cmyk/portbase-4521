@@ -4,7 +4,7 @@ export const contentVisibility: Record<Role, string[]> = {
   'hr': ['About Me', 'Team Projects', 'Leadership', 'Certifications', 'Contact'],
   'data-professional': ['Overview', 'Projects', 'Code', 'Analytics', 'Certifications'],
   'hiring-manager': ['Overview', 'Projects', 'Analytics', 'Leadership', 'Certifications', 'Contact'],
-  'stalker': ['Blog'],
+  'stalker': ['Blog', 'Gallery', 'Videos'],
   'cxo': ['Projects', 'Analytics', 'Leadership'],
 };
 
@@ -380,5 +380,7 @@ export const techStackData: TechStack[] = [
     { name: 'Data Visualization', proficiency: 75, icon: 'BarChart2' },
     { name: 'ETL Pipelines', proficiency: 82, icon: 'Zap' },
 ];
+
+    
 
     
