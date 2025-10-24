@@ -11,6 +11,7 @@ const roles = [
   { name: 'Data Professional', subtitle: 'Technical Deep Dive', icon: Database, role: 'data-professional', color: 'bg-green-600/80 hover:bg-green-600' },
   { name: 'Executive Briefing', subtitle: 'Strategic Impact', icon: TrendingUp, role: 'cxo', color: 'bg-red-600/80 hover:bg-red-600' },
   { name: 'Hiring Manager', subtitle: 'Business Impact Focus', icon: UserCheck, role: 'hiring-manager', color: 'bg-orange-600/80 hover:bg-orange-600' },
+  { name: 'Just Curious', subtitle: 'General Overview', icon: Eye, role: 'stalker', color: 'bg-purple-600/80 hover:bg-purple-600' },
 ];
 
 export function LandingPageClient() {
@@ -93,13 +94,36 @@ export function LandingPageClient() {
         transition={{ duration: 0.5, delay: 0.4 }}
         className="mt-12 w-full max-w-5xl"
       >
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-          {roles.map((role, index) => (
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {roles.slice(0, 3).map((role, index) => (
             <motion.div
               key={role.name}
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3, delay: 0.5 + index * 0.1 }}
+            >
+              <Link href={`/portfolio?role=${role.role}`} className={`group relative block p-8 rounded-lg border border-white/10 text-left transition-all duration-300 ${role.color} backdrop-blur-sm`}>
+                <div className="absolute top-4 right-4 text-white/20">
+                   <role.icon className="h-8 w-8" />
+                </div>
+                <h3 className="text-xl font-bold text-white">{role.name}</h3>
+                <p className="mt-1 text-white/70">{role.subtitle}</p>
+                <div className="mt-4 flex items-center text-sm text-white/70 transition-all group-hover:text-white group-hover:gap-2">
+                  Click to proceed <ArrowRight className="h-4 w-4 opacity-0 transition-opacity group-hover:opacity-100" />
+                </div>
+                <div className="absolute top-2 left-2 w-4 h-4 border-t border-l border-white/20 rounded-tl-md"></div>
+                <div className="absolute bottom-2 right-2 w-4 h-4 border-b border-r border-white/20 rounded-br-md"></div>
+              </Link>
+            </motion.div>
+          ))}
+        </div>
+         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 mt-6">
+           {roles.slice(3).map((role, index) => (
+            <motion.div
+              key={role.name}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.3, delay: 0.8 + index * 0.1 }}
             >
               <Link href={`/portfolio?role=${role.role}`} className={`group relative block p-8 rounded-lg border border-white/10 text-left transition-all duration-300 ${role.color} backdrop-blur-sm`}>
                 <div className="absolute top-4 right-4 text-white/20">
