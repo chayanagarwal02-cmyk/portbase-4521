@@ -367,9 +367,9 @@ export const skillsOverview: SkillOverview[] = [
     { subject: "Python", value: 90 },
     { subject: "SQL", value: 85 },
     { subject: "Cloud", value: 80 },
-    { subject: "Data Viz", value: 75 },
+    { subject: "Data Viz", value: 78 },
     { subject: "ETL", value: 88 },
-    { subject: "BI Tools", value: 70 },
+    { subject: "ML/AI", value: 72 },
 ]
 
 export const techStackData: TechStack[] = [

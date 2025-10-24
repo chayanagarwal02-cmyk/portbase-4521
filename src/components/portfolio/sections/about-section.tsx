@@ -11,7 +11,7 @@ import {
   RadialBarChart,
   RadialBar,
 } from 'recharts';
-import { TrendingUp, Users, Award, Star, Zap, Rocket, Briefcase } from 'lucide-react';
+import { TrendingUp, Users, Award, Star, Zap, Rocket, Briefcase, Plane } from 'lucide-react';
 import { hrPerformanceMetrics } from '@/lib/data';
 import { skillsOverview } from '@/lib/data';
 import Image from 'next/image';
@@ -135,25 +135,29 @@ export function AboutSection() {
         <CardHeader>
           <CardTitle className="font-headline">Skills Overview</CardTitle>
         </CardHeader>
-        <CardContent className="h-96">
+        <CardContent className="h-96 relative">
           <ResponsiveContainer width="100%" height="100%">
             <RadarChart data={skillsOverview} outerRadius="80%">
-              <PolarGrid stroke="hsl(var(--border))" />
-              <PolarAngleAxis dataKey="subject" className="font-body text-xs fill-muted-foreground" />
+              <PolarGrid stroke="hsl(var(--border) / 0.5)" />
+              <PolarAngleAxis dataKey="subject" className="font-body text-sm fill-muted-foreground" />
               <Radar
                 name="Skills"
                 dataKey="value"
                 stroke="hsl(var(--primary))"
                 fill="hsl(var(--primary))"
-                fillOpacity={0.6}
+                fillOpacity={0.2}
+                dot={{ r: 4, fill: 'hsl(var(--primary))' }}
+                activeDot={{ r: 6 }}
               />
-              <RechartsTooltip contentStyle={{
-                background: 'hsl(var(--card))',
-                borderColor: 'hsl(var(--border))',
-                borderRadius: 'var(--radius)',
-              }}/>
             </RadarChart>
           </ResponsiveContainer>
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
+                <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center">
+                    <Plane className="w-6 h-6 text-primary" />
+                </div>
+            </div>
+          </div>
         </CardContent>
       </Card>
       
