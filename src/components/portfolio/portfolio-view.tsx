@@ -92,9 +92,9 @@ export function PortfolioView({ role }: { role: string }) {
         <HeroSection role={validRole} />
         
         <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-12">
-          <TabsList className={`grid w-full grid-cols-2 md:grid-cols-${visibleTabs.length}`}>
+          <TabsList className="w-full">
             {visibleTabs.map((tabName) => (
-              <TabsTrigger key={tabName} value={tabName}>{TAB_LABELS[tabName] || tabName}</TabsTrigger>
+              <TabsTrigger key={tabName} value={tabName} className="flex-1">{TAB_LABELS[tabName] || tabName}</TabsTrigger>
             ))}
           </TabsList>
 
