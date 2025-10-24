@@ -1,8 +1,10 @@
 'use client';
 
 import Link from 'next/link';
-import { Briefcase, Database, Eye, UserCheck, ArrowRight, Plane } from 'lucide-react';
+import { Briefcase, Database, Eye, UserCheck, ArrowRight, Plane, Quote } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { aviationQuotes } from '@/lib/quotes';
+import { useEffect, useState } from 'react';
 
 const roles = [
   { name: 'HR Professional', subtitle: 'Culture & Team Fit', icon: Briefcase, role: 'hr', color: 'bg-blue-600/80 hover:bg-blue-600' },
@@ -12,6 +14,21 @@ const roles = [
 ];
 
 export function LandingPageClient() {
+  const [dailyQuote, setDailyQuote] = useState<{ quote: string; author: string } | null>(null);
+
+  useEffect(() => {
+    const getDayOfYear = () => {
+        const now = new Date();
+        const start = new Date(now.getFullYear(), 0, 0);
+        const diff = (now.getTime() - start.getTime()) + ((start.getTimezoneOffset() - now.getTimezoneOffset()) * 60 * 1000);
+        const oneDay = 1000 * 60 * 60 * 24;
+        return Math.floor(diff / oneDay);
+    }
+    const dayIndex = getDayOfYear();
+    const quoteIndex = dayIndex % aviationQuotes.length;
+    setDailyQuote(aviationQuotes[quoteIndex]);
+  }, []);
+
   return (
     <div className="relative z-10 flex flex-col items-center text-center">
       <motion.div
@@ -40,6 +57,23 @@ export function LandingPageClient() {
       >
         Who's viewing this portfolio?
       </motion.p>
+      
+      {dailyQuote && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="mt-8 max-w-2xl"
+        >
+            <div className="flex items-center justify-center gap-2">
+                <Quote className="h-5 w-5 text-primary/50 -scale-x-100" />
+                <p className="italic text-center text-muted-foreground">{dailyQuote.quote}</p>
+                <Quote className="h-5 w-5 text-primary/50" />
+            </div>
+            <p className="mt-2 text-right text-sm text-foreground/80 font-semibold">- {dailyQuote.author}</p>
+        </motion.div>
+      )}
+
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -52,6 +86,7 @@ export function LandingPageClient() {
         </span>
         System Ready - Awaiting Selection
       </motion.div>
+
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
