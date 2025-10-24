@@ -20,6 +20,7 @@ import { AnalyticsSection } from './sections/analytics-section';
 import { BlogSection } from './sections/blog-section';
 import { GallerySection } from './sections/gallery-section';
 import { VideosSection } from './sections/videos-section';
+import { cn } from '@/lib/utils';
 
 export function PortfolioView({ role }: { role: string }) {
   const router = useRouter();
@@ -84,6 +85,8 @@ export function PortfolioView({ role }: { role: string }) {
     'Contact': 'Reach me out',
   }
 
+  const gridColsClass = `grid-cols-${visibleTabs.length}`;
+
   return (
     <div className="flex flex-col min-h-screen bg-background">
       <div id="scroll-progress" className="fixed top-[4rem] left-0 w-full h-[2px] bg-border/20 z-50"><div id="scroll-progress-bar" className="h-full bg-primary"></div></div>
@@ -96,7 +99,7 @@ export function PortfolioView({ role }: { role: string }) {
         <HeroSection role={validRole} />
         
         <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-12">
-          <TabsList className={visibleTabs.length > 3 ? '' : 'grid w-full grid-cols-3'}>
+          <TabsList className={cn('grid w-full', gridColsClass)}>
             {visibleTabs.map((tabName) => (
               <TabsTrigger key={tabName} value={tabName}>{TAB_LABELS[tabName] || tabName}</TabsTrigger>
             ))}
