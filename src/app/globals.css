@@ -94,28 +94,4 @@
   .h-screen-svh {
     height: 100svh;
   }
-  .animate-orbit-outer {
-    animation: orbit-outer 40s linear infinite;
-  }
-  .animate-orbit-inner {
-    animation: orbit-inner 30s linear infinite;
-  }
-
-  @keyframes orbit-outer {
-    from {
-      transform: rotate(0deg) translateX(250px) rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg) translateX(250px) rotate(-360deg);
-    }
-  }
-
-  @keyframes orbit-inner {
-    from {
-      transform: rotate(0deg) translateX(160px) rotate(0deg);
-    }
-    to {
-      transform: rotate(-360deg) translateX(160px) rotate(360deg);
-    }
-  }
 }
