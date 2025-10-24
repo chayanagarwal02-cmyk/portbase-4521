@@ -1,7 +1,17 @@
 'use client';
 
 import Link from 'next/link';
-import { Briefcase, Database, Eye, UserCheck, ArrowRight, Plane, Quote } from 'lucide-react';
+import {
+  Briefcase,
+  Database,
+  Eye,
+  UserCheck,
+  ArrowRight,
+  Plane,
+  Quote,
+  TrendingUp,
+  UserSearch,
+} from 'lucide-react';
 import { motion } from 'framer-motion';
 import { aviationQuotes } from '@/lib/quotes';
 import { useEffect, useState } from 'react';
@@ -11,7 +21,7 @@ const roles = [
     role: 'hiring-manager',
     title: 'Hiring Manager',
     description: 'Assess practical skills, project impact, and leadership.',
-    icon: Briefcase,
+    icon: UserSearch,
     href: '/portfolio?role=hiring-manager',
   },
   {
@@ -32,7 +42,7 @@ const roles = [
     role: 'cxo',
     title: 'Executive Briefing',
     description: 'High-level overview of business impact and strategy.',
-    icon: Briefcase,
+    icon: TrendingUp,
     href: '/portfolio?role=cxo',
   },
   {
@@ -45,24 +55,29 @@ const roles = [
 ];
 
 const cardColors = [
-    'hover:bg-gradient-to-br from-background to-blue-900/40',
-    'hover:bg-gradient-to-br from-background to-purple-900/40',
-    'hover:bg-gradient-to-br from-background to-green-900/40',
-    'hover:bg-gradient-to-br from-background to-red-900/40',
-    'hover:bg-gradient-to-br from-background to-gray-800/40',
-]
+  'hover:bg-gradient-to-br from-background to-blue-900/40',
+  'hover:bg-gradient-to-br from-background to-purple-900/40',
+  'hover:bg-gradient-to-br from-background to-green-900/40',
+  'hover:bg-gradient-to-br from-background to-red-900/40',
+  'hover:bg-gradient-to-br from-background to-gray-800/40',
+];
 
 export function LandingPageClient() {
-  const [dailyQuote, setDailyQuote] = useState<{ quote: string; author: string } | null>(null);
+  const [dailyQuote, setDailyQuote] = useState<{ quote: string; author: string } | null>(
+    null
+  );
 
   useEffect(() => {
     const getDayOfYear = () => {
-        const now = new Date();
-        const start = new Date(now.getFullYear(), 0, 0);
-        const diff = (now.getTime() - start.getTime()) + ((start.getTimezoneOffset() - now.getTimezoneOffset()) * 60 * 1000);
-        const oneDay = 1000 * 60 * 60 * 24;
-        return Math.floor(diff / oneDay);
-    }
+      const now = new Date();
+      const start = new Date(now.getFullYear(), 0, 0);
+      const diff =
+        now.getTime() -
+        start.getTime() +
+        (start.getTimezoneOffset() - now.getTimezoneOffset()) * 60 * 1000;
+      const oneDay = 1000 * 60 * 60 * 24;
+      return Math.floor(diff / oneDay);
+    };
     const dayIndex = getDayOfYear();
     const quoteIndex = dayIndex % aviationQuotes.length;
     setDailyQuote(aviationQuotes[quoteIndex]);
@@ -70,7 +85,7 @@ export function LandingPageClient() {
 
   return (
     <div className="relative z-10 flex flex-col items-center text-center">
-       <motion.div
+      <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, delay: 0.2 }}
@@ -104,12 +119,14 @@ export function LandingPageClient() {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="mt-8 max-w-2xl"
         >
-            <div className="flex items-center justify-center gap-2">
-                <Quote className="h-5 w-5 text-primary/50 -scale-x-100" />
-                <p className="italic text-center text-muted-foreground">{dailyQuote.quote}</p>
-                <Quote className="h-5 w-5 text-primary/50" />
-            </div>
-            <p className="mt-2 text-right text-sm text-foreground/80 font-semibold">- {dailyQuote.author}</p>
+          <div className="flex items-center justify-center gap-2">
+            <Quote className="h-5 w-5 text-primary/50 -scale-x-100" />
+            <p className="italic text-center text-muted-foreground">{dailyQuote.quote}</p>
+            <Quote className="h-5 w-5 text-primary/50" />
+          </div>
+          <p className="mt-2 text-right text-sm text-foreground/80 font-semibold">
+            - {dailyQuote.author}
+          </p>
         </motion.div>
       )}
 
@@ -135,15 +152,23 @@ export function LandingPageClient() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.5 + i * 0.1 }}
-              className={(card.role === 'stalker' || card.role === 'cxo') ? 'lg:col-span-1 sm:col-span-2' : ''}
+              className={
+                card.role === 'stalker' || card.role === 'cxo'
+                  ? 'lg:col-span-1 sm:col-span-2 lg:col-start-auto sm:col-start-auto'
+                  : ''
+              }
             >
               <Link href={card.href} className="group">
-                <div className={`h-full rounded-lg border bg-card/50 text-card-foreground shadow-sm transition-all hover:shadow-lg hover:-translate-y-1 hover:border-primary/50 p-6 flex flex-col items-start ${cardColors[i]}`}>
+                <div
+                  className={`h-full rounded-lg border bg-card/50 text-card-foreground shadow-sm transition-all hover:shadow-lg hover:-translate-y-1 hover:border-primary/50 p-6 flex flex-col items-start ${cardColors[i]}`}
+                >
                   <div className="mb-4 rounded-full bg-primary/10 p-3 border border-primary/20">
                     <Icon className="h-6 w-6 text-primary" />
                   </div>
                   <h3 className="text-lg font-headline font-semibold text-left">{card.title}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground text-left">{card.description}</p>
+                  <p className="mt-2 text-sm text-muted-foreground text-left">
+                    {card.description}
+                  </p>
                   <div className="mt-4 flex items-center text-sm font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity gap-1">
                     Proceed to View <ArrowRight className="h-4 w-4" />
                   </div>
