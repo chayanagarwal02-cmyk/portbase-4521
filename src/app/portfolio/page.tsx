@@ -1,3 +1,4 @@
+
 import { Suspense } from 'react';
 import { PortfolioView } from '@/components/portfolio/portfolio-view';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -5,9 +6,9 @@ import { Skeleton } from '@/components/ui/skeleton';
 export default function PortfolioPage({
   searchParams,
 }: {
-  searchParams: { role?: string };
+  searchParams?: { role?: string };
 }) {
-  const role = searchParams.role || 'hr';
+  const role = searchParams?.role || 'hr';
 
   return (
     <Suspense fallback={<PortfolioSkeleton />}>
