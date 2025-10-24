@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { leadershipData } from '@/lib/data';
-import { Award, Star } from 'lucide-react';
+import { Award, Star, Trophy } from 'lucide-react';
 
 export function LeadershipSection() {
   return (
@@ -32,5 +32,3 @@ export function LeadershipSection() {
     </section>
   );
 }
-
-import { Trophy } from 'lucide-react';
