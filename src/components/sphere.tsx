@@ -82,7 +82,7 @@ export function Sphere() {
               <path
                 key={`path-${role.role}`}
                 id={`path-${role.role}`}
-                d={getArcPath(startAngle, endAngle, 200)}
+                d={getArcPath(startAngle, endAngle, 210)}
               />
             );
           })}
@@ -106,12 +106,12 @@ export function Sphere() {
                 {/* Inner ring segment */}
                 <path d={getArcPath(startAngle, endAngle, 120)} fill="hsl(var(--primary) / 0.8)" className="transition-all duration-300 group-hover:fill-primary" stroke="hsl(var(--background))" strokeWidth="10" />
 
-                <text dy="-5" fill="white" className="font-bold text-lg pointer-events-none transition-all duration-300 group-hover:fill-white">
+                <text dy="-5" fill="white" className="font-bold text-base pointer-events-none transition-all duration-300 group-hover:fill-white">
                   <textPath href={`#path-${role.role}`} startOffset={role.textOffset}>
                     {role.title}
                   </textPath>
                 </text>
-                 <text dy="15" fill="white" className="text-sm pointer-events-none opacity-80 transition-all duration-300 group-hover:fill-white">
+                 <text dy="15" fill="white" className="text-xs pointer-events-none opacity-80 transition-all duration-300 group-hover:fill-white">
                   <textPath href={`#path-${role.role}`} startOffset={role.textOffset}>
                     {role.subtitle}
                   </textPath>
