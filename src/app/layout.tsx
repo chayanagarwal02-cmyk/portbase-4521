@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
 import { AviationCursor } from '@/components/aviation-cursor';
+import { GlobalLoader } from '@/components/global-loader';
 
 export const metadata: Metadata = {
   title: 'Flight Management System',
@@ -40,6 +41,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <GlobalLoader />
           <AviationCursor>
             {children}
           </AviationCursor>
