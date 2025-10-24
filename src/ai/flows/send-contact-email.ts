@@ -1,0 +1,68 @@
+'use server';
+
+/**
+ * @fileOverview A Genkit flow for sending a contact form submission as an email.
+ *
+ * - sendContactEmail - A function that handles sending the email.
+ * - ContactFormInput - The input type for the sendContactEmail function.
+ */
+
+import { ai } from '@/ai/genkit';
+import { z } from 'genkit';
+import { Resend } from 'resend';
+
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+const ContactFormInputSchema = z.object({
+  name: z.string().describe('The name of the person submitting the form.'),
+  email: z.string().email().describe('The email address of the person.'),
+  subject: z.string().describe('The subject of the message.'),
+  message: z.string().describe('The content of the message.'),
+});
+
+export type ContactFormInput = z.infer<typeof ContactFormInputSchema>;
+
+export async function sendContactEmail(input: ContactFormInput): Promise<{ success: boolean; message: string }> {
+  return sendContactEmailFlow(input);
+}
+
+const sendContactEmailFlow = ai.defineFlow(
+  {
+    name: 'sendContactEmailFlow',
+    inputSchema: ContactFormInputSchema,
+    outputSchema: z.object({ success: z.boolean(), message: z.string() }),
+  },
+  async (input) => {
+    const { name, email, subject, message } = input;
+    const toEmail = 'chayan.agarwal.ds@gmail.com';
+
+    const emailBody = `
+      Heyy Chayan!
+
+      Someone tried connecting you through your portfolio, here are their details:
+
+      Name: ${name}
+      Email: ${email}
+      Subject: ${subject}
+      Message: ${message}
+
+      Please do connect with him within 24 hrs.
+
+      Thank-you!
+      Yours First Officer
+    `;
+
+    try {
+      await resend.emails.send({
+        from: 'Portfolio Contact Form <onboarding@resend.dev>',
+        to: toEmail,
+        subject: `New Portfolio Contact: ${subject}`,
+        text: emailBody,
+      });
+      return { success: true, message: 'Email sent successfully!' };
+    } catch (error) {
+      console.error('Error sending email:', error);
+      return { success: false, message: 'Failed to send email.' };
+    }
+  }
+);
