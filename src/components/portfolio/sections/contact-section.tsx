@@ -48,6 +48,17 @@ export function ContactSection() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    
+    const messageWithoutSpaces = formData.message.replace(/\s/g, '');
+    if (messageWithoutSpaces.length < 300) {
+      toast({
+        variant: 'destructive',
+        title: 'Message Too Short',
+        description: 'Your message must be at least 300 characters long (excluding spaces).',
+      });
+      return;
+    }
+
     setIsLoading(true);
 
     try {

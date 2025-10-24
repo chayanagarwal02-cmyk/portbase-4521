@@ -15,7 +15,12 @@ const ContactFormInputSchema = z.object({
   name: z.string().describe('The name of the person submitting the form.'),
   email: z.string().email().describe('The email address of the person.'),
   subject: z.string().describe('The subject of the message.'),
-  message: z.string().describe('The content of the message.'),
+  message: z
+    .string()
+    .describe('The content of the message.')
+    .refine((message) => message.replace(/\s/g, '').length >= 300, {
+      message: 'Message must be at least 300 characters long, excluding spaces.',
+    }),
 });
 
 export type ContactFormInput = z.infer<typeof ContactFormInputSchema>;
