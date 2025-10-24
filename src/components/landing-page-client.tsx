@@ -28,7 +28,7 @@ const roles = [
     icon: Briefcase,
     href: '/portfolio?role=hiring-manager',
   },
-    {
+  {
     role: 'cxo',
     title: 'Executive Briefing',
     description: 'High-level overview of business impact and strategy.',
@@ -118,7 +118,7 @@ export function LandingPageClient() {
         System Ready - Awaiting Selection
       </motion.div>
 
-      <div className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-4xl">
+      <div className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-5xl">
         {roles.map((card, i) => {
           const Icon = card.icon;
           return (
@@ -127,6 +127,7 @@ export function LandingPageClient() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.5 + i * 0.1 }}
+              className={card.role === 'stalker' || card.role === 'cxo' ? 'lg:col-span-1 sm:col-span-2' : ''}
             >
               <Link href={card.href} className="group">
                 <div className="h-full rounded-lg border bg-card/50 text-card-foreground shadow-sm transition-all hover:shadow-lg hover:-translate-y-1 hover:border-primary/50 p-6 flex flex-col items-start">
