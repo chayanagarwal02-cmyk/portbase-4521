@@ -5,7 +5,7 @@ export const contentVisibility: Record<Role, string[]> = {
   'data-professional': ['Overview', 'Projects', 'Code', 'Analytics', 'Certifications'],
   'hiring-manager': ['Overview', 'Projects', 'Analytics', 'Leadership', 'Certifications', 'Contact'],
   'stalker': ['Blog', 'Gallery', 'Videos'],
-  'cxo': ['Projects', 'Analytics', 'Leadership'],
+  'cxo': ['Projects', 'Analytics', 'Leadership', 'Strategic Value'],
 };
 
 export const heroData: Record<Role, {title: string; subtitle: string; badges: {text: string, className: string}[]}> = {
@@ -380,6 +380,8 @@ export const techStackData: TechStack[] = [
     { name: 'Data Visualization', proficiency: 75, icon: 'BarChart2' },
     { name: 'ETL Pipelines', proficiency: 82, icon: 'Zap' },
 ];
+
+    
 
     
 

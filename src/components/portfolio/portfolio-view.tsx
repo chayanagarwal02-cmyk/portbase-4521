@@ -21,6 +21,7 @@ import { BlogSection } from './sections/blog-section';
 import { GallerySection } from './sections/gallery-section';
 import { VideosSection } from './sections/videos-section';
 import { cn } from '@/lib/utils';
+import { StrategicValueSection } from './sections/strategic-value-section';
 
 export function PortfolioView({ role }: { role: string }) {
   const router = useRouter();
@@ -79,6 +80,7 @@ export function PortfolioView({ role }: { role: string }) {
     'Blog': <BlogSection />,
     'Gallery': <GallerySection />,
     'Videos': <VideosSection />,
+    'Strategic Value': <StrategicValueSection />,
   };
   
   const TAB_LABELS: { [key: string]: string } = {
@@ -118,3 +120,5 @@ export function PortfolioView({ role }: { role: string }) {
     </div>
   );
 }
+
+    
