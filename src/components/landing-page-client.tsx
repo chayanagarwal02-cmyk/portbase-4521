@@ -8,11 +8,11 @@ import { useEffect, useState } from 'react';
 
 const roles = [
   {
-    role: 'hr',
-    title: 'HR Professional',
-    description: 'View culture fit, team skills, and professional growth.',
-    icon: UserCheck,
-    href: '/portfolio?role=hr',
+    role: 'hiring-manager',
+    title: 'Hiring Manager',
+    description: 'Assess practical skills, project impact, and leadership.',
+    icon: Briefcase,
+    href: '/portfolio?role=hiring-manager',
   },
   {
     role: 'data-professional',
@@ -22,11 +22,11 @@ const roles = [
     href: '/portfolio?role=data-professional',
   },
   {
-    role: 'hiring-manager',
-    title: 'Hiring Manager',
-    description: 'Assess practical skills, project impact, and leadership.',
-    icon: Briefcase,
-    href: '/portfolio?role=hiring-manager',
+    role: 'hr',
+    title: 'HR Professional',
+    description: 'View culture fit, team skills, and professional growth.',
+    icon: UserCheck,
+    href: '/portfolio?role=hr',
   },
   {
     role: 'cxo',
@@ -43,6 +43,14 @@ const roles = [
     href: '/portfolio?role=stalker',
   },
 ];
+
+const cardColors = [
+    'hover:bg-gradient-to-br from-background to-blue-900/40',
+    'hover:bg-gradient-to-br from-background to-purple-900/40',
+    'hover:bg-gradient-to-br from-background to-green-900/40',
+    'hover:bg-gradient-to-br from-background to-red-900/40',
+    'hover:bg-gradient-to-br from-background to-gray-800/40',
+]
 
 export function LandingPageClient() {
   const [dailyQuote, setDailyQuote] = useState<{ quote: string; author: string } | null>(null);
@@ -127,10 +135,10 @@ export function LandingPageClient() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.5 + i * 0.1 }}
-              className={card.role === 'stalker' || card.role === 'cxo' ? 'lg:col-span-1 sm:col-span-2' : ''}
+              className={(card.role === 'stalker' || card.role === 'cxo') ? 'lg:col-span-1 sm:col-span-2' : ''}
             >
               <Link href={card.href} className="group">
-                <div className="h-full rounded-lg border bg-card/50 text-card-foreground shadow-sm transition-all hover:shadow-lg hover:-translate-y-1 hover:border-primary/50 p-6 flex flex-col items-start">
+                <div className={`h-full rounded-lg border bg-card/50 text-card-foreground shadow-sm transition-all hover:shadow-lg hover:-translate-y-1 hover:border-primary/50 p-6 flex flex-col items-start ${cardColors[i]}`}>
                   <div className="mb-4 rounded-full bg-primary/10 p-3 border border-primary/20">
                     <Icon className="h-6 w-6 text-primary" />
                   </div>
