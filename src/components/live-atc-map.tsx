@@ -1,10 +1,9 @@
-
 'use client';
 
 import { motion } from 'framer-motion';
 import { Plane } from 'lucide-react';
 import { WorldMap } from './world-map';
-import { useMemo } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 
 const flightPaths = [
   {
@@ -72,11 +71,14 @@ const FlightPath = ({ d, duration, delay }: { d: string; duration: number; delay
 
 
 export function LiveATCMap() {
-    // Memoize the shuffled paths to prevent re-shuffling on re-renders
-    const memoizedFlightPaths = useMemo(() => {
-        // Create a copy and shuffle it to ensure different delays and paths on each load
-        return [...flightPaths].sort(() => Math.random() - 0.5);
+    const [shuffledPaths, setShuffledPaths] = useState<(typeof flightPaths)>([]);
+
+    useEffect(() => {
+        // Shuffle only on the client side to avoid hydration mismatch
+        const sortedPaths = [...flightPaths].sort(() => Math.random() - 0.5);
+        setShuffledPaths(sortedPaths);
     }, []);
+
 
   return (
     <div className="absolute inset-0 z-0 overflow-hidden">
@@ -95,7 +97,7 @@ export function LiveATCMap() {
         preserveAspectRatio="xMidYMid slice"
         className="absolute inset-0"
       >
-        {memoizedFlightPaths.map((flight, index) => (
+        {shuffledPaths.map((flight, index) => (
           <FlightPath key={index} d={flight.path} duration={flight.duration} delay={flight.delay} />
         ))}
       </svg>
