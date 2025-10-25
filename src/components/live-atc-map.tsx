@@ -52,26 +52,20 @@ const FlightPath = ({ d, duration, delay }: { d: string; duration: number; delay
         animate={{ pathLength: 1 }}
         transition={{ duration: 2, delay, ease: 'easeInOut' }}
       />
-      <motion.path
-        fill="none"
-        strokeWidth="1"
-        stroke="hsl(var(--primary) / 0)"
-        d={d}
+      <motion.div
+        className="plane-container"
+        style={{ offsetPath: `path("${d}")` }}
+        initial={{ offsetDistance: '0%' }}
+        animate={{ offsetDistance: '100%' }}
+        transition={{ duration, delay, ease: 'linear', repeat: Infinity }}
       >
-        <motion.g
-          initial={{ offsetDistance: '0%' }}
-          animate={{ offsetDistance: '100%' }}
-          transition={{ duration, delay, ease: 'linear', repeat: Infinity }}
-        >
-          <Plane
-            className="text-primary -rotate-90"
-            style={{ offsetPath: `path("${d}")` }}
-            width={16}
-            height={16}
-            strokeWidth={1.5}
-          />
-        </motion.g>
-      </motion.path>
+        <Plane
+          className="text-primary -rotate-90"
+          width={16}
+          height={16}
+          strokeWidth={1.5}
+        />
+      </motion.div>
     </>
   );
 };
