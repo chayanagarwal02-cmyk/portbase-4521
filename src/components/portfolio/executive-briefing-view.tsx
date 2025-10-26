@@ -7,7 +7,6 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { motion } from 'framer-motion';
 import { StrategicAlignmentSection } from './strategic-alignment-section';
-import { QuantifiableResults } from './quantifiable-results';
 
 const stats = [
   { label: 'Value Delivered', value: '$2.3M+' },
@@ -53,6 +52,13 @@ const caseStudies = [
     value: '$380K',
   },
 ];
+
+const technicalImpacts = [
+    { label: "Data pipeline efficiency gain", value: "87%" },
+    { label: "Cross-team data literacy workshops delivered", value: "12" },
+    { label: "Teams actively using platform", value: "15" },
+    { label: "Executive data-driven decisions increased", value: "+340%" }
+]
 
 const devAdvocacyMetrics = [
     { label: "GitHub stars on open-source projects", value: "1,800+" },
@@ -184,15 +190,44 @@ export function ExecutiveBriefingView() {
             })}
         </div>
       </motion.div>
+
       <StrategicAlignmentSection />
-      <QuantifiableResults />
 
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.3 }}
-        className="mt-16 w-full max-w-7xl space-y-8"
+        className="mt-24 w-full max-w-7xl space-y-8"
       >
+        <div className="text-center mb-12">
+            <h2 className="text-sm font-semibold uppercase tracking-widest text-primary">03 — Quantifiable Results</h2>
+            <h3 className="mt-2 text-3xl font-headline font-bold">Impact Across Code & Community</h3>
+            <p className="mt-4 max-w-3xl mx-auto text-muted-foreground">
+            Success metrics span technical delivery, business value, and community growth. Here's the concrete impact I've delivered—from production ML models to conference stages, from cost savings to GitHub stars.
+            </p>
+        </div>
+        
+        <Card className="bg-card/70 backdrop-blur-sm border-border/50 p-8">
+            <div className="grid md:grid-cols-[1fr_2fr] gap-8">
+                <div className="flex flex-col justify-center text-left space-y-4 pr-8">
+                    <Badge variant="outline" className="w-fit">Technical Impact</Badge>
+                    <p className="text-4xl font-bold text-primary">$1.2M</p>
+                    <h4 className="text-lg font-semibold text-foreground">End-to-end data platform + internal advocacy program</h4>
+                    <p className="text-muted-foreground">Annual value delivered through platform + adoption</p>
+                    <div className="border-t border-border my-2"></div>
+                    <p className="text-sm text-muted-foreground">10-month initiative</p>
+                </div>
+                <div className="space-y-4 border-t md:border-t-0 md:border-l border-border pt-8 md:pt-0 md:pl-8">
+                    {technicalImpacts.map((item, index) => (
+                    <div key={index} className="flex justify-between items-center p-4 bg-secondary/30 rounded-lg">
+                        <p className="text-foreground">{item.label}</p>
+                        <p className="text-lg font-bold text-primary">{item.value}</p>
+                    </div>
+                    ))}
+                </div>
+            </div>
+        </Card>
+
         <Card className="bg-card/70 backdrop-blur-sm border-border/50 p-8 text-left">
             <div className="grid md:grid-cols-2 gap-8">
                 <div className="space-y-4 pr-8">
