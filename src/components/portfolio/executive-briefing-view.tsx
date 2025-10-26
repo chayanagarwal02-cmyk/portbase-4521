@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { motion } from 'framer-motion';
 import { StrategicAlignmentSection } from './strategic-alignment-section';
+import { QuantifiableResults } from './quantifiable-results';
 
 const stats = [
   { label: 'Value Delivered', value: '$2.3M+' },
@@ -169,6 +170,7 @@ export function ExecutiveBriefingView() {
         </div>
       </motion.div>
       <StrategicAlignmentSection />
+      <QuantifiableResults />
     </div>
   );
 }
