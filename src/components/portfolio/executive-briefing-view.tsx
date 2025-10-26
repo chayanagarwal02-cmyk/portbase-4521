@@ -1,3 +1,4 @@
+
 'use client';
 
 import { ArrowRight, Plane, Goal, TrendingUp, Zap } from 'lucide-react';
@@ -52,6 +53,20 @@ const caseStudies = [
     value: '$380K',
   },
 ];
+
+const devAdvocacyMetrics = [
+    { label: "GitHub stars on open-source projects", value: "1,800+" },
+    { label: "Conference presentations delivered", value: "8" },
+    { label: "Blog post total readership", value: "35K+" },
+    { label: "Qualified leads generated for business", value: "120+" }
+]
+
+const businessRoiMetrics = [
+    { label: "ML models in production", value: "8" },
+    { label: "Executive presentations delivered", value: "15+" },
+    { label: "Budget secured for ML initiatives", value: "$550K" },
+    { label: "Projects approved after initial rejection", value: "5" }
+]
 
 export function ExecutiveBriefingView() {
   return (
@@ -171,6 +186,63 @@ export function ExecutiveBriefingView() {
       </motion.div>
       <StrategicAlignmentSection />
       <QuantifiableResults />
+
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.3 }}
+        className="mt-16 w-full max-w-7xl space-y-8"
+      >
+        <Card className="bg-card/70 backdrop-blur-sm border-border/50 p-8 text-left">
+            <div className="grid md:grid-cols-2 gap-8">
+                <div className="space-y-4 pr-8">
+                    <Badge variant="outline">Developer Advocacy</Badge>
+                    <p className="text-4xl font-bold text-primary">5,200+</p>
+                    <h4 className="text-lg font-semibold text-foreground">Open-source ML toolkit + community building</h4>
+                    <p className="text-muted-foreground">Community members reached through content & events</p>
+                    <div className="border-t border-border my-4"></div>
+                    <p className="text-sm text-muted-foreground">2-year advocacy journey</p>
+                </div>
+                <div className="space-y-4 border-t md:border-t-0 md:border-l border-border pt-8 md:pt-0 md:pl-8">
+                    {devAdvocacyMetrics.map((item, index) => (
+                        <div key={index} className="flex justify-between items-center text-sm">
+                            <p className="text-muted-foreground">{item.label}</p>
+                            <p className="font-bold text-foreground">{item.value}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </Card>
+
+        <Card className="bg-card/70 backdrop-blur-sm border-border/50 p-8 text-left">
+            <div className="grid md:grid-cols-2 gap-8">
+                <div className="space-y-4 pr-8">
+                    <Badge variant="outline">Business ROI</Badge>
+                    <p className="text-4xl font-bold text-primary">450%</p>
+                    <h4 className="text-lg font-semibold text-foreground">ML models deployed with executive buy-in secured</h4>
+                    <p className="text-muted-foreground">Average ROI on ML projects through compelling storytelling</p>
+                    <div className="border-t border-border my-4"></div>
+                    <p className="text-sm text-muted-foreground">Across all projects</p>
+                </div>
+                <div className="space-y-4 border-t md:border-t-0 md:border-l border-border pt-8 md:pt-0 md:pl-8">
+                    {businessRoiMetrics.map((item, index) => (
+                        <div key={index} className="flex justify-between items-center text-sm">
+                            <p className="text-muted-foreground">{item.label}</p>
+                            <p className="font-bold text-foreground">{item.value}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </Card>
+
+        <Card className="bg-primary/5 border border-primary/20 p-8 text-center">
+            <h4 className="text-xl font-headline font-bold text-foreground">The Best Technical Talent Can Both Build & Inspire</h4>
+            <p className="mt-4 max-w-4xl mx-auto text-muted-foreground">
+                In my 2 years as a Machine Learning Advocate, I've proven that technical depth and communication skills aren't mutually exclusive—they're multiplicative. My work spans the full data stack (engineering, analytics, science) while reaching 5,200+ community members through presentations, content, and open source. The result: $2.3M+ in technical value delivered, 450% average project ROI, and a growing community that amplifies your brand.
+            </p>
+        </Card>
+      </motion.div>
+
     </div>
   );
 }
