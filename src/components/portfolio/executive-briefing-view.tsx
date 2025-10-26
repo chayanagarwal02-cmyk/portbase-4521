@@ -104,7 +104,7 @@ function CaseStudiesDialog() {
         <div className="space-y-8">
             {caseStudies.map((study, index) => (
                 <Card key={index} className="bg-card/70 backdrop-blur-sm border-border/50 p-6 text-left overflow-hidden">
-                    <div className={`grid md:grid-cols-2 gap-6 items-center`}>
+                    <div className={`grid md:grid-cols-3 gap-6 items-center`}>
                         <motion.div 
                           className={`relative aspect-video rounded-lg overflow-hidden ${index % 2 === 1 ? 'md:order-2' : ''}`}
                           initial={{ opacity: 0, x: index % 2 === 1 ? 50 : -50 }}
@@ -115,7 +115,7 @@ function CaseStudiesDialog() {
                             <Image src={`https://picsum.photos/seed/${index+1}/600/400`} alt={study.title} layout="fill" objectFit="cover" />
                         </motion.div>
                         <motion.div 
-                          className="flex flex-col"
+                          className="flex flex-col md:col-span-2"
                           initial={{ opacity: 0, y: 20 }}
                           whileInView={{ opacity: 1, y: 0 }}
                           viewport={{ once: true }}
