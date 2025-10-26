@@ -45,28 +45,28 @@ export const profileData: ProfileDataMap = {
         "category": "Business Impact & Insight Generation",
         "indicator": "Time-to-Insight (TTI)",
         "format": "Hours (or Days)",
-        "example_value": "24.5 Hours",
+        "example_value": "20 Hours",
         "description": "The average time from initial request to delivering a validated, actionable insight."
       },
       {
         "category": "Business Impact & Insight Generation",
         "indicator": "Actionable Insights Generated",
         "format": "Count (e.g., Insights/Quarter)",
-        "example_value": "18 Insights",
+        "example_value": "10 Insights",
         "description": "Number of unique findings that directly resulted in a strategic business action (e.g., launching an A/B test, changing a price)."
       },
       {
         "category": "Business Impact & Insight Generation",
         "indicator": "Business Problem Solving (ROI)",
         "format": "$ (Currency) or %",
-        "example_value": "+ $150,000",
+        "example_value": "₹50,000/-",
         "description": "The measurable financial return (revenue or cost savings) resulting from the data project."
       },
       {
         "category": "Business Impact & Insight Generation",
         "indicator": "Decision-Maker Utilization",
         "format": "% or Count (Users)",
-        "example_value": "95% Adoption",
+        "example_value": "90%",
         "description": "Percentage of key stakeholders who actively use the primary dashboard/report monthly."
       },
       {
