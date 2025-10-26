@@ -1,7 +1,7 @@
 
 'use client';
 
-import { ArrowRight, Plane, Goal, TrendingUp, Zap } from 'lucide-react';
+import { ArrowRight, Plane, Goal, TrendingUp, Zap, DollarSign, BrainCircuit, BarChart, Users } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
