@@ -1,4 +1,3 @@
-
 'use client';
 
 import { ArrowRight, Plane, Goal, TrendingUp, Zap, DollarSign, BrainCircuit, BarChart, Users } from 'lucide-react';
@@ -7,12 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { motion } from 'framer-motion';
 import { StrategicAlignmentSection } from './strategic-alignment-section';
-
-const stats = [
-  { label: 'Value Delivered', value: '$2.3M+' },
-  { label: 'Presentations & Talks', value: '25+' },
-  { label: 'Community Members Reached', value: '5,000+' },
-];
+import { AdvocacySection } from './advocacy-section';
 
 const caseStudies = [
   {
@@ -126,20 +120,6 @@ export function ExecutiveBriefingView() {
         <Button size="lg" variant="outline">
           Schedule a Conversation
         </Button>
-      </motion.div>
-      
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.7 }}
-        className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-4xl"
-      >
-        {stats.map((stat, i) => (
-          <Card key={i} className="bg-card/50 border-border/50 py-6 px-4">
-            <p className="text-4xl font-bold text-primary">{stat.value}</p>
-            <p className="mt-2 text-muted-foreground">{stat.label}</p>
-          </Card>
-        ))}
       </motion.div>
 
       <motion.div
@@ -269,7 +249,16 @@ export function ExecutiveBriefingView() {
                 </div>
             </div>
         </Card>
+      </motion.div>
+      
+      <AdvocacySection />
 
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.3 }}
+        className="mt-24 w-full max-w-7xl"
+      >
         <Card className="bg-primary/5 border border-primary/20 p-8 text-center">
             <h4 className="text-xl font-headline font-bold text-foreground">The Best Technical Talent Can Both Build & Inspire</h4>
             <p className="mt-4 max-w-4xl mx-auto text-muted-foreground">
