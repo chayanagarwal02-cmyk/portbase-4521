@@ -5,7 +5,7 @@ export const contentVisibility: Record<Role, string[]> = {
   'data-professional': ['Overview', 'Projects', 'Code', 'Analytics', 'Certifications'],
   'hiring-manager': ['Overview', 'Projects', 'Analytics', 'Leadership', 'Certifications', 'Contact'],
   'stalker': ['Blog', 'Gallery', 'Videos'],
-  'cxo': ['Projects', 'Analytics', 'Leadership', 'Strategic Value'],
+  'cxo': [],
 };
 
 export const heroData: Record<Role, {title: string; subtitle: string; badges: {text: string, className: string}[], profiles?: { value: string, label: string }[]}> = {

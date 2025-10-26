@@ -101,7 +101,7 @@ export function PortfolioView({ role }: { role: string }) {
     'Contact': 'Reach me out',
   }
 
-  const gridColsClass = `grid-cols-${visibleTabs.length}`;
+  const gridColsClass = `grid-cols-${visibleTabs.length > 0 ? visibleTabs.length : 1}`;
 
   return (
     <div className="flex flex-col min-h-screen bg-background">
@@ -118,21 +118,33 @@ export function PortfolioView({ role }: { role: string }) {
           onProfileChange={handleProfileChange}
         />
         
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-12">
-          <TabsList className={cn('grid w-full', gridColsClass)}>
-            {visibleTabs.map((tabName) => (
-              <TabsTrigger key={tabName} value={tabName}>{TAB_LABELS[tabName] || tabName}</TabsTrigger>
-            ))}
-          </TabsList>
+        {visibleTabs.length > 0 ? (
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-12">
+            <TabsList className={cn('grid w-full', gridColsClass)}>
+              {visibleTabs.map((tabName) => (
+                <TabsTrigger key={tabName} value={tabName}>{TAB_LABELS[tabName] || tabName}</TabsTrigger>
+              ))}
+            </TabsList>
 
-          {visibleTabs.map((tabName) => (
-            <TabsContent key={tabName} value={tabName} className="mt-8">
-              <div ref={(el) => sectionsRef.current.set(tabName, el)}>
-                {TABS_CONTENT[tabName]}
-              </div>
-            </TabsContent>
-          ))}
-        </Tabs>
+            {visibleTabs.map((tabName) => (
+              <TabsContent key={tabName} value={tabName} className="mt-8">
+                <div ref={(el) => sectionsRef.current.set(tabName, el)}>
+                  {TABS_CONTENT[tabName]}
+                </div>
+              </TabsContent>
+            ))}
+          </Tabs>
+        ) : (
+          <div className="mt-12 space-y-12">
+            <StrategicValueSection />
+            <div className='w-full h-[1px] bg-border/20 my-12'></div>
+            <ProjectsSection />
+             <div className='w-full h-[1px] bg-border/20 my-12'></div>
+            <AnalyticsSection />
+             <div className='w-full h-[1px] bg-border/20 my-12'></div>
+            <LeadershipSection />
+          </div>
+        )}
       </main>
       <Chatbot role={validRole} />
     </div>
