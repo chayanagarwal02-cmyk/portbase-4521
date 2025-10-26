@@ -89,3 +89,5 @@ export interface TechStack {
     proficiency: number;
     icon: string;
 }
+
+    

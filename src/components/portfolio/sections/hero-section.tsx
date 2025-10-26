@@ -2,9 +2,18 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Plane } from 'lucide-react';
 import { heroData, type Role } from '@/lib/data';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
-export function HeroSection({ role }: { role: Role }) {
-  const { title, subtitle, badges } = heroData[role];
+export function HeroSection({ 
+  role,
+  activeProfile,
+  onProfileChange
+}: { 
+  role: Role,
+  activeProfile: string,
+  onProfileChange: (profile: string) => void 
+}) {
+  const { title, subtitle, badges, profiles } = heroData[role];
 
   return (
     <section id="hero" className="py-12">
@@ -16,7 +25,7 @@ export function HeroSection({ role }: { role: Role }) {
             </div>
           </div>
         </div>
-        <div className="text-center md:text-left">
+        <div className="text-center md:text-left flex-grow">
           <h1 className="text-3xl md:text-4xl font-bold font-headline leading-tight">
             {title}
           </h1>
@@ -29,7 +38,23 @@ export function HeroSection({ role }: { role: Role }) {
             ))}
           </div>
         </div>
+        {profiles && profiles.length > 0 && (
+          <div className="flex-shrink-0 mt-4 md:mt-0">
+            <Select value={activeProfile} onValueChange={onProfileChange}>
+              <SelectTrigger className="w-[220px]">
+                <SelectValue placeholder="Select a Profile" />
+              </SelectTrigger>
+              <SelectContent>
+                {profiles.map(p => (
+                  <SelectItem key={p.value} value={p.value}>{p.label}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+        )}
       </div>
     </section>
   );
 }
+
+    

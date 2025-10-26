@@ -49,7 +49,9 @@ const careerJourney = [
     { year: '2019-2021', role: 'Junior Analyst', description: 'Assisted in data cleaning, ETL processes, and reporting.'}
 ]
 
-export function AboutSection() {
+export function AboutSection({ profile }: { profile: string }) {
+  const profileTitle = profile.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+
   return (
     <div className="space-y-12">
         <Card className="overflow-hidden">
@@ -64,7 +66,7 @@ export function AboutSection() {
                 />
                 </div>
                 <div className="md:w-2/3 p-8 flex flex-col justify-center">
-                <h2 className="text-2xl font-headline font-bold mb-2">A Message for HR Professionals</h2>
+                <h2 className="text-2xl font-headline font-bold mb-2">A Message for the {profileTitle} Profile</h2>
                 <p className="text-muted-foreground mb-4">
                     Welcome to my career portfolio. I am passionate about leveraging data to drive meaningful impact and fostering a collaborative, growth-oriented team environment. This portfolio is designed to give you a comprehensive look at my skills, experience, and the professional value I bring.
                 </p>
@@ -140,7 +142,7 @@ export function AboutSection() {
                 </CardTitle>
             </CardHeader>
             <CardContent>
-                <p className="text-sm text-muted-foreground">Customized content for hr</p>
+                <p className="text-sm text-muted-foreground">Customized content for {profileTitle}</p>
                 <p className="mt-2 text-muted-foreground">
                     This portfolio is tailored specifically to show you the most relevant information based on your role. Explore the tabs above to discover projects, achievements, and insights that matter most to you.
                 </p>
@@ -204,3 +206,5 @@ export function AboutSection() {
     </div>
   );
 }
+
+    

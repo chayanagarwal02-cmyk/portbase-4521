@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { PortfolioHeader } from '@/components/portfolio/header';
 import { HeroSection } from '@/components/portfolio/sections/hero-section';
@@ -25,17 +25,26 @@ import { StrategicValueSection } from './sections/strategic-value-section';
 
 export function PortfolioView({ role }: { role: string }) {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [activeTab, setActiveTab] = useState('');
+  const [activeProfile, setActiveProfile] = useState('data-analyst');
   const sectionsRef = useRef<Map<string, HTMLDivElement | null>>(new Map());
 
   const validRole = (role as Role) in contentVisibility ? (role as Role) : 'hr';
   const visibleTabs = contentVisibility[validRole];
 
   useEffect(() => {
-    if (visibleTabs.length > 0) {
+    const profile = searchParams.get('profile');
+    if (profile) {
+      setActiveProfile(profile);
+    }
+  }, [searchParams]);
+
+  useEffect(() => {
+    if (visibleTabs.length > 0 && !activeTab) {
       setActiveTab(visibleTabs[0]);
     }
-  }, [role, visibleTabs]);
+  }, [role, visibleTabs, activeTab]);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -66,10 +75,15 @@ export function PortfolioView({ role }: { role: string }) {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+  
+  const handleProfileChange = (newProfile: string) => {
+    setActiveProfile(newProfile);
+    router.push(`/portfolio?role=${role}&profile=${newProfile}`, { scroll: false });
+  };
 
   const TABS_CONTENT: { [key: string]: React.ReactNode } = {
-    'About Me': <AboutSection />,
-    'Overview': <OverviewSection />,
+    'About Me': <AboutSection profile={activeProfile} />,
+    'Overview': <OverviewSection profile={activeProfile} />,
     'Team Projects': <ProjectsSection />,
     'Leadership': <LeadershipSection />,
     'Certifications': <CertificatesSection />,
@@ -98,7 +112,11 @@ export function PortfolioView({ role }: { role: string }) {
             <ArrowLeft className="w-4 h-4" />
             Back to Selection
         </Link>
-        <HeroSection role={validRole} />
+        <HeroSection 
+          role={validRole} 
+          activeProfile={activeProfile}
+          onProfileChange={handleProfileChange}
+        />
         
         <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-12">
           <TabsList className={cn('grid w-full', gridColsClass)}>

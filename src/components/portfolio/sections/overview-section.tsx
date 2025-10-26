@@ -15,19 +15,20 @@ import { TrendingUp, Users, Award, Star, Zap, Rocket, Briefcase, Plane } from 'l
 import { skillsOverview, dataProfessionalPerformanceMetrics } from '@/lib/data';
 import { SkillsOverviewChart } from '@/components/portfolio/skills-overview-chart';
 
-
 const quickStats = [
     { label: 'Projects Completed', value: '15+' },
     { label: 'Years Experience', value: '5+' },
     { label: 'Technologies', value: '20+' },
 ];
 
-export function OverviewSection() {
+export function OverviewSection({ profile }: { profile: string }) {
+  const profileTitle = profile.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+
   return (
     <div className="space-y-12">
         <Card>
             <CardHeader>
-                <CardTitle className="font-headline">Performance Metrics</CardTitle>
+                <CardTitle className="font-headline">Performance Metrics for {profileTitle}</CardTitle>
             </CardHeader>
             <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
@@ -92,7 +93,7 @@ export function OverviewSection() {
                 </CardTitle>
             </CardHeader>
             <CardContent>
-                <p className="text-sm text-muted-foreground">Customized content for data professionals</p>
+                <p className="text-sm text-muted-foreground">Customized content for {profileTitle}</p>
                 <p className="mt-2 text-muted-foreground">
                     This portfolio is tailored specifically to show you the most relevant information based on your role. Explore the tabs above to discover projects, achievements, and insights that matter most to you.
                 </p>
@@ -118,3 +119,5 @@ export function OverviewSection() {
     </div>
   );
 }
+
+    

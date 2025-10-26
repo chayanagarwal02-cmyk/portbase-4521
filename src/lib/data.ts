@@ -8,25 +8,48 @@ export const contentVisibility: Record<Role, string[]> = {
   'cxo': ['Projects', 'Analytics', 'Leadership', 'Strategic Value'],
 };
 
-export const heroData: Record<Role, {title: string; subtitle: string; badges: {text: string, className: string}[]}> = {
+export const heroData: Record<Role, {title: string; subtitle: string; badges: {text: string, className: string}[], profiles?: { value: string, label: string }[]}> = {
   'hr': {
     title: "HR Professional View",
-    subtitle: "Culture, Team Dynamics & Professional Growth",
+    subtitle: "Select a profile to view tailored information on culture, team dynamics, and professional growth.",
     badges: [
-        { text: "Data Analyst", className: "bg-blue-900/50 text-blue-300 border-blue-700" },
-        { text: "Aviation Enthusiast", className: "bg-green-900/50 text-green-300 border-green-700"},
-        { text: "Problem Solver", className: "bg-purple-900/50 text-purple-300 border-purple-700"}
+        { text: "Team Player", className: "bg-blue-900/50 text-blue-300 border-blue-700" },
+        { text: "Effective Communicator", className: "bg-green-900/50 text-green-300 border-green-700"},
+        { text: "Adaptable", className: "bg-purple-900/50 text-purple-300 border-purple-700"}
+    ],
+    profiles: [
+        { value: 'data-analyst', label: 'Data Analyst' },
+        { value: 'data-scientist', label: 'Data Scientist' },
+        { value: 'data-engineer', label: 'Data Engineer' },
     ]
   },
   'data-professional': {
-    title: "Exploring a Data-Driven Mindset",
-    subtitle: "Dive deep into complex projects, analytical insights, and robust code. This portfolio is a testament to a passion for turning data into actionable intelligence.",
-    badges: []
+    title: "Data Professional Deep Dive",
+    subtitle: "Select a profile for a technical exploration of projects, code, and analytics.",
+    badges: [
+      { text: "Python", className: "bg-yellow-900/50 text-yellow-300 border-yellow-700" },
+      { text: "SQL", className: "bg-sky-900/50 text-sky-300 border-sky-700"},
+      { text: "Cloud Certified", className: "bg-orange-900/50 text-orange-300 border-orange-700"}
+    ],
+    profiles: [
+        { value: 'data-analyst', label: 'Data Analyst' },
+        { value: 'data-scientist', label: 'Data Scientist' },
+        { value: 'data-engineer', label: 'Data Engineer' },
+    ]
   },
   'hiring-manager': {
-    title: "Finding the Right Fit for Your Team",
-    subtitle: "Assess a candidate's practical skills through detailed project walkthroughs, analytics dashboards, and leadership examples. See the impact I can bring to your organization.",
-    badges: []
+    title: "Hiring Manager Assessment",
+    subtitle: "Select a profile to assess practical skills, project impact, and leadership qualities.",
+    badges: [
+      { text: "Problem Solver", className: "bg-rose-900/50 text-rose-300 border-rose-700" },
+      { text: "Results-Oriented", className: "bg-indigo-900/50 text-indigo-300 border-indigo-700"},
+      { text: "Project Leadership", className: "bg-emerald-900/50 text-emerald-300 border-emerald-700"}
+    ],
+    profiles: [
+        { value: 'data-analyst', label: 'Data Analyst' },
+        { value: 'data-scientist', label: 'Data Scientist' },
+        { value: 'data-engineer', label: 'Data Engineer' },
+    ]
   },
   'stalker': {
     title: "A Glimpse into a Professional's Journey",
@@ -34,13 +57,13 @@ export const heroData: Record<Role, {title: string; subtitle: string; badges: {t
     badges: []
   },
   'cxo': {
-    title: "Executive-Level Strategic Overview",
-    subtitle: "A top-line summary of business impact, strategic project outcomes, and leadership capabilities, designed for executive review.",
+    title: "Machine Learning Advocate Profile",
+    subtitle: "A strategic overview of how data-driven leadership and technical advocacy deliver business value, from product innovation to market presence.",
     badges: [
         { text: "Business-Oriented", className: "bg-red-900/50 text-red-300 border-red-700" },
         { text: "Results-Driven", className: "bg-teal-900/50 text-teal-300 border-teal-700"},
         { text: "Strategic Thinker", className: "bg-gray-700/50 text-gray-300 border-gray-600"}
-    ]
+    ],
   }
 }
 
@@ -380,6 +403,8 @@ export const techStackData: TechStack[] = [
     { name: 'Data Visualization', proficiency: 75, icon: 'BarChart2' },
     { name: 'ETL Pipelines', proficiency: 82, icon: 'Zap' },
 ];
+
+    
 
     
 
