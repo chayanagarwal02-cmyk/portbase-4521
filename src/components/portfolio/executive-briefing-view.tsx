@@ -191,7 +191,7 @@ export function ExecutiveBriefingView() {
                 View Case Studies
               </Button>
             </DialogTrigger>
-            <DialogContent className="max-w-4xl h-[90vh] flex flex-col">
+            <DialogContent className="max-w-6xl h-[90vh] flex flex-col">
               <DialogHeader>
                 <DialogTitle className="text-2xl font-headline">Executive Case Studies</DialogTitle>
                 <DialogDescription>
