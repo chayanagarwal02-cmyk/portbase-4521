@@ -1,10 +1,11 @@
 'use client';
 
-import { ArrowRight, Plane, Goal, TrendingUp, Zap, Separator } from 'lucide-react';
+import { ArrowRight, Plane, Goal, TrendingUp, Zap } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { motion } from 'framer-motion';
+import { StrategicAlignmentSection } from './strategic-alignment-section';
 
 const stats = [
   { label: 'Value Delivered', value: '$2.3M+' },
@@ -167,6 +168,7 @@ export function ExecutiveBriefingView() {
             })}
         </div>
       </motion.div>
+      <StrategicAlignmentSection />
     </div>
   );
 }
