@@ -46,11 +46,26 @@ const CultNinjaIcon = (props: React.SVGProps<SVGSVGElement>) => (
     </svg>
   );
 
+const CaptainIcon = (props: React.SVGProps<SVGSVGElement>) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" {...props}>
+        <circle cx="50" cy="50" r="45" fill="#1E3A8A" stroke="#FBBF24" strokeWidth="4" />
+        <text x="50" y="30" textAnchor="middle" fill="white" fontSize="8" className="font-headline">ACHIEVEMENT</text>
+        <g transform="translate(50 55) scale(0.3)">
+            <path d="M0-25 l5,10 h15 l-10,15 l5,20 l-15-10 l-15,10 l5-20 l-10-15 h15 z" fill="none" stroke="#FBBF24" strokeWidth="3" />
+            <circle cx="0" cy="0" r="10" fill="none" stroke="#FBBF24" strokeWidth="3"/>
+            <path d="M0-10 V10 M-10,0 H10" stroke="#FBBF24" strokeWidth="3"/>
+        </g>
+        <text x="50" y="80" textAnchor="middle" fill="white" fontSize="6">CAPTAIN OF THE MONTH</text>
+    </svg>
+);
+
+
 const achievements = [
-    { icon: Award, color: 'text-yellow-400 bg-yellow-900/50' },
-    { icon: Star, color: 'text-orange-400 bg-orange-900/50' },
-    { icon: CultNinjaIcon, color: 'text-rose-400 bg-rose-900/50' },
-    { icon: Rocket, color: 'text-blue-400 bg-blue-900/50' },
+    { icon: Award, color: 'text-yellow-400 bg-yellow-900/50', tooltip: 'Innovator of the Year' },
+    { icon: Star, color: 'text-orange-400 bg-orange-900/50', tooltip: 'Top Performer Award' },
+    { icon: CultNinjaIcon, color: 'text-rose-400 bg-rose-900/50', tooltip: 'Cult Ninja Award' },
+    { icon: Rocket, color: 'text-blue-400 bg-blue-900/50', tooltip: 'Project Launch Excellence' },
+    { icon: CaptainIcon, color: 'text-amber-400 bg-amber-900/50', tooltip: "Captain of the Month - Scaler CC x BLR Community (Sept' 25)" },
 ]
 
 const careerJourney = [
@@ -206,16 +221,25 @@ export function AboutSection({ profile }: { profile: string }) {
 
       <div>
         <h3 className="text-center text-xl font-headline mb-6">Achievements &amp; Certifications</h3>
-        <div className="flex justify-center gap-4">
-            {achievements.map((ach, i) => {
-                const Icon = ach.icon;
-                return (
-                    <button key={i} className={`flex items-center justify-center w-16 h-16 rounded-full ${ach.color} transition-transform hover:scale-110`}>
-                        <Icon className="w-8 h-8" />
-                    </button>
-                )
-            })}
-        </div>
+        <TooltipProvider>
+            <div className="flex justify-center gap-4">
+                {achievements.map((ach, i) => {
+                    const Icon = ach.icon;
+                    return (
+                        <Tooltip key={i}>
+                            <TooltipTrigger asChild>
+                                <button className={`flex items-center justify-center w-16 h-16 rounded-full ${ach.color} transition-transform hover:scale-110`}>
+                                    <Icon className="w-8 h-8" />
+                                </button>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                                <p>{ach.tooltip}</p>
+                            </TooltipContent>
+                        </Tooltip>
+                    )
+                })}
+            </div>
+        </TooltipProvider>
       </div>
 
       <Card className="bg-card/50">
