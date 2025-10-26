@@ -1,25 +1,16 @@
 'use client';
 
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import {
-  PolarAngleAxis,
-  PolarGrid,
-  Radar,
-  RadarChart,
-  ResponsiveContainer,
-  Tooltip as RechartsTooltip,
-  RadialBarChart,
-  RadialBar,
-} from 'recharts';
-import { TrendingUp, Users, Award, Star, Zap, Rocket, Briefcase, Plane, CheckCircle, HelpCircle } from 'lucide-react';
-import { profileData } from '@/lib/profile-data';
-import { SkillsOverviewChart } from '@/components/portfolio/skills-overview-chart';
+import { TrendingUp, Users, Award, Star, Rocket, Briefcase, Plane, CheckCircle } from 'lucide-react';
 import Image from 'next/image';
+import { RadialBarChart, RadialBar, ResponsiveContainer, PolarAngleAxis, Tooltip as RechartsTooltip } from 'recharts';
+import { SkillsOverviewChart } from '@/components/portfolio/skills-overview-chart';
+import { profileData } from '@/lib/profile-data';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-
+import { HelpCircle } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
 
 const quickStats = [
     { label: 'Projects Completed', value: '15+' },
@@ -63,10 +54,12 @@ const careerJourney = [
     { year: '2019-2021', role: 'Junior Analyst', description: 'Assisted in data cleaning, ETL processes, and reporting.'}
 ]
 
-export function OverviewSection({ profile }: { profile: string }) {
+export function AboutSection({ profile }: { profile: string }) {
   const profileTitle = profile.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
   const currentProfileData = profileData[profileTitle as keyof typeof profileData];
+  
   const chartColors = ["hsl(var(--chart-1))", "hsl(var(--chart-2))", "hsl(var(--chart-3))", "hsl(var(--chart-4))"];
+
 
   return (
     <div className="space-y-12">
@@ -87,19 +80,19 @@ export function OverviewSection({ profile }: { profile: string }) {
                     {currentProfileData.about}
                 </p>
                 <p className="text-sm font-semibold">Chayan Agarwal</p>
-                <p className="text-xs text-muted-foreground">Data Professional & Aviation Enthusiast</p>
+                <p className="text-xs text-muted-foreground">Data Analyst & Aviation Enthusiast</p>
                 </div>
             </div>
         </Card>
         <Card>
             <CardHeader>
-                <CardTitle className="font-headline">Performance Metrics for {profileTitle}</CardTitle>
+                <CardTitle className="font-headline">Performance Metrics</CardTitle>
                 <CardDescription>Click on a chart for a detailed breakdown of key metrics.</CardDescription>
             </CardHeader>
             <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-center">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
                     {currentProfileData.circles.map((metric, index) => (
-                     <Dialog key={metric.title}>
+                    <Dialog key={metric.title}>
                         <DialogTrigger asChild>
                             <div className="cursor-pointer group">
                                 <div className="h-40 w-40 mx-auto transition-transform group-hover:scale-110">
@@ -107,11 +100,11 @@ export function OverviewSection({ profile }: { profile: string }) {
                                         <RadialBarChart 
                                             innerRadius="70%" 
                                             outerRadius="85%" 
-                                            data={[metric]} 
+                                            data={[metric]}
                                             startAngle={90} 
                                             endAngle={-270}
                                         >
-                                        <PolarAngleAxis type="number" domain={[0, 100]} angleAxisId={0} tick={false}/>
+                                        <PolarAngleAxis type="number" domain={[0, 100]} angleAxisId={0} tick={false} />
                                         <RadialBar background clockWise dataKey="value" cornerRadius={10} fill={chartColors[index % chartColors.length]} />
                                         <text x="50%" y="50%" textAnchor="middle" dominantBaseline="middle" className="fill-foreground text-2xl font-bold">
                                             {`${metric.value}%`}
@@ -165,7 +158,7 @@ export function OverviewSection({ profile }: { profile: string }) {
       
       <Card>
         <CardHeader>
-          <CardTitle className="font-headline">General Skills Overview</CardTitle>
+          <CardTitle className="font-headline">Skills Overview</CardTitle>
         </CardHeader>
         <CardContent className="h-96 relative">
           <SkillsOverviewChart />
@@ -205,7 +198,7 @@ export function OverviewSection({ profile }: { profile: string }) {
         </Card>
       </div>
 
-       <div>
+      <div>
         <h3 className="text-center text-xl font-headline mb-6">Achievements &amp; Certifications</h3>
         <div className="flex justify-center gap-4">
             {achievements.map((ach, i) => {
