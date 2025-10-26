@@ -1,6 +1,6 @@
 'use client';
 
-import { ArrowRight, Plane, Goal, TrendingUp, Zap, DollarSign, BrainCircuit, BarChart, Users } from 'lucide-react';
+import { ArrowRight, Plane, Goal, TrendingUp, Zap, Users, Lightbulb, DollarSign } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -8,6 +8,21 @@ import { motion } from 'framer-motion';
 import { StrategicAlignmentSection } from './strategic-alignment-section';
 import { AdvocacySection } from './advocacy-section';
 import { ExecutiveContactSection } from './executive-contact-section';
+
+const topMetrics = [
+  {
+    value: '$2.3M+',
+    label: 'Value Delivered',
+  },
+  {
+    value: '25+',
+    label: 'Presentations & Talks',
+  },
+  {
+    value: '5,000+',
+    label: 'Community Members Reached',
+  },
+];
 
 const caseStudies = [
   {
@@ -72,56 +87,72 @@ const businessRoiMetrics = [
 export function ExecutiveBriefingView() {
   return (
     <div className="flex flex-col items-center justify-center text-center py-12 md:py-24">
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-        className="mb-6"
-      >
-        <Plane className="h-12 w-12 text-primary" />
-      </motion.div>
+      <div className="w-full max-w-4xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="mb-6 flex justify-center"
+        >
+          <Plane className="h-12 w-12 text-primary" />
+        </motion.div>
 
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.3 }}
-      >
-        <Badge variant="outline" className="mb-4 text-sm py-1 px-3">
-          Machine Learning Advocate
-        </Badge>
-      </motion.div>
-      
-      <motion.h1
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.4 }}
-        className="text-3xl font-headline font-bold tracking-tight text-foreground md:text-4xl"
-      >
-        Building Data Solutions
-      </motion.h1>
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        >
+          <Badge variant="outline" className="mb-4 text-sm py-1 px-3">
+            Machine Learning Advocate
+          </Badge>
+        </motion.div>
+        
+        <motion.h1
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="text-3xl font-headline font-bold tracking-tight text-foreground md:text-4xl"
+        >
+          Building Data Solutions
+        </motion.h1>
 
-      <motion.p
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.5 }}
-        className="mt-4 max-w-2xl text-lg text-muted-foreground"
-      >
-        Technical storyteller combining data engineering, analytics, and ML science with developer advocacy. I build data solutions that drive business value, then take the stage to share insights, inspire teams, and grow communities around data-driven innovation.
-      </motion.p>
-      
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.6 }}
-        className="mt-10 flex flex-col sm:flex-row gap-4"
-      >
-        <Button size="lg">
-          View Case Studies <ArrowRight className="ml-2 h-4 w-4" />
-        </Button>
-        <Button size="lg" variant="outline">
-          Schedule a Conversation
-        </Button>
-      </motion.div>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="mt-4 max-w-2xl text-lg text-muted-foreground mx-auto"
+        >
+          Technical storyteller combining data engineering, analytics, and ML science with developer advocacy. I build data solutions that drive business value, then take the stage to share insights, inspire teams, and grow communities around data-driven innovation.
+        </motion.p>
+        
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.6 }}
+          className="mt-10 flex flex-col sm:flex-row gap-4 justify-center"
+        >
+          <Button size="lg">
+            View Case Studies <ArrowRight className="ml-2 h-4 w-4" />
+          </Button>
+          <Button size="lg" variant="outline">
+            Schedule a Conversation
+          </Button>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.7 }}
+          className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8"
+        >
+          {topMetrics.map((metric, index) => (
+            <Card key={index} className="bg-card/50 border-border/50 py-6 px-4">
+              <p className="text-4xl font-bold text-primary">{metric.value}</p>
+              <p className="mt-2 text-muted-foreground">{metric.label}</p>
+            </Card>
+          ))}
+        </motion.div>
+      </div>
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
