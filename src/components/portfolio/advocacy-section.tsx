@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Calendar, Mic, Users, TrendingUp } from 'lucide-react';
+import { Calendar, Mic, Users, TrendingUp, FileText } from 'lucide-react';
 
 const speakingEvents = [
   {
@@ -25,6 +25,30 @@ const speakingEvents = [
     metric: '250+',
     metricLabel: 'Members'
   }
+];
+
+const contentCreation = [
+    {
+        icon: FileText,
+        title: "Technical Blog Series: 'Data Engineering Fundamentals'",
+        description: "8-part deep dive on building production data pipelines. Covers architecture, testing, monitoring, and cost optimization",
+        metric: "25K+",
+        metricLabel: "Readers"
+    },
+    {
+        icon: FileText,
+        title: "ML Case Studies & Post-Mortems",
+        description: "Honest breakdowns of ML projects—what worked, what failed, and lessons learned. Readers appreciate the transparency",
+        metric: "12K+",
+        metricLabel: "Readers"
+    },
+    {
+        icon: FileText,
+        title: "YouTube: 'ML Explained Simply'",
+        description: "Video series demystifying complex ML concepts for business stakeholders and aspiring data scientists",
+        metric: "3,500+",
+        metricLabel: "Subscribers"
+    }
 ];
 
 const summaryMetrics = [
@@ -89,7 +113,28 @@ export function AdvocacySection() {
           </div>
         </TabsContent>
         <TabsContent value="content" className="mt-8">
-            <p className="text-muted-foreground text-center py-12">Content section coming soon.</p>
+            <div className="space-y-6">
+                {contentCreation.map((item, index) => {
+                    const Icon = item.icon;
+                    return (
+                        <Card key={index} className="bg-card/70 backdrop-blur-sm border-border/50 p-6">
+                            <div className="flex justify-between items-start gap-4">
+                                <div className="flex items-start gap-4">
+                                    <Icon className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                                    <div className="text-left">
+                                        <h4 className="font-semibold text-foreground">{item.title}</h4>
+                                        <p className="text-sm text-muted-foreground mt-1">{item.description}</p>
+                                    </div>
+                                </div>
+                                <div className="text-right flex-shrink-0 min-w-[80px]">
+                                    <p className="text-xl font-bold text-primary">{item.metric}</p>
+                                    <p className="text-xs text-muted-foreground">{item.metricLabel}</p>
+                                </div>
+                            </div>
+                        </Card>
+                    )
+                })}
+            </div>
         </TabsContent>
         <TabsContent value="open-source" className="mt-8">
              <p className="text-muted-foreground text-center py-12">Open Source contributions coming soon.</p>
