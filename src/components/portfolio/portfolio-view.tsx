@@ -136,13 +136,10 @@ export function PortfolioView({ role }: { role: string }) {
           </Tabs>
         ) : (
           <div className="mt-12 space-y-12">
-            <StrategicValueSection />
-            <div className='w-full h-[1px] bg-border/20 my-12'></div>
-            <ProjectsSection />
-             <div className='w-full h-[1px] bg-border/20 my-12'></div>
-            <AnalyticsSection />
-             <div className='w-full h-[1px] bg-border/20 my-12'></div>
-            <LeadershipSection />
+            {/* Content for tabless views like CXO */}
+            {validRole === 'cxo' && (
+              <></>
+            )}
           </div>
         )}
       </main>
