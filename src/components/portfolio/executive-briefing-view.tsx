@@ -1,6 +1,6 @@
 'use client';
 
-import { ArrowRight, Plane, Goal, TrendingUp, Zap, Users, Lightbulb, DollarSign } from 'lucide-react';
+import { ArrowRight, Plane, Goal, TrendingUp, Zap, Users, Lightbulb, DollarSign, ExternalLink, View } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -9,6 +9,16 @@ import { StrategicAlignmentSection } from './strategic-alignment-section';
 import { AdvocacySection } from './advocacy-section';
 import { ExecutiveContactSection } from './executive-contact-section';
 import Link from 'next/link';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import Image from 'next/image';
+
 
 const topMetrics = [
   {
@@ -29,6 +39,7 @@ const caseStudies = [
   {
     icon: Goal,
     category: 'Data Engineering + Analytics',
+    title: 'E-commerce Analytics Platform',
     challenge: 'E-commerce company drowning in siloed data across 8 systems, unable to track customer journey or inventory in real-time.',
     solution: 'Built end-to-end data pipeline using Airflow and dbt, consolidating data into centralized warehouse. Designed analytics dashboard and presented insights to executive team, then evangelized the data-driven approach across 12 departments through internal workshops.',
     impacts: [
@@ -41,6 +52,7 @@ const caseStudies = [
   {
     icon: TrendingUp,
     category: 'ML Science + Advocacy',
+    title: 'SaaS Churn Prediction Model',
     challenge: 'SaaS platform experiencing 22% churn but no predictive capabilities. Executive team skeptical about ML investment.',
     solution: 'Developed churn prediction model using gradient boosting (85% accuracy). Created compelling presentation with ROI projections that secured C-suite buy-in. Presented case study at 3 industry conferences, positioning company as ML-forward innovator.',
     impacts: [
@@ -53,6 +65,7 @@ const caseStudies = [
   {
     icon: Zap,
     category: 'Automation + Evangelism',
+    title: 'NLP Support Ticket Automation',
     challenge: "Support team overwhelmed by manual ticket routing. Engineering team resistant to ML adoption due to 'black box' concerns.",
     solution: "Built NLP classification system with explainable AI features. Created technical deep-dive blog series demystifying the model. Delivered company-wide presentation on 'ML for Non-Technical Teams' that changed perception of AI from threat to tool.",
     impacts: [
@@ -85,6 +98,44 @@ const businessRoiMetrics = [
     { label: "Budget secured for ML initiatives", value: "$550K" },
     { label: "Projects approved after initial rejection", value: "5" }
 ]
+
+function CaseStudiesDialog() {
+    return (
+        <div className="space-y-8">
+            {caseStudies.map((study, index) => (
+                <Card key={index} className="bg-card/70 backdrop-blur-sm border-border/50 p-6 text-left overflow-hidden">
+                    <div className={`grid md:grid-cols-2 gap-6 items-center`}>
+                        <motion.div 
+                          className={`relative aspect-video rounded-lg overflow-hidden ${index % 2 === 1 ? 'md:order-2' : ''}`}
+                          initial={{ opacity: 0, x: index % 2 === 1 ? 50 : -50 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.5, delay: 0.2 }}
+                        >
+                            <Image src={`https://picsum.photos/seed/${index+1}/600/400`} alt={study.title} layout="fill" objectFit="cover" />
+                        </motion.div>
+                        <motion.div 
+                          className="flex flex-col"
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.5, delay: 0.3 }}
+                        >
+                            <h3 className="text-xl font-bold font-headline mb-2">{study.title}</h3>
+                            <p className="text-muted-foreground mb-4 flex-grow">{study.challenge}</p>
+                            <div className="flex items-center justify-between text-sm">
+                                <p><span className="font-semibold text-foreground">Impact Created:</span> <span className="text-primary">{study.value}</span></p>
+                                <Button variant="link" asChild>
+                                    <Link href="#">Project Demo <ExternalLink className="w-4 h-4 ml-1" /></Link>
+                                </Button>
+                            </div>
+                        </motion.div>
+                    </div>
+                </Card>
+            ))}
+        </div>
+    )
+}
 
 export function ExecutiveBriefingView() {
   return (
@@ -133,7 +184,26 @@ export function ExecutiveBriefingView() {
           transition={{ duration: 0.5, delay: 0.6 }}
           className="mt-10 flex flex-col sm:flex-row gap-4 justify-center"
         >
-          <Badge variant="secondary">Executive Case Studies</Badge>
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button size="lg">
+                <View className="mr-2 h-4 w-4" />
+                View Case Studies
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="max-w-4xl h-[90vh] flex flex-col">
+              <DialogHeader>
+                <DialogTitle className="text-2xl font-headline">Executive Case Studies</DialogTitle>
+                <DialogDescription>
+                  A showcase of projects demonstrating technical execution and business impact.
+                </DialogDescription>
+              </DialogHeader>
+              <div className="overflow-y-auto flex-grow pr-4">
+                <CaseStudiesDialog />
+              </div>
+            </DialogContent>
+          </Dialog>
+
           <Button size="lg" variant="outline">
             Schedule a Conversation
           </Button>
@@ -305,3 +375,5 @@ export function ExecutiveBriefingView() {
     </div>
   );
 }
+
+    
