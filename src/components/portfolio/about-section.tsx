@@ -1,7 +1,7 @@
 'use client';
 
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { TrendingUp, Users, Award, Star, Rocket, Briefcase, Plane, CheckCircle } from 'lucide-react';
+import { TrendingUp, Users, Award, Star, Rocket, Briefcase, Plane, CheckCircle, GraduationCap } from 'lucide-react';
 import Image from 'next/image';
 import { RadialBarChart, RadialBar, ResponsiveContainer, PolarAngleAxis, Tooltip as RechartsTooltip } from 'recharts';
 import { SkillsOverviewChart } from '@/components/portfolio/skills-overview-chart';
@@ -69,9 +69,12 @@ const achievements = [
 ]
 
 const careerJourney = [
-    { year: '2024-Present', role: 'Senior Data Analyst', description: 'Leading data initiatives and mentoring junior analysts.'},
-    { year: '2021-2024', role: 'Data Analyst', description: 'Developed predictive models and created analytics dashboards.'},
-    { year: '2019-2021', role: 'Junior Analyst', description: 'Assisted in data cleaning, ETL processes, and reporting.'}
+    { year: '2023 - 2024', role: 'Data Operations Analyst', company: 'Amazon Development Center (India) Pvt. Ltd.', description: 'Analyzed large-scale data to enhance operational efficiency and support strategic decisions.'},
+    { year: '2022 - 2023', role: 'Operations Analyst', company: 'Highway Delite', description: 'Monitored operational metrics and provided data-driven recommendations for process improvements.'},
+]
+
+const virtualInternships = [
+    { year: 'June 2025 - August 2025', role: 'Data Analytics Consultant', company: 'Quantium (via The Forage)', description: 'Completed a simulated project involving data analysis and strategic recommendations for a retail client.'}
 ]
 
 export function AboutSection({ profile }: { profile: string }) {
@@ -259,7 +262,33 @@ export function AboutSection({ profile }: { profile: string }) {
                         </div>
                         <p className="text-sm text-muted-foreground">{item.year}</p>
                         <h4 className="font-semibold text-foreground">{item.role}</h4>
-                        <p className="text-sm text-muted-foreground">{item.description}</p>
+                        <p className="text-sm text-muted-foreground font-semibold">{item.company}</p>
+                        <p className="text-sm text-muted-foreground mt-1">{item.description}</p>
+                    </div>
+                ))}
+            </div>
+        </CardContent>
+      </Card>
+      
+      <Card className="bg-card/50">
+        <CardHeader>
+            <CardTitle className="flex items-center gap-2 font-headline text-xl">
+                <GraduationCap className="h-5 w-5 text-primary" />
+                Virtual Internships
+            </CardTitle>
+        </CardHeader>
+        <CardContent>
+            <div className="relative pl-6">
+                <div className="absolute left-[30px] h-full w-0.5 bg-border -translate-x-1/2"></div>
+                {virtualInternships.map((item, index) => (
+                    <div key={index} className="relative pl-8 pb-8 last:pb-0">
+                        <div className="absolute left-0 top-1.5 flex items-center">
+                            <div className="w-4 h-4 rounded-full bg-primary z-10"></div>
+                        </div>
+                        <p className="text-sm text-muted-foreground">{item.year}</p>
+                        <h4 className="font-semibold text-foreground">{item.role}</h4>
+                         <p className="text-sm text-muted-foreground font-semibold">{item.company}</p>
+                        <p className="text-sm text-muted-foreground mt-1">{item.description}</p>
                     </div>
                 ))}
             </div>
