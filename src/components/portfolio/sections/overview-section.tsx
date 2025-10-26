@@ -1,6 +1,6 @@
 'use client';
 
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import {
   PolarAngleAxis,
   PolarGrid,
@@ -11,10 +11,12 @@ import {
   RadialBarChart,
   RadialBar,
 } from 'recharts';
-import { TrendingUp, Users, Award, Star, Zap, Rocket, Briefcase, Plane } from 'lucide-react';
-import { skillsOverview, dataProfessionalPerformanceMetrics } from '@/lib/data';
+import { TrendingUp, Users, Award, Star, Zap, Rocket, Briefcase, Plane, CheckCircle } from 'lucide-react';
+import { profileData } from '@/lib/profile-data';
 import { SkillsOverviewChart } from '@/components/portfolio/skills-overview-chart';
 import Image from 'next/image';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { Badge } from '@/components/ui/badge';
 
 const quickStats = [
     { label: 'Projects Completed', value: '15+' },
@@ -58,8 +60,25 @@ const careerJourney = [
     { year: '2019-2021', role: 'Junior Analyst', description: 'Assisted in data cleaning, ETL processes, and reporting.'}
 ]
 
+const CustomTooltip = ({ active, payload }: any) => {
+  if (active && payload && payload.length) {
+    const data = payload[0].payload;
+    return (
+      <div className="bg-background/80 backdrop-blur-sm border border-border/50 p-4 rounded-lg shadow-lg">
+        <p className="font-bold text-lg text-foreground">{data.title}</p>
+        <ul className="text-sm text-muted-foreground mt-2 list-disc list-inside">
+          {data.key_metrics.map((metric: string) => <li key={metric}>{metric}</li>)}
+        </ul>
+      </div>
+    );
+  }
+  return null;
+};
+
 export function OverviewSection({ profile }: { profile: string }) {
   const profileTitle = profile.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+  const currentProfileData = profileData[profileTitle as keyof typeof profileData];
+  const chartColors = ["hsl(var(--chart-1))", "hsl(var(--chart-2))", "hsl(var(--chart-3))", "hsl(var(--chart-4))"];
 
   return (
     <div className="space-y-12">
@@ -77,21 +96,22 @@ export function OverviewSection({ profile }: { profile: string }) {
                 <div className="md:w-2/3 p-8 flex flex-col justify-center">
                 <h2 className="text-2xl font-headline font-bold mb-2">A Message for the {profileTitle} Profile</h2>
                 <p className="text-muted-foreground mb-4">
-                    Welcome to my career portfolio. I am passionate about leveraging data to drive meaningful impact and fostering a collaborative, growth-oriented team environment. This portfolio is designed to give you a comprehensive look at my skills, experience, and the professional value I bring.
+                    {currentProfileData.about}
                 </p>
                 <p className="text-sm font-semibold">Chayan Agarwal</p>
-                <p className="text-xs text-muted-foreground">Data Analyst & Aviation Enthusiast</p>
+                <p className="text-xs text-muted-foreground">Data Professional & Aviation Enthusiast</p>
                 </div>
             </div>
         </Card>
         <Card>
             <CardHeader>
                 <CardTitle className="font-headline">Performance Metrics for {profileTitle}</CardTitle>
+                <CardDescription>Hover over a chart for key metrics</CardDescription>
             </CardHeader>
             <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                    {dataProfessionalPerformanceMetrics.map((metric) => (
-                    <div key={metric.name}>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-center">
+                    {currentProfileData.circles.map((metric, index) => (
+                    <div key={metric.title}>
                         <div className="h-40 w-40 mx-auto">
                         <ResponsiveContainer width="100%" height="100%">
                             <RadialBarChart 
@@ -112,9 +132,9 @@ export function OverviewSection({ profile }: { profile: string }) {
                                 clockWise
                                 dataKey="value"
                                 cornerRadius={10}
-                                fill={metric.color}
-                                className="fill-primary"
+                                fill={chartColors[index % chartColors.length]}
                              />
+                             <RechartsTooltip content={<CustomTooltip />} cursor={{ fill: 'hsla(var(--accent) / 0.5)' }}/>
                             <text 
                                 x="50%" 
                                 y="50%" 
@@ -127,15 +147,45 @@ export function OverviewSection({ profile }: { profile: string }) {
                             </RadialBarChart>
                         </ResponsiveContainer>
                         </div>
-                        <p className="mt-2 font-semibold text-muted-foreground">{metric.name}</p>
+                        <p className="mt-2 font-semibold text-muted-foreground">{metric.title}</p>
                     </div>
                     ))}
                 </div>
             </CardContent>
         </Card>
+
+        <Card>
+          <CardHeader>
+              <CardTitle className="font-headline">Key Metrics Breakdown</CardTitle>
+              <CardDescription>A detailed view of the metrics that drive performance for a {profileTitle}.</CardDescription>
+          </CardHeader>
+          <CardContent>
+              <Table>
+                  <TableHeader>
+                      <TableRow>
+                          <TableHead>Category</TableHead>
+                          <TableHead>Indicator</TableHead>
+                          <TableHead>Example Value</TableHead>
+                          <TableHead>Description</TableHead>
+                      </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                      {currentProfileData.metrics.map((metric, index) => (
+                          <TableRow key={index}>
+                              <TableCell className="font-medium">{metric.category}</TableCell>
+                              <TableCell>{metric.indicator}</TableCell>
+                              <TableCell><Badge variant="secondary">{metric.example_value}</Badge></TableCell>
+                              <TableCell className="text-muted-foreground">{metric.description}</TableCell>
+                          </TableRow>
+                      ))}
+                  </TableBody>
+              </Table>
+          </CardContent>
+      </Card>
+      
       <Card>
         <CardHeader>
-          <CardTitle className="font-headline">Skills Overview</CardTitle>
+          <CardTitle className="font-headline">General Skills Overview</CardTitle>
         </CardHeader>
         <CardContent className="h-96 relative">
           <SkillsOverviewChart />
@@ -215,5 +265,3 @@ export function OverviewSection({ profile }: { profile: string }) {
     </div>
   );
 }
-
-    

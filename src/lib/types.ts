@@ -90,4 +90,29 @@ export interface TechStack {
     icon: string;
 }
 
-    
+// New Types for Profile-Specific Data
+export interface ProfileMetric {
+  category: string;
+  indicator: string;
+  format: string;
+  example_value: string;
+  description: string;
+}
+
+export interface ProfileCircle {
+  title: string;
+  value: number;
+  key_metrics: string[];
+}
+
+export interface ProfileData {
+  about: string;
+  circles: ProfileCircle[];
+  metrics: ProfileMetric[];
+}
+
+export type ProfileName = 'Data Analyst' | 'Data Scientist' | 'Data Engineer';
+
+export type ProfileDataMap = {
+  [key in ProfileName]: ProfileData;
+};
