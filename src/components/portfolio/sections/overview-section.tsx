@@ -14,6 +14,7 @@ import {
 import { TrendingUp, Users, Award, Star, Zap, Rocket, Briefcase, Plane } from 'lucide-react';
 import { skillsOverview, dataProfessionalPerformanceMetrics } from '@/lib/data';
 import { SkillsOverviewChart } from '@/components/portfolio/skills-overview-chart';
+import Image from 'next/image';
 
 const quickStats = [
     { label: 'Projects Completed', value: '15+' },
@@ -21,11 +22,68 @@ const quickStats = [
     { label: 'Technologies', value: '20+' },
 ];
 
+const CultNinjaIcon = (props: React.SVGProps<SVGSVGElement>) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" {...props}>
+      <circle cx="50" cy="50" r="48" fill="none" stroke="currentColor" strokeWidth="2"/>
+      <path id="top" d="M 20, 50 a 30,30 0 1,1 60,0" fill="none" />
+      <text>
+        <textPath href="#top" startOffset="50%" textAnchor="middle" fontSize="10" fill="currentColor">
+          EARNED NOT BOUGHT
+        </textPath>
+      </text>
+      <path id="bottom" d="M 20, 50 a 30,30 0 0,0 60,0" fill="none" />
+      <text>
+        <textPath href="#bottom" startOffset="50%" textAnchor="middle" fontSize="10" fill="currentColor">
+          CULT NINJA
+        </textPath>
+      </text>
+      <g transform="translate(50 50) scale(0.4)">
+        <circle cx="0" cy="-15" r="5" fill="currentColor" />
+        <path d="M -20 0 L 20 0" stroke="currentColor" strokeWidth="4" />
+        <path d="M -15 15 L 0 5 L 15 15 Z" fill="currentColor" />
+      </g>
+    </svg>
+  );
+
+const achievements = [
+    { icon: Award, color: 'text-yellow-400 bg-yellow-900/50' },
+    { icon: Star, color: 'text-orange-400 bg-orange-900/50' },
+    { icon: CultNinjaIcon, color: 'text-rose-400 bg-rose-900/50' },
+    { icon: Rocket, color: 'text-blue-400 bg-blue-900/50' },
+]
+
+const careerJourney = [
+    { year: '2024-Present', role: 'Senior Data Analyst', description: 'Leading data initiatives and mentoring junior analysts.'},
+    { year: '2021-2024', role: 'Data Analyst', description: 'Developed predictive models and created analytics dashboards.'},
+    { year: '2019-2021', role: 'Junior Analyst', description: 'Assisted in data cleaning, ETL processes, and reporting.'}
+]
+
 export function OverviewSection({ profile }: { profile: string }) {
   const profileTitle = profile.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
 
   return (
     <div className="space-y-12">
+        <Card className="overflow-hidden">
+            <div className="flex flex-col md:flex-row bg-card/50">
+                <div className="md:w-1/3 relative h-64 md:h-auto">
+                <Image
+                    src="/images/avatar.png"
+                    alt="Chayan Agarwal"
+                    layout="fill"
+                    objectFit="cover"
+                    className="grayscale hover:grayscale-0 transition-all duration-300"
+                />
+                </div>
+                <div className="md:w-2/3 p-8 flex flex-col justify-center">
+                <h2 className="text-2xl font-headline font-bold mb-2">A Message for the {profileTitle} Profile</h2>
+                <p className="text-muted-foreground mb-4">
+                    Welcome to my career portfolio. I am passionate about leveraging data to drive meaningful impact and fostering a collaborative, growth-oriented team environment. This portfolio is designed to give you a comprehensive look at my skills, experience, and the professional value I bring.
+                </p>
+                <p className="text-sm font-semibold">Chayan Agarwal</p>
+                <p className="text-xs text-muted-foreground">Data Analyst & Aviation Enthusiast</p>
+                </div>
+            </div>
+        </Card>
         <Card>
             <CardHeader>
                 <CardTitle className="font-headline">Performance Metrics for {profileTitle}</CardTitle>
@@ -116,6 +174,44 @@ export function OverviewSection({ profile }: { profile: string }) {
             </CardContent>
         </Card>
       </div>
+
+       <div>
+        <h3 className="text-center text-xl font-headline mb-6">Achievements &amp; Certifications</h3>
+        <div className="flex justify-center gap-4">
+            {achievements.map((ach, i) => {
+                const Icon = ach.icon;
+                return (
+                    <button key={i} className={`flex items-center justify-center w-16 h-16 rounded-full ${ach.color} transition-transform hover:scale-110`}>
+                        <Icon className="w-8 h-8" />
+                    </button>
+                )
+            })}
+        </div>
+      </div>
+
+      <Card className="bg-card/50">
+        <CardHeader>
+            <CardTitle className="flex items-center gap-2 font-headline text-xl">
+                <Briefcase className="h-5 w-5 text-primary" />
+                Career Journey
+            </CardTitle>
+        </CardHeader>
+        <CardContent>
+            <div className="relative pl-6">
+                <div className="absolute left-[30px] h-full w-0.5 bg-border -translate-x-1/2"></div>
+                {careerJourney.map((item, index) => (
+                    <div key={index} className="relative pl-8 pb-8">
+                        <div className="absolute left-0 top-1.5 flex items-center">
+                            <div className="w-4 h-4 rounded-full bg-primary z-10"></div>
+                        </div>
+                        <p className="text-sm text-muted-foreground">{item.year}</p>
+                        <h4 className="font-semibold text-foreground">{item.role}</h4>
+                        <p className="text-sm text-muted-foreground">{item.description}</p>
+                    </div>
+                ))}
+            </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }
