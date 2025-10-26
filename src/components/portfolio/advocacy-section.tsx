@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Calendar, Mic, Users, TrendingUp, FileText } from 'lucide-react';
+import { Calendar, Mic, Users, TrendingUp, FileText, GitFork } from 'lucide-react';
 
 const speakingEvents = [
   {
@@ -50,6 +50,28 @@ const contentCreation = [
         metricLabel: "Subscribers"
     }
 ];
+
+const openSourceContributions = [
+  {
+    title: 'ml-pipeline-toolkit',
+    description: 'Python library for building reproducible ML pipelines with built-in versioning, monitoring, and testing utilities',
+    metric: '1,800+',
+    metricLabel: 'GitHub Stars'
+  },
+  {
+    title: 'data-quality-framework',
+    description: 'Lightweight data validation framework that integrates with dbt and Airflow for automated quality checks',
+    metric: '650+',
+    metricLabel: 'GitHub Stars'
+  },
+  {
+    title: 'Contributions to Popular Projects',
+    description: 'Regular contributor to scikit-learn, pandas, and dbt. Merged PRs include bug fixes and documentation improvements',
+    metric: '15+',
+    metricLabel: 'Merged PRs'
+  }
+];
+
 
 const summaryMetrics = [
   {
@@ -137,7 +159,25 @@ export function AdvocacySection() {
             </div>
         </TabsContent>
         <TabsContent value="open-source" className="mt-8">
-             <p className="text-muted-foreground text-center py-12">Open Source contributions coming soon.</p>
+            <div className="space-y-6">
+            {openSourceContributions.map((item, index) => (
+              <Card key={index} className="bg-card/70 backdrop-blur-sm border-border/50 p-6">
+                <div className="flex justify-between items-start gap-4">
+                  <div className="flex items-start gap-4">
+                    <GitFork className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                    <div className="text-left">
+                      <h4 className="font-semibold text-foreground">{item.title}</h4>
+                      <p className="text-sm text-muted-foreground mt-1">{item.description}</p>
+                    </div>
+                  </div>
+                  <div className="text-right flex-shrink-0 min-w-[80px]">
+                    <p className="text-xl font-bold text-primary">{item.metric}</p>
+                    <p className="text-xs text-muted-foreground">{item.metricLabel}</p>
+                  </div>
+                </div>
+              </Card>
+            ))}
+          </div>
         </TabsContent>
       </Tabs>
       
