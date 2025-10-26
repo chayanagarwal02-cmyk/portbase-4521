@@ -172,16 +172,15 @@ export function AboutSection({ profile }: { profile: string }) {
             </CardContent>
         </Card>
       
-      <Card>
-        <CardHeader>
-          <CardTitle className="font-headline">Skills Overview</CardTitle>
-        </CardHeader>
-        <CardContent className="h-96 relative">
-          <SkillsOverviewChart />
-        </CardContent>
-      </Card>
-      
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <Card>
+          <CardHeader>
+            <CardTitle className="font-headline">Skills Overview</CardTitle>
+          </CardHeader>
+          <CardContent className="h-96 relative">
+            <SkillsOverviewChart />
+          </CardContent>
+        </Card>
         <Card className="bg-card/50">
             <CardHeader>
                 <CardTitle className="flex items-center gap-2 font-headline text-xl">
@@ -198,19 +197,19 @@ export function AboutSection({ profile }: { profile: string }) {
                 ))}
             </CardContent>
         </Card>
-        
-        <div>
-            <h3 className="text-center text-xl font-headline mb-6">Achievements &amp; Certifications</h3>
-            <div className="flex justify-center gap-4">
-                {achievements.map((ach, i) => {
-                    const Icon = ach.icon;
-                    return (
-                        <button key={i} className={`flex items-center justify-center w-16 h-16 rounded-full ${ach.color} transition-transform hover:scale-110`}>
-                            <Icon className="w-8 h-8" />
-                        </button>
-                    )
-                })}
-            </div>
+      </div>
+
+      <div>
+        <h3 className="text-center text-xl font-headline mb-6">Achievements &amp; Certifications</h3>
+        <div className="flex justify-center gap-4">
+            {achievements.map((ach, i) => {
+                const Icon = ach.icon;
+                return (
+                    <button key={i} className={`flex items-center justify-center w-16 h-16 rounded-full ${ach.color} transition-transform hover:scale-110`}>
+                        <Icon className="w-8 h-8" />
+                    </button>
+                )
+            })}
         </div>
       </div>
 
