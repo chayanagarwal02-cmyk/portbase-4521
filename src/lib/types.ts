@@ -77,6 +77,10 @@ export interface SkillOverview {
     value: number;
 }
 
+export interface CategorizedSkills {
+  [key: string]: SkillOverview[];
+}
+
 export interface Testimonial {
     id: number;
     name: string;

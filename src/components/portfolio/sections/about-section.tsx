@@ -177,7 +177,7 @@ export function AboutSection({ profile }: { profile: string }) {
           <CardHeader>
             <CardTitle className="font-headline">Skills Overview</CardTitle>
           </CardHeader>
-          <CardContent className="h-96 relative">
+          <CardContent className="relative">
             <SkillsOverviewChart />
           </CardContent>
         </Card>

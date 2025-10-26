@@ -1,4 +1,4 @@
-import type { Project, Skill, Leadership, Certificate, Blog, Role, AnalyticsData, CodeSample, PerformanceMetric, SkillOverview, Testimonial, TechStack } from './types';
+import type { Project, Skill, Leadership, Certificate, Blog, Role, AnalyticsData, CodeSample, PerformanceMetric, SkillOverview, Testimonial, TechStack, CategorizedSkills } from './types';
 
 export const contentVisibility: Record<Role, string[]> = {
   'hr': ['About Me', 'Team Projects', 'Leadership', 'Certifications', 'Contact'],
@@ -393,7 +393,29 @@ export const skillsOverview: SkillOverview[] = [
     { subject: "Data Viz", value: 78 },
     { subject: "ETL", value: 88 },
     { subject: "ML/AI", value: 72 },
-]
+];
+
+export const dataAnalystSkills: CategorizedSkills = {
+    'Core Technical & Programming Skills': [
+        { subject: 'SQL', value: 80 },
+        { subject: 'Data Visualization', value: 80 },
+        { subject: 'Spreadsheets', value: 80 },
+        { subject: 'Prob & Stats', value: 80 },
+        { subject: 'Data Cleaning & Wrangling', value: 80 },
+        { subject: 'Python', value: 80 },
+    ],
+    'Essential Soft Skills': [
+        { subject: 'Data Storytelling & Communication', value: 80 },
+        { subject: 'Business Acumen', value: 80 },
+        { subject: 'Critical Thinking', value: 80 },
+        { subject: 'Problem-Solving', value: 80 },
+    ],
+    'Emerging AI & Cloud Tools': [
+        { subject: 'AI-Powered BI Tools', value: 80 },
+        { subject: 'Cloud Data Warehouses', value: 80 },
+    ]
+};
+
 
 export const techStackData: TechStack[] = [
     { name: 'Python', proficiency: 90, icon: 'Code' },
@@ -403,11 +425,3 @@ export const techStackData: TechStack[] = [
     { name: 'Data Visualization', proficiency: 75, icon: 'BarChart2' },
     { name: 'ETL Pipelines', proficiency: 82, icon: 'Zap' },
 ];
-
-    
-
-    
-
-    
-
-    
