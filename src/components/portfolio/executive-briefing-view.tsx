@@ -64,6 +64,7 @@ const caseStudies = [
   },
 ];
 
+
 const technicalImpacts = [
     { label: "Data pipeline efficiency gain", value: "87%" },
     { label: "Cross-team data literacy workshops delivered", value: "12" },
@@ -132,11 +133,7 @@ export function ExecutiveBriefingView() {
           transition={{ duration: 0.5, delay: 0.6 }}
           className="mt-10 flex flex-col sm:flex-row gap-4 justify-center"
         >
-          <Link href="/portfolio/case-studies">
-            <Button size="lg">
-              View Case Studies <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-          </Link>
+          <Badge variant="secondary">Executive Case Studies</Badge>
           <Button size="lg" variant="outline">
             Schedule a Conversation
           </Button>
@@ -156,6 +153,56 @@ export function ExecutiveBriefingView() {
           ))}
         </motion.div>
       </div>
+
+       <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.8 }}
+        className="mt-24 w-full max-w-7xl"
+      >
+        <div className="text-center mb-12">
+            <h2 className="text-sm font-semibold uppercase tracking-widest text-primary">01 — Technical Impact + Advocacy</h2>
+            <h3 className="mt-2 text-3xl font-headline font-bold">Building Solutions & Telling the Story</h3>
+            <p className="mt-4 max-w-3xl mx-auto text-muted-foreground">
+                I don't just build data pipelines and ML models—I bridge the gap between technical execution and business value. Each project includes clear storytelling that drives adoption, secures buy-in, and inspires teams to embrace data-driven thinking.
+            </p>
+        </div>
+        <div className="grid lg:grid-cols-3 gap-8">
+            {caseStudies.map((study, index) => {
+                const Icon = study.icon;
+                return (
+                    <Card key={index} className="bg-card/70 backdrop-blur-sm border-border/50 p-6 text-left flex flex-col">
+                        <div className="flex justify-between items-start mb-4">
+                            <div className="p-2 bg-secondary rounded-full border border-border">
+                                <Icon className="w-5 h-5 text-primary"/>
+                            </div>
+                            <Badge variant="outline">{study.category}</Badge>
+                        </div>
+                        <div className="flex-grow">
+                            <h4 className="font-semibold text-foreground mb-2">Challenge</h4>
+                            <p className="text-sm text-muted-foreground mb-6">{study.challenge}</p>
+
+                            <h4 className="font-semibold text-foreground mb-2">Solution</h4>
+                            <p className="text-sm text-muted-foreground mb-6">{study.solution}</p>
+                            
+                            <h4 className="font-semibold text-foreground mb-2">Impact</h4>
+                            <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside">
+                                {study.impacts.map((item, i) => <li key={i}>{item}</li>)}
+                            </ul>
+                        </div>
+                        <div className="mt-auto pt-6">
+                            <div className="border-t border-border my-4"></div>
+                            <div className="text-center">
+                                <p className="text-3xl font-bold text-primary">{study.value}</p>
+                                <p className="text-xs text-muted-foreground">Annual Value Created</p>
+                            </div>
+                        </div>
+                    </Card>
+                )
+            })}
+        </div>
+      </motion.div>
+
 
       <StrategicAlignmentSection />
 
