@@ -91,6 +91,22 @@ export function OverviewSection({ profile }: { profile: string }) {
                 </div>
             </div>
         </Card>
+
+        <Card className="bg-card/50">
+            <CardHeader>
+                <CardTitle className="flex items-center gap-2 font-headline text-xl">
+                    <Users className="h-5 w-5 text-primary" />
+                    About This View
+                </CardTitle>
+            </CardHeader>
+            <CardContent>
+                <p className="text-sm text-muted-foreground">Customized content for {profileTitle}</p>
+                <p className="mt-2 text-muted-foreground">
+                    This portfolio is tailored specifically to show you the most relevant information based on your role. Explore the tabs above to discover projects, achievements, and insights that matter most to you.
+                </p>
+            </CardContent>
+        </Card>
+
         <Card>
             <CardHeader>
                 <CardTitle className="font-headline">Performance Metrics for {profileTitle}</CardTitle>
@@ -176,20 +192,6 @@ export function OverviewSection({ profile }: { profile: string }) {
         <Card className="bg-card/50">
             <CardHeader>
                 <CardTitle className="flex items-center gap-2 font-headline text-xl">
-                    <Users className="h-5 w-5 text-primary" />
-                    About This View
-                </CardTitle>
-            </CardHeader>
-            <CardContent>
-                <p className="text-sm text-muted-foreground">Customized content for {profileTitle}</p>
-                <p className="mt-2 text-muted-foreground">
-                    This portfolio is tailored specifically to show you the most relevant information based on your role. Explore the tabs above to discover projects, achievements, and insights that matter most to you.
-                </p>
-            </CardContent>
-        </Card>
-        <Card className="bg-card/50">
-            <CardHeader>
-                <CardTitle className="flex items-center gap-2 font-headline text-xl">
                     <TrendingUp className="h-5 w-5 text-primary" />
                     Quick Stats
                 </CardTitle>
@@ -203,19 +205,19 @@ export function OverviewSection({ profile }: { profile: string }) {
                 ))}
             </CardContent>
         </Card>
-      </div>
-
-       <div>
-        <h3 className="text-center text-xl font-headline mb-6">Achievements &amp; Certifications</h3>
-        <div className="flex justify-center gap-4">
-            {achievements.map((ach, i) => {
-                const Icon = ach.icon;
-                return (
-                    <button key={i} className={`flex items-center justify-center w-16 h-16 rounded-full ${ach.color} transition-transform hover:scale-110`}>
-                        <Icon className="w-8 h-8" />
-                    </button>
-                )
-            })}
+        
+        <div>
+            <h3 className="text-center text-xl font-headline mb-6">Achievements &amp; Certifications</h3>
+            <div className="flex justify-center gap-4">
+                {achievements.map((ach, i) => {
+                    const Icon = ach.icon;
+                    return (
+                        <button key={i} className={`flex items-center justify-center w-16 h-16 rounded-full ${ach.color} transition-transform hover:scale-110`}>
+                            <Icon className="w-8 h-8" />
+                        </button>
+                    )
+                })}
+            </div>
         </div>
       </div>
 
