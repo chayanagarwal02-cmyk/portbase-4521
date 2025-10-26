@@ -48,20 +48,10 @@ export function ContactSection() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
-    const messageWithoutSpaces = formData.message.replace(/\s/g, '');
-    if (messageWithoutSpaces.length < 300) {
-      toast({
-        variant: 'destructive',
-        title: 'Message Too Short',
-        description: 'Your message must be at least 300 characters long (excluding spaces).',
-      });
-      return;
-    }
-
     setIsLoading(true);
 
     try {
+      // @ts-ignore
       const result = await sendContactEmail(formData);
       if (result.success) {
         toast({
@@ -115,7 +105,7 @@ export function ContactSection() {
               </div>
               <div className="space-y-2">
                 <Label htmlFor="message">Message</Label>
-                <Textarea id="message" placeholder="Tell me about your project or opportunity..." value={formData.message} onChange={handleInputChange} required minLength={300}/>
+                <Textarea id="message" placeholder="Tell me about your project or opportunity..." value={formData.message} onChange={handleInputChange} required />
               </div>
               <Button type="submit" className="w-full md:w-auto" disabled={isLoading}>
                 {isLoading ? (

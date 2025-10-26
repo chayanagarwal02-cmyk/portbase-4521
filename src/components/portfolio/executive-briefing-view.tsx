@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { motion } from 'framer-motion';
 import { StrategicAlignmentSection } from './strategic-alignment-section';
 import { AdvocacySection } from './advocacy-section';
+import { ExecutiveContactSection } from './executive-contact-section';
 
 const caseStudies = [
   {
@@ -266,6 +267,8 @@ export function ExecutiveBriefingView() {
       </motion.div>
 
       <AdvocacySection />
+
+      <ExecutiveContactSection />
 
     </div>
   );

@@ -8,19 +8,16 @@
  */
 
 import { ai } from '@/ai/genkit';
-import { z } from 'genkit';
+import { z } from 'zod';
 import { Resend } from 'resend';
 
 const ContactFormInputSchema = z.object({
   name: z.string().describe('The name of the person submitting the form.'),
   email: z.string().email().describe('The email address of the person.'),
-  subject: z.string().describe('The subject of the message.'),
-  message: z
-    .string()
-    .describe('The content of the message.')
-    .refine((message) => message.replace(/\s/g, '').length >= 300, {
-      message: 'Message must be at least 300 characters long, excluding spaces.',
-    }),
+  company: z.string().optional().describe('The company of the person.'),
+  businessProblem: z.string().optional().describe('The business problem or goal.'),
+  subject: z.string().optional().describe('The subject of the message.'),
+  message: z.string().optional().describe('The content of the message.'),
 });
 
 export type ContactFormInput = z.infer<typeof ContactFormInputSchema>;
@@ -42,9 +39,10 @@ const sendContactEmailFlow = ai.defineFlow(
     }
     
     const resend = new Resend(process.env.RESEND_API_KEY);
-    const { name, email, subject, message } = input;
+    const { name, email, subject, message, company, businessProblem } = input;
     const toEmail = 'chayan.agarwal02@gmail.com';
 
+    const finalSubject = subject || `New Portfolio Contact from ${name}`;
     const emailBody = `
       Heyy Chayan!
 
@@ -52,10 +50,12 @@ const sendContactEmailFlow = ai.defineFlow(
 
       Name: ${name}
       Email: ${email}
-      Subject: ${subject}
-      Message: ${message}
+      ${company ? `Company: ${company}` : ''}
+      
+      ${message ? `Message: ${message}` : ''}
+      ${businessProblem ? `Business Problem: ${businessProblem}` : ''}
 
-      Please do connect with him within 24 hrs.
+      Please do connect with them within 24 hrs.
 
       Thank-you!
       Yours First Officer
@@ -65,8 +65,8 @@ const sendContactEmailFlow = ai.defineFlow(
       await resend.emails.send({
         from: 'Portfolio Contact Form <onboarding@resend.dev>',
         to: toEmail,
-        subject: `New Portfolio Contact: ${subject}`,
-        text: emailBody,
+        subject: finalSubject,
+        text: emailBody.trim(),
       });
       return { success: true, message: 'Email sent successfully!' };
     } catch (error) {
