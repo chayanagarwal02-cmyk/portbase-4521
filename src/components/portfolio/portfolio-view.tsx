@@ -22,6 +22,7 @@ import { GallerySection } from './sections/gallery-section';
 import { VideosSection } from './sections/videos-section';
 import { cn } from '@/lib/utils';
 import { StrategicValueSection } from './sections/strategic-value-section';
+import { ExecutiveBriefingView } from '@/components/portfolio/executive-briefing-view';
 
 export function PortfolioView({ role }: { role: string }) {
   const router = useRouter();
@@ -103,6 +104,22 @@ export function PortfolioView({ role }: { role: string }) {
 
   const gridColsClass = `grid-cols-${visibleTabs.length > 0 ? visibleTabs.length : 1}`;
 
+  if (validRole === 'cxo') {
+    return (
+       <div className="flex flex-col min-h-screen bg-background">
+        <PortfolioHeader />
+         <main className="container mx-auto px-4 py-8 mt-16">
+           <Link href="/" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-8">
+             <ArrowLeft className="w-4 h-4" />
+             Back to Selection
+           </Link>
+           <ExecutiveBriefingView />
+         </main>
+         <Chatbot role={validRole} />
+       </div>
+    )
+  }
+
   return (
     <div className="flex flex-col min-h-screen bg-background">
       <div id="scroll-progress" className="fixed top-[4rem] left-0 w-full h-[2px] bg-border/20 z-50"><div id="scroll-progress-bar" className="h-full bg-primary"></div></div>
@@ -135,11 +152,8 @@ export function PortfolioView({ role }: { role: string }) {
             ))}
           </Tabs>
         ) : (
-          <div className="mt-12 space-y-12">
-            {/* Content for tabless views like CXO */}
-            {validRole === 'cxo' && (
-              <></>
-            )}
+          <div className="mt-12">
+             {/* Fallback for roles with no tabs if needed */}
           </div>
         )}
       </main>
@@ -147,5 +161,3 @@ export function PortfolioView({ role }: { role: string }) {
     </div>
   );
 }
-
-    
