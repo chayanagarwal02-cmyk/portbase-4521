@@ -73,35 +73,35 @@ export const profileData: ProfileDataMap = {
         "category": "Data Quality & Accuracy",
         "indicator": "Data Accuracy Rate",
         "format": "%",
-        "example_value": "99.81%",
+        "example_value": "90.45%",
         "description": "The percentage of data records used in the analysis that are validated as correct and complete."
       },
       {
         "category": "Data Quality & Accuracy",
         "indicator": "Data Quality Score",
         "format": "Score (out of 10 or 100)",
-        "example_value": "9.2/10",
+        "example_value": "8.4 / 10",
         "description": "A composite metric measuring data completeness, consistency, and timeliness."
       },
       {
         "category": "Analysis & Reporting Efficiency",
         "indicator": "Timely Delivery of Reports (On-Time Rate)",
         "format": "%",
-        "example_value": "98% On Time",
+        "example_value": "67%",
         "description": "Percentage of recurring or scheduled reports that were delivered by the deadline."
       },
       {
         "category": "Analysis & Reporting Efficiency",
         "indicator": "Data Processing Speed",
         "format": "Seconds (or Minutes)",
-        "example_value": "4.2 Seconds",
+        "example_value": "2.3 seconds",
         "description": "The average query execution time or the dashboard refresh time."
       },
       {
         "category": "Analysis & Reporting Efficiency",
         "indicator": "Visualization/Report Clarity",
         "format": "Score (out of 5) or NPS Score",
-        "example_value": "4.7/5 Stars",
+        "example_value": "4.6 / 5",
         "description": "Average rating from stakeholders on the clarity and effectiveness of the visual presentation."
       },
       {
@@ -115,7 +115,7 @@ export const profileData: ProfileDataMap = {
         "category": "Team & Soft Skills",
         "indicator": "Collaboration/Communication",
         "format": "Score (out of 5) or Count",
-        "example_value": "5 Projects Shared",
+        "example_value": "4 Projects Shared",
         "description": "Average score or count of cross-functional projects where the analyst was a critical contributor."
       }
     ]
