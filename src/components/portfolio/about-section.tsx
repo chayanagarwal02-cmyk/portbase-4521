@@ -297,3 +297,5 @@ export function AboutSection({ profile }: { profile: string }) {
     </div>
   );
 }
+
+    
