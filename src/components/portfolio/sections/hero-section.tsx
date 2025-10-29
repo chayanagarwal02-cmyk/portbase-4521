@@ -1,8 +1,18 @@
+'use client';
+
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Plane } from 'lucide-react';
 import { heroData, type Role } from '@/lib/data';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+
+const getGreeting = () => {
+  const hour = new Date().getHours();
+  if (hour < 12) return "Good morning";
+  if (hour < 18) return "Good afternoon";
+  return "Good evening";
+};
 
 export function HeroSection({ 
   role,
@@ -13,7 +23,17 @@ export function HeroSection({
   activeProfile: string,
   onProfileChange: (profile: string) => void 
 }) {
+  const [greeting, setGreeting] = useState('');
+
+  useEffect(() => {
+    setGreeting(getGreeting());
+  }, []);
+
   const { title, subtitle, badges, profiles } = heroData[role];
+
+  const displayTitle = role === 'hiring-manager' && greeting
+    ? `${greeting} manager, Ready for my flight?`
+    : title;
 
   return (
     <section id="hero" className="py-12">
@@ -27,7 +47,7 @@ export function HeroSection({
         </div>
         <div className="text-center md:text-left flex-grow">
           <h1 className="text-3xl md:text-4xl font-bold font-headline leading-tight">
-            {title}
+            {displayTitle}
           </h1>
           <p className="mt-2 max-w-2xl text-md text-muted-foreground">
             {subtitle}
@@ -56,5 +76,3 @@ export function HeroSection({
     </section>
   );
 }
-
-    
