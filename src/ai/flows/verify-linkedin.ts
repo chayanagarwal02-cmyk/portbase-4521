@@ -35,12 +35,18 @@ const verifyLinkedinFlow = ai.defineFlow(
     // This is a simulation. In a real-world scenario, you might use an API.
     // Here, we extract the name from the URL slug.
     try {
-      // Remove query parameters from the URL to handle shared links
-      const cleanUrl = input.url.split('?')[0];
-      const url = new URL(cleanUrl);
-      const path = url.pathname;
-      // expecting /in/first-last-numbers/
-      const nameSlug = path.split('/in/')[1]?.split('/')[0];
+      const urlStr = input.url;
+      // Basic validation to ensure it's a plausible LinkedIn URL.
+      if (!/https?:\/\/(www\.)?linkedin\.com\/in\//.test(urlStr)) {
+        return { name: 'Data Professional' };
+      }
+
+      // Remove query parameters and trailing slashes
+      const cleanUrl = urlStr.split('?')[0].replace(/\/$/, '');
+      const path = new URL(cleanUrl).pathname;
+      
+      // Expecting /in/first-last-numbers
+      const nameSlug = path.split('/in/')[1];
       
       if (!nameSlug) {
         return { name: 'Data Professional' };
@@ -55,7 +61,7 @@ const verifyLinkedinFlow = ai.defineFlow(
       return { name: name || 'Data Professional' };
     } catch (e) {
       console.error('Error parsing LinkedIn URL', e);
-      // Fallback name
+      // Fallback name for any unexpected errors
       return { name: 'Data Professional' };
     }
   }
