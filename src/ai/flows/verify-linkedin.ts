@@ -55,10 +55,14 @@ const verifyLinkedinFlow = ai.defineFlow(
         return { name: 'Data Professional' };
       }
 
-      const name = nameSlug
+      // 1. Remove trailing numeric and common identifier patterns
+      // This handles cases like 'ajay026' -> 'ajay' and 'Karthik-r-br2025' -> 'Karthik-r'
+      const cleanedSlug = nameSlug.replace(/-?br\d*$/i, '').replace(/\d+$/, '');
+
+      // 2. Split by hyphen, capitalize each part, and join with a space
+      const name = cleanedSlug
         .split('-')
         .map(part => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase())
-        .filter(part => isNaN(parseInt(part))) // Remove purely numeric parts
         .join(' ');
 
       return { name: name || 'Data Professional' };
