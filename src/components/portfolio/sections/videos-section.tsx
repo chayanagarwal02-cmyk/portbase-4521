@@ -15,6 +15,16 @@ const videoEntries = [
     title: '10 AMAZING FOGGY TAKEOFFS | Bangalore Airport Plane Spotting [VOBL/BLR] | December 2020 Edition',
     description: 'The variety of Indian Airlines of different manufacturers, Bengaluru International Airport sees every day is a treat for any plane spotter or an avgeek. This video includes a variety of airplanes departing from Bengaluru during Foggy Day.',
   },
+  {
+    url: 'https://www.youtube.com/watch?v=d7H8u1h1Jrs',
+    title: 'Time-lapse of SG1078 | STV-HYD | Aviation GuruJi',
+    description: 'Join me for a complete time-lapse journey on board a SpiceJet Bombardier Q-400 turboprop aircraft! This video captures the entire flight experience, from pushback at Surat International Airport (STV), the powerful takeoff and climb, beautiful views from above the clouds, the descent, and the final touchdown at Rajiv Gandhi International Airport (HYD) in Hyderabad.',
+  },
+  {
+    url: 'https://www.youtube.com/watch?v=tPJrv_zhc3M',
+    title: 'Flying a B737 Next Generation | Aviation GuruJi',
+    description: 'I flew from London City to London Heathrow, this content was shot in 2018... which is like 3 years older. I had done an ILS Approach on RWY 27L/27R, I am not sure which runway did I land on.... hahaha',
+  },
 ];
 
 function extractYouTubeID(url: string): string | null {
@@ -41,6 +51,7 @@ export function VideosSection() {
       </p>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {videoData.map((video) => (
+          video.id &&
           <Card key={video.id} className="overflow-hidden bg-card/50 group">
             <div className="aspect-video relative overflow-hidden">
               <a
