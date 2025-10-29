@@ -9,12 +9,8 @@ import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { Camera } from 'lucide-react';
 
 const galleryImages = [
-  'gallery-jet',
-  'gallery-cockpit',
-  'gallery-propeller',
-  'gallery-wing',
-  'gallery-airport',
-  'gallery-cessna',
+  'gallery-image-1',
+  'gallery-image-2',
 ];
 
 export function GallerySection() {
@@ -31,7 +27,7 @@ export function GallerySection() {
       <p className="mt-2 text-center text-muted-foreground mb-12">
         A collection of aircraft and aviation-related photography.
       </p>
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-2 gap-4">
         {images.map((image, idx) => (
           <motion.div
             key={image.id}
@@ -57,8 +53,12 @@ export function GallerySection() {
       <AnimatePresence>
         {selectedImage && (
           <Dialog open onOpenChange={() => setSelectedImage(null)}>
-            <DialogContent className="max-w-3xl p-0">
-              <motion.div layoutId={selectedImage}>
+            <DialogContent className="max-w-3xl p-0 bg-transparent border-none">
+              <motion.div 
+                layoutId={selectedImage}
+                onContextMenu={(e) => e.preventDefault()}
+                className="relative"
+              >
                 <Image
                   src={selectedImage}
                   alt="Selected gallery image"
@@ -74,5 +74,3 @@ export function GallerySection() {
     </section>
   );
 }
-
-    

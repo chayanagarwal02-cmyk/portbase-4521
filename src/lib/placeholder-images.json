@@ -31,40 +31,16 @@
       "imageHint": "professional portrait"
     },
     {
-      "id": "gallery-jet",
-      "description": "A sleek, modern private jet on a runway.",
-      "imageUrl": "https://images.unsplash.com/photo-1625513123245-fcb02d69ad12?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxwcml2YXRlJTIwamV0fGVufDB8fHx8MTc2MTMxNjE1Mnww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "private jet"
+      "id": "gallery-image-1",
+      "description": "A beautiful landscape photograph.",
+      "imageUrl": "https://images.unsplash.com/photo-1588152850700-c82ecb8ba9b1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxsYW5kc2NhcGUlMjBwaG90b3xlbnwwfHx8fDE3NjE2MjgxMTh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "landscape photo"
     },
     {
-      "id": "gallery-cockpit",
-      "description": "The interior of a high-tech aircraft cockpit at night.",
-      "imageUrl": "https://images.unsplash.com/photo-1698073176073-2259484c87b4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxhaXJjcmFmdCUyMGNvY2twaXR8ZW58MHx8fHwxNzYxMzE2MTUyfDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "aircraft cockpit"
-    },
-    {
-      "id": "gallery-propeller",
-      "description": "A close-up shot of a vintage airplane propeller.",
-      "imageUrl": "https://images.unsplash.com/photo-1683576242622-1581e478677e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxhaXJwbGFuZSUyMHByb3BlbGxlcnxlbnwwfHx8fDE3NjEzMTYxNTF8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "airplane propeller"
-    },
-    {
-      "id": "gallery-wing",
-      "description": "View from an airplane window, looking out over the wing and clouds.",
-      "imageUrl": "https://images.unsplash.com/photo-1534994820022-ec2b00d8cd42?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhaXJwbGFuZSUyMHdpbmd8ZW58MHx8fHwxNzYxMzE2MTUxfDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "airplane wing"
-    },
-    {
-      "id": "gallery-airport",
-      "description": "An aerial view of a busy airport at dusk.",
-      "imageUrl": "https://images.unsplash.com/photo-1725859955694-4a0698b59722?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxhaXJwb3J0JTIwYWVyaWFsfGVufDB8fHx8MTc2MTMxNjE1Mnww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "airport aerial"
-    },
-    {
-      "id": "gallery-cessna",
-      "description": "A small Cessna plane flying over a landscape.",
-      "imageUrl": "https://images.unsplash.com/photo-1656792670524-07fec222fbd8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxjZXNzbmElMjBhaXJwbGFuZXxlbnwwfHx8fDE3NjEzMTYxNTJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "cessna airplane"
+      "id": "gallery-image-2",
+      "description": "An abstract art photograph.",
+      "imageUrl": "https://images.unsplash.com/photo-1552250575-e508473b090f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxhYnN0cmFjdCUyMGFydHxlbnwwfHx8fDE3NjE3MTMxNjV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "abstract art"
     }
   ]
 }
