@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import {
   Dialog,
@@ -16,16 +16,31 @@ import { Label } from '@/components/ui/label';
 import { Loader2, Linkedin } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { verifyLinkedin } from '@/ai/flows/verify-linkedin';
+import { saveProfileView } from '@/ai/flows/save-profile-view';
+import type { Role } from '@/lib/data';
 
-export function LinkedinDialog({ open, onOpenChange }: { open: boolean, onOpenChange: (open: boolean) => void }) {
+const roleTitles: Record<string, string> = {
+  'data-professional': 'Data Professional Verification',
+  'hiring-manager': 'Hiring Manager Verification',
+  hr: 'HR Professional Verification'
+}
+
+export function LinkedinDialog({ open, onOpenChange, role }: { open: boolean, onOpenChange: (open: boolean) => void, role: Role | null }) {
   const [linkedinUrl, setLinkedinUrl] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const { toast } = useToast();
 
+  useEffect(() => {
+    if (!open) {
+      setLinkedinUrl('');
+      setIsLoading(false);
+    }
+  }, [open]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!linkedinUrl || !linkedinUrl.includes('linkedin.com/in/')) {
+    if (!role || !linkedinUrl || !linkedinUrl.includes('linkedin.com/in/')) {
       toast({
         variant: 'destructive',
         title: 'Invalid URL',
@@ -37,8 +52,17 @@ export function LinkedinDialog({ open, onOpenChange }: { open: boolean, onOpenCh
 
     try {
       const { name } = await verifyLinkedin({ url: linkedinUrl });
+      
+      // Don't wait for this to finish, save in background
+      saveProfileView({
+        url: linkedinUrl,
+        name: name,
+        role: role,
+        viewedAt: new Date().toISOString(),
+      });
+
       // On successful "verification", navigate to the loading page with the name
-      router.push(`/loading?name=${encodeURIComponent(name)}`);
+      router.push(`/loading?name=${encodeURIComponent(name)}&role=${role}`);
     } catch (error) {
       console.error('LinkedIn verification failed:', error);
       toast({
@@ -49,6 +73,8 @@ export function LinkedinDialog({ open, onOpenChange }: { open: boolean, onOpenCh
       setIsLoading(false);
     }
   };
+  
+  if (!role) return null;
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -57,10 +83,10 @@ export function LinkedinDialog({ open, onOpenChange }: { open: boolean, onOpenCh
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
               <Linkedin className="h-5 w-5 text-primary" />
-              Data Professional Verification
+              {roleTitles[role] || 'Profile Verification'}
             </DialogTitle>
             <DialogDescription>
-              To tailor this experience, please provide your LinkedIn profile URL for verification.
+              To tailor this experience, please provide your LinkedIn profile URL.
             </DialogDescription>
           </DialogHeader>
           <div className="grid gap-4 py-4">
@@ -86,7 +112,7 @@ export function LinkedinDialog({ open, onOpenChange }: { open: boolean, onOpenCh
                   Verifying...
                 </>
               ) : (
-                'Proceed to Verification'
+                'Proceed'
               )}
             </Button>
           </DialogFooter>

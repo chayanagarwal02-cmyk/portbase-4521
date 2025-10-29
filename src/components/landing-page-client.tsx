@@ -16,17 +16,19 @@ import { motion } from 'framer-motion';
 import { aviationQuotes } from '@/lib/quotes';
 import { useEffect, useState } from 'react';
 import { LinkedinDialog } from './linkedin-dialog';
+import type { Role } from '@/lib/data';
 
 const roles = [
   {
-    role: 'hiring-manager',
+    role: 'hiring-manager' as Role,
     title: 'Hiring Manager',
     description: 'Assess practical skills, project impact, and leadership.',
     icon: UserSearch,
     href: '/portfolio?role=hiring-manager',
+    isDialog: true,
   },
   {
-    role: 'data-professional',
+    role: 'data-professional' as Role,
     title: 'Data Professional',
     description: 'A technical deep-dive into projects, code, and analytics.',
     icon: Database,
@@ -34,21 +36,22 @@ const roles = [
     isDialog: true,
   },
   {
-    role: 'hr',
+    role: 'hr' as Role,
     title: 'HR Professional',
     description: 'View culture fit, team skills, and professional growth.',
     icon: UserCheck,
     href: '/portfolio?role=hr',
+    isDialog: true,
   },
   {
-    role: 'cxo',
+    role: 'cxo' as Role,
     title: 'Executive Briefing',
     description: 'High-level overview of business impact and strategy.',
     icon: TrendingUp,
     href: '/portfolio?role=cxo',
   },
   {
-    role: 'stalker',
+    role: 'stalker' as Role,
     title: 'Just Curious',
     description: 'A general overview and blog for the casual visitor.',
     icon: Eye,
@@ -68,7 +71,8 @@ export function LandingPageClient() {
   const [dailyQuote, setDailyQuote] = useState<{ quote: string; author: string } | null>(
     null
   );
-  const [isLinkedinDialogOpen, setLinkedinDialogOpen] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [selectedRole, setSelectedRole] = useState<Role | null>(null);
 
   useEffect(() => {
     const getDayOfYear = () => {
@@ -85,6 +89,11 @@ export function LandingPageClient() {
     const quoteIndex = dayIndex % aviationQuotes.length;
     setDailyQuote(aviationQuotes[quoteIndex]);
   }, []);
+
+  const handleCardClick = (role: Role) => {
+    setSelectedRole(role);
+    setDialogOpen(true);
+  }
 
   const renderCard = (card: (typeof roles)[0], i: number) => {
     const Icon = card.icon;
@@ -107,7 +116,7 @@ export function LandingPageClient() {
   
     if (card.isDialog) {
       return (
-        <button onClick={() => setLinkedinDialogOpen(true)} className="group w-full text-left">
+        <button onClick={() => handleCardClick(card.role)} className="group w-full text-left">
           {cardContent}
         </button>
       );
@@ -122,7 +131,7 @@ export function LandingPageClient() {
 
   return (
     <>
-      <LinkedinDialog open={isLinkedinDialogOpen} onOpenChange={setLinkedinDialogOpen} />
+      <LinkedinDialog open={dialogOpen} onOpenChange={setDialogOpen} role={selectedRole} />
       <div className="relative z-10 flex flex-col items-center text-center">
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}

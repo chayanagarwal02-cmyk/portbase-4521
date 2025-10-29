@@ -19,6 +19,7 @@ export default function LoadingPage() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const name = searchParams.get('name') || 'Captain';
+  const role = searchParams.get('role') || 'data-professional';
 
   const [currentStep, setCurrentStep] = useState(0);
   const [progress, setProgress] = useState(0);
@@ -42,7 +43,7 @@ export default function LoadingPage() {
         setProgress(100);
         setTimeout(() => {
             setIsDone(true);
-            router.push(`/portfolio?role=data-professional&name=${encodeURIComponent(name)}`);
+            router.push(`/portfolio?role=${role}&name=${encodeURIComponent(name)}`);
         }, 500);
         return;
       }
@@ -58,7 +59,7 @@ export default function LoadingPage() {
       clearTimeout(stepTimeout);
       clearInterval(progressInterval);
     };
-  }, [name, router, isDone]);
+  }, [name, router, isDone, role]);
   
   const currentText = loadingSteps[currentStep].text(name);
   const isTyping = loadingSteps[currentStep].isTyping;

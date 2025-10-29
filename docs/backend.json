@@ -1,0 +1,41 @@
+{
+  "entities": {
+    "profileView": {
+      "title": "Profile View",
+      "description": "Represents a single view of the portfolio by a visitor.",
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "The LinkedIn profile URL of the visitor."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the visitor, extracted from the URL."
+        },
+        "role": {
+          "type": "string",
+          "description": "The role the visitor selected (e.g., 'hr', 'data-professional')."
+        },
+        "viewedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The timestamp when the profile was viewed."
+        }
+      },
+      "required": ["url", "name", "role", "viewedAt"]
+    }
+  },
+  "auth": {
+    "providers": []
+  },
+  "firestore": {
+    "/profileViews/{viewId}": {
+      "schema": {
+        "$ref": "#/entities/profileView"
+      },
+      "description": "Stores each instance of a portfolio view via LinkedIn verification."
+    }
+  }
+}
