@@ -5,19 +5,14 @@ import { Youtube, Film } from 'lucide-react';
 
 const videoData = [
   {
-    id: 'dQw4w9WgXcQ', // Rick Astley - Never Gonna Give You Up
-    title: 'A Smooth Landing in a Cessna 172',
-    description: 'Join me for a scenic approach and smooth touchdown during a sunset flight.',
+    id: '40lRmEFFy5w',
+    title: 'Introduction to Airline Industry',
+    description: 'Understanding the airline industry and its regulatory bodies, Understanding the characteristics of the Airline Industry and its characteristics, Understanding the organizational structure of the airline industry, Understanding the security, navigation, and traffic control, and Understanding the importance of safety and security.',
   },
   {
-    id: '3JZ_D3pSS4U', // Typing Cat
-    title: 'Pre-Flight Checklist Walkthrough',
-    description: 'A detailed walkthrough of the essential pre-flight checks every pilot should know.',
-  },
-  {
-    id: 'V--m1l6y_xA', // Dramatic Chipmunk
-    title: 'Cross-Country Flight Time-Lapse',
-    description: 'Experience a full cross-country journey condensed into a stunning few minutes.',
+    id: 'IyT0PlFVo5Y',
+    title: '10 AMAZING FOGGY TAKEOFFS | Bangalore Airport Plane Spotting [VOBL/BLR] | December 2020 Edition',
+    description: 'The variety of Indian Airlines of different manufacturers, Bengaluru International Airport sees every day is a treat for any plane spotter or an avgeek. This video includes a variety of airplanes departing from Bengaluru during Foggy Day.',
   },
 ];
 
@@ -60,5 +55,3 @@ export function VideosSection() {
     </section>
   );
 }
-
-    
