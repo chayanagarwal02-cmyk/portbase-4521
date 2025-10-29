@@ -10,7 +10,7 @@ export const contentVisibility: Record<Role, string[]> = {
 
 export const heroData: Record<Role, {title: string; subtitle: string; badges: {text: string, className: string}[], profiles?: { value: string, label: string }[]}> = {
   'hr': {
-    title: "HR Professional View",
+    title: "Hello - HR Professional",
     subtitle: "Select a profile to view tailored information on culture, team dynamics, and professional growth.",
     badges: [
         { text: "Team Player", className: "bg-blue-900/50 text-blue-300 border-blue-700" },
@@ -38,7 +38,7 @@ export const heroData: Record<Role, {title: string; subtitle: string; badges: {t
     ]
   },
   'hiring-manager': {
-    title: "Hiring Manager Assessment",
+    title: "Hello - Hiring Manager",
     subtitle: "Select a profile to assess practical skills, project impact, and leadership qualities.",
     badges: [
       { text: "Problem Solver", className: "bg-rose-900/50 text-rose-300 border-rose-700" },
@@ -223,22 +223,6 @@ export const certificatesData: Certificate[] = [
     issuer: 'Microsoft',
     year: 'Jun 2024',
     skills: ['Azure', 'Data Engineering', 'ETL'],
-    url: '#',
-  },
-  {
-    id: 5,
-    title: 'Python for Data Science',
-    issuer: 'IBM',
-    year: 'Apr 2024',
-    skills: ['Python', 'Pandas', 'NumPy'],
-    url: '#',
-  },
-  {
-    id: 6,
-    title: 'Advanced SQL for Data Scientists',
-    issuer: 'DataCamp',
-    year: 'Feb 2024',
-    skills: ['SQL', 'PostgreSQL', 'Query Optimization'],
     url: '#',
   },
 ];
