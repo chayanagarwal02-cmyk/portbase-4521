@@ -31,16 +31,16 @@
       "imageHint": "professional portrait"
     },
     {
-      "id": "gallery-image-1",
-      "description": "A beautiful landscape photograph.",
-      "imageUrl": "https://images.unsplash.com/photo-1588152850700-c82ecb8ba9b1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxsYW5kc2NhcGUlMjBwaG90b3xlbnwwfHx8fDE3NjE2MjgxMTh8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "landscape photo"
+      "id": "gallery-jet-cockpit",
+      "description": "View from the cockpit of a jet.",
+      "imageUrl": "https://images.unsplash.com/photo-1662905211858-6bae94500be5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxqZXQlMjBjb2NrcGl0fGVufDB8fHx8MTc2MTY3MTY2OXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "jet cockpit"
     },
     {
-      "id": "gallery-image-2",
-      "description": "An abstract art photograph.",
-      "imageUrl": "https://images.unsplash.com/photo-1552250575-e508473b090f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxhYnN0cmFjdCUyMGFydHxlbnwwfHx8fDE3NjE3MTMxNjV8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "abstract art"
+      "id": "gallery-plane-runway",
+      "description": "A plane on the runway at sunset.",
+      "imageUrl": "https://images.unsplash.com/photo-1507760762330-d3ed96fccf72?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxwbGFuZSUyMHJ1bndheXxlbnwwfHx8fDE3NjE3Mjk3MDZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "plane runway"
     }
   ]
 }

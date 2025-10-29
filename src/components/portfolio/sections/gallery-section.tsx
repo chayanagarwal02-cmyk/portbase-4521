@@ -9,8 +9,8 @@ import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { Camera } from 'lucide-react';
 
 const galleryImages = [
-  'gallery-image-1',
-  'gallery-image-2',
+  'gallery-jet-cockpit',
+  'gallery-plane-runway',
 ];
 
 export function GallerySection() {
@@ -27,7 +27,7 @@ export function GallerySection() {
       <p className="mt-2 text-center text-muted-foreground mb-12">
         A collection of aircraft and aviation-related photography.
       </p>
-      <div className="grid grid-cols-2 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {images.map((image, idx) => (
           <motion.div
             key={image.id}
