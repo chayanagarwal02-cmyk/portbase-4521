@@ -35,10 +35,13 @@ const verifyLinkedinFlow = ai.defineFlow(
     // This is a simulation. In a real-world scenario, you might use an API.
     // Here, we extract the name from the URL slug.
     try {
-      const url = new URL(input.url);
+      // Remove query parameters from the URL to handle shared links
+      const cleanUrl = input.url.split('?')[0];
+      const url = new URL(cleanUrl);
       const path = url.pathname;
       // expecting /in/first-last-numbers/
-      const nameSlug = path.split('/')[2];
+      const nameSlug = path.split('/in/')[1]?.split('/')[0];
+      
       if (!nameSlug) {
         return { name: 'Data Professional' };
       }
