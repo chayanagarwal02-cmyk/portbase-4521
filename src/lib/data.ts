@@ -4,7 +4,7 @@ export const contentVisibility: Record<Role, string[]> = {
   'hr': ['About Me', 'Team Projects', 'Leadership', 'Certifications', 'Contact'],
   'data-professional': ['Overview', 'Projects', 'Code', 'Analytics', 'Certifications'],
   'hiring-manager': ['Overview', 'Projects', 'Analytics', 'Leadership', 'Certifications', 'Contact'],
-  'stalker': ['Blog', 'Gallery', 'Videos'],
+  'stalker': ['Blog', 'Videos'],
   'cxo': [],
 };
 
@@ -426,3 +426,5 @@ export const careerJourney: CareerItem[] = [
 export const virtualInternships: CareerItem[] = [
     { year: 'June 2025 - August 2025', role: 'Data Analytics Consultant', company: 'Quantium (via The Forage)', description: 'Completed a simulated project involving data analysis and strategic recommendations for a retail client.'}
 ];
+
+export * from './types';

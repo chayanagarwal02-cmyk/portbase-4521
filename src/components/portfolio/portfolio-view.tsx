@@ -20,7 +20,6 @@ import Link from 'next/link';
 import { CodeSection } from './sections/code-section';
 import { AnalyticsSection } from './sections/analytics-section';
 import { BlogSection } from './sections/blog-section';
-import { GallerySection } from './sections/gallery-section';
 import { VideosSection } from './sections/videos-section';
 import { cn } from '@/lib/utils';
 import { StrategicValueSection } from './sections/strategic-value-section';
@@ -97,7 +96,6 @@ function PortfolioViewInternal({ role }: { role: string }) {
     'Code': <CodeSection />,
     'Analytics': <AnalyticsSection />,
     'Blog': <BlogSection />,
-    'Gallery': <GallerySection />,
     'Videos': <VideosSection />,
     'Strategic Value': <StrategicValueSection />,
   };
