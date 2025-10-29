@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -12,6 +13,12 @@ const getGreeting = () => {
   if (hour < 12) return "Good morning";
   if (hour < 18) return "Good afternoon";
   return "Good evening";
+};
+
+const roleDisplayNameMap: { [key in Role]?: string } = {
+  'hiring-manager': 'Manager',
+  'hr': 'HR Professional',
+  'data-professional': 'Data Professional',
 };
 
 export function HeroSection({ 
@@ -31,8 +38,11 @@ export function HeroSection({
 
   const { title, subtitle, badges, profiles } = heroData[role];
 
-  const displayTitle = role === 'hiring-manager' && greeting
-    ? `${greeting} manager, Ready for my flight?`
+  const roleDisplayName = roleDisplayNameMap[role];
+  const isGreeterRole = role === 'hiring-manager' || role === 'hr' || role === 'data-professional';
+  
+  const displayTitle = isGreeterRole && greeting && roleDisplayName
+    ? `${greeting} ${roleDisplayName}, ready for my flight?`
     : title;
 
   return (
