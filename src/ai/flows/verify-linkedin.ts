@@ -1,3 +1,4 @@
+
 'use server';
 
 /**
@@ -32,8 +33,6 @@ const verifyLinkedinFlow = ai.defineFlow(
     outputSchema: LinkedinVerificationOutputSchema,
   },
   async (input) => {
-    // This is a simulation. In a real-world scenario, you might use an API.
-    // Here, we extract the name from the URL slug.
     try {
       const urlStr = input.url;
       // Basic validation to ensure it's a plausible LinkedIn URL.
@@ -43,10 +42,14 @@ const verifyLinkedinFlow = ai.defineFlow(
 
       // Remove query parameters and trailing slashes
       const cleanUrl = urlStr.split('?')[0].replace(/\/$/, '');
-      const path = new URL(cleanUrl).pathname;
       
-      // Expecting /in/first-last-numbers
-      const nameSlug = path.split('/in/')[1];
+      // Find the name slug after "/in/"
+      const slugIndex = cleanUrl.indexOf('/in/');
+      if (slugIndex === -1) {
+        return { name: 'Data Professional' };
+      }
+
+      const nameSlug = cleanUrl.substring(slugIndex + 4);
       
       if (!nameSlug) {
         return { name: 'Data Professional' };
@@ -54,8 +57,8 @@ const verifyLinkedinFlow = ai.defineFlow(
 
       const name = nameSlug
         .split('-')
-        .map(part => part.charAt(0).toUpperCase() + part.slice(1))
-        .filter(part => isNaN(parseInt(part))) // Remove numeric parts
+        .map(part => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase())
+        .filter(part => isNaN(parseInt(part))) // Remove purely numeric parts
         .join(' ');
 
       return { name: name || 'Data Professional' };
