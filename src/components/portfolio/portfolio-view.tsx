@@ -2,7 +2,7 @@
 
 'use client';
 
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { PortfolioHeader } from '@/components/portfolio/header';
@@ -26,7 +26,7 @@ import { cn } from '@/lib/utils';
 import { StrategicValueSection } from './sections/strategic-value-section';
 import { ExecutiveBriefingView } from '@/components/portfolio/executive-briefing-view';
 
-export function PortfolioView({ role }: { role: string }) {
+function PortfolioViewInternal({ role }: { role: string }) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [activeTab, setActiveTab] = useState('');
@@ -44,7 +44,7 @@ export function PortfolioView({ role }: { role: string }) {
   }, [searchParams]);
 
   useEffect(() => {
-    if (visibleTabs.length > 0 && !activeTab) {
+    if (visibleTabs.length > 0 && !visibleTabs.includes(activeTab)) {
       setActiveTab(visibleTabs[0]);
     }
   }, [role, visibleTabs, activeTab]);
@@ -81,7 +81,9 @@ export function PortfolioView({ role }: { role: string }) {
   
   const handleProfileChange = (newProfile: string) => {
     setActiveProfile(newProfile);
-    router.push(`/portfolio?role=${role}&profile=${newProfile}`, { scroll: false });
+    const newParams = new URLSearchParams(searchParams.toString());
+    newParams.set('profile', newProfile);
+    router.push(`/portfolio?${newParams.toString()}`, { scroll: false });
   };
 
   const TABS_CONTENT: { [key: string]: React.ReactNode } = {
@@ -162,4 +164,13 @@ export function PortfolioView({ role }: { role: string }) {
       <Chatbot role={validRole} />
     </div>
   );
+}
+
+
+export function PortfolioView({ role }: { role: string }) {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <PortfolioViewInternal role={role} />
+    </Suspense>
+  )
 }

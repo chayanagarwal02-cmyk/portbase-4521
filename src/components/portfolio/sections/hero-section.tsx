@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Plane } from 'lucide-react';
 import { heroData, type Role } from '@/lib/data';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { useSearchParams } from 'next/navigation';
 
 const getGreeting = () => {
   const hour = new Date().getHours();
@@ -18,7 +19,7 @@ const getGreeting = () => {
 const roleDisplayNameMap: { [key in Role]?: string } = {
   'hiring-manager': 'Manager',
   'hr': 'HR Professional',
-  'data-professional': 'Data Professional',
+  'data-professional': 'Captain', // Changed for the personalized flow
 };
 
 export function HeroSection({ 
@@ -31,6 +32,8 @@ export function HeroSection({
   onProfileChange: (profile: string) => void 
 }) {
   const [greeting, setGreeting] = useState('');
+  const searchParams = useSearchParams();
+  const userName = searchParams.get('name');
 
   useEffect(() => {
     setGreeting(getGreeting());
@@ -41,9 +44,15 @@ export function HeroSection({
   const roleDisplayName = roleDisplayNameMap[role];
   const isGreeterRole = role === 'hiring-manager' || role === 'hr' || role === 'data-professional';
   
-  const displayTitle = isGreeterRole && greeting && roleDisplayName
-    ? `${greeting} ${roleDisplayName}, ready for my flight?`
-    : title;
+  let displayTitle = title;
+  if (isGreeterRole && greeting) {
+      if (role === 'data-professional' && userName) {
+          displayTitle = `${greeting} Captain ${userName}, ready for my flight?`;
+      } else if (roleDisplayName) {
+          displayTitle = `${greeting} ${roleDisplayName}, ready for my flight?`;
+      }
+  }
+
 
   return (
     <section id="hero" className="py-12">
