@@ -14,8 +14,8 @@ const socialLinks = [
   {
     icon: Mail,
     label: 'Email Me',
-    value: 'chayan.agarwal.ds@gmail.com',
-    href: 'mailto:chayan.agarwal.ds@gmail.com',
+    value: 'chayan.agarwal02@gmail.com',
+    href: 'mailto:chayan.agarwal02@gmail.com',
   },
   {
     icon: Linkedin,

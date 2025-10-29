@@ -94,6 +94,19 @@ export interface TechStack {
     icon: string;
 }
 
+export interface Achievement {
+    iconName: 'Award' | 'Star' | 'CultNinja' | 'Rocket' | 'Captain';
+    color: string;
+    tooltip: string;
+}
+
+export interface CareerItem {
+    year: string;
+    role: string;
+    company: string;
+    description: string;
+}
+
 // New Types for Profile-Specific Data
 export interface ProfileMetric {
   category: string;

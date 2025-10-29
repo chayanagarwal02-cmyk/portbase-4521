@@ -1,4 +1,4 @@
-import type { Project, Skill, Leadership, Certificate, Blog, Role, AnalyticsData, CodeSample, PerformanceMetric, SkillOverview, Testimonial, TechStack, CategorizedSkills } from './types';
+import type { Project, Skill, Leadership, Certificate, Blog, Role, AnalyticsData, CodeSample, PerformanceMetric, SkillOverview, Testimonial, TechStack, CategorizedSkills, Achievement, CareerItem } from './types';
 
 export const contentVisibility: Record<Role, string[]> = {
   'hr': ['About Me', 'Team Projects', 'Leadership', 'Certifications', 'Contact'],
@@ -424,4 +424,21 @@ export const techStackData: TechStack[] = [
     { name: 'Machine Learning', proficiency: 88, icon: 'Cpu' },
     { name: 'Data Visualization', proficiency: 75, icon: 'BarChart2' },
     { name: 'ETL Pipelines', proficiency: 82, icon: 'Zap' },
+];
+
+export const achievements: Achievement[] = [
+    { iconName: 'Award', color: 'text-yellow-400 bg-yellow-900/50', tooltip: 'Innovator of the Year' },
+    { iconName: 'Star', color: 'text-orange-400 bg-orange-900/50', tooltip: 'Top Performer Award' },
+    { iconName: 'CultNinja', color: 'text-rose-400 bg-rose-900/50', tooltip: 'Cult Ninja Award' },
+    { iconName: 'Rocket', color: 'text-blue-400 bg-blue-900/50', tooltip: 'Project Launch Excellence' },
+    { iconName: 'Captain', color: 'text-amber-400 bg-amber-900/50', tooltip: "Captain of the Month - Scaler CC x BLR Community (Sept' 25)" },
+];
+
+export const careerJourney: CareerItem[] = [
+    { year: '2023 - 2024', role: 'Data Operations Analyst', company: 'Amazon Development Center (India) Pvt. Ltd.', description: 'Analyzed large-scale data to enhance operational efficiency and support strategic decisions.'},
+    { year: '2022 - 2023', role: 'Operations Analyst', company: 'Highway Delite', description: 'Monitored operational metrics and provided data-driven recommendations for process improvements.'},
+];
+
+export const virtualInternships: CareerItem[] = [
+    { year: 'June 2025 - August 2025', role: 'Data Analytics Consultant', company: 'Quantium (via The Forage)', description: 'Completed a simulated project involving data analysis and strategic recommendations for a retail client.'}
 ];
