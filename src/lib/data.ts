@@ -234,7 +234,8 @@ export const blogData: Blog[] = [
         excerpt: 'Uber Elevate, launched in 2016 with its seminal white paper, aimed to revolutionize urban transportation by introducing aerial ridesharing using electric Vertical Take-off and Landing (eVTOL) aircraft. The initiative’s vision was to create a multimodal transportation product seamlessly integrating ground and intra-city flight, promising significant time savings, reduced urban congestion, and environmentally sustainable mobility. This ambitious endeavor played a pivotal role in propelling the concept of Urban Air Mobility (UAM) from a futuristic idea to a serious aerospace sector, attracting substantial investment and fostering collaboration across regulators, civic leaders, real estate developers, and technology companies.',
         date: 'June 18, 2025',
         tags: ['UAM Systems', 'Business Analysis', 'Market Viability', 'Logistics'],
-        url: 'https://medium.com/@chayan.agarwal01/the-trajectory-of-urban-air-mobility-99ffcb89113f'
+        url: 'https://medium.com/@chayan.agarwal01/the-trajectory-of-urban-air-mobility-99ffcb89113f',
+        imageId: 'uam-blog-post'
     }
 ];
 

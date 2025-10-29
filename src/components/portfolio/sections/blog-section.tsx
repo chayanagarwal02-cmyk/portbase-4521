@@ -22,20 +22,21 @@ export function BlogSection() {
       <p className="mt-2 text-center text-muted-foreground mb-12">Thoughts, insights, and stories from my journey.</p>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {blogData.map((post) => {
-          const image = placeholderImages.find(p => p.id === 'blog-placeholder');
+          const image = placeholderImages.find(p => p.id === post.imageId) || placeholderImages.find(p => p.id === 'blog-placeholder');
           return(
           <Link href={post.url} key={post.id} className="block group" target="_blank" rel="noopener noreferrer">
             <Card className="h-full overflow-hidden transition-all group-hover:shadow-xl group-hover:-translate-y-2 transform duration-300">
               <CardHeader className="p-0">
                  {image && (
-                    <Image
-                        src={image.imageUrl}
-                        alt={post.title}
-                        width={600}
-                        height={400}
-                        className="w-full h-48 object-cover"
-                        data-ai-hint={image.imageHint}
-                    />
+                    <div className="relative w-full h-48">
+                      <Image
+                          src={image.imageUrl}
+                          alt={post.title}
+                          layout="fill"
+                          objectFit="cover"
+                          data-ai-hint={image.imageHint}
+                      />
+                    </div>
                  )}
               </CardHeader>
               <CardContent className="p-6">
