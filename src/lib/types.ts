@@ -51,6 +51,7 @@ export interface Blog {
     excerpt: string;
     date: string;
     tags: string[];
+    url: string;
 }
 
 export interface AnalyticsData {

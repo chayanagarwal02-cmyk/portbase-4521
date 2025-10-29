@@ -230,24 +230,11 @@ export const certificatesData: Certificate[] = [
 export const blogData: Blog[] = [
     {
         id: 1,
-        title: 'Navigating the Clouds: A Guide to Cloud Agnostic Infrastructure',
-        excerpt: 'In an era where digital transformation is paramount, the debate between cloud-native and cloud-agnostic strategies has never been more relevant...',
-        date: 'Oct 15, 2023',
-        tags: ['Cloud', 'DevOps', 'Strategy']
-    },
-    {
-        id: 2,
-        title: 'The Art of Data Storytelling with D3.js',
-        excerpt: 'Data is just numbers until you give it a voice. In this post, we explore how D3.js can be used to create compelling narratives from complex datasets...',
-        date: 'Sep 02, 2023',
-        tags: ['Data Visualization', 'JavaScript', 'D3.js']
-    },
-    {
-        id: 3,
-        title: 'A Deep Dive into React Server Components',
-        excerpt: 'React Server Components are changing the way we think about building web applications. Let\'s break down what they are, and why they matter...',
-        date: 'Aug 21, 2023',
-        tags: ['React', 'Web Development', 'Performance']
+        title: 'The Trajectory of Urban Air Mobility',
+        excerpt: 'Uber Elevate, launched in 2016 with its seminal white paper, aimed to revolutionize urban transportation by introducing aerial ridesharing using electric Vertical Take-off and Landing (eVTOL) aircraft. The initiative’s vision was to create a multimodal transportation product seamlessly integrating ground and intra-city flight, promising significant time savings, reduced urban congestion, and environmentally sustainable mobility. This ambitious endeavor played a pivotal role in propelling the concept of Urban Air Mobility (UAM) from a futuristic idea to a serious aerospace sector, attracting substantial investment and fostering collaboration across regulators, civic leaders, real estate developers, and technology companies.',
+        date: 'June 18, 2025',
+        tags: ['UAM Systems', 'Business Analysis', 'Market Viability', 'Logistics'],
+        url: 'https://medium.com/@chayan.agarwal01/the-trajectory-of-urban-air-mobility-99ffcb89113f'
     }
 ];
 

@@ -7,6 +7,15 @@ import { placeholderImages } from '@/lib/placeholder-images.json';
 import Link from 'next/link';
 
 export function BlogSection() {
+  if (!blogData || blogData.length === 0) {
+    return (
+      <section id="blog" className="py-16">
+        <h2 className="text-3xl font-bold text-center font-headline">From The Cockpit Log</h2>
+        <p className="mt-4 text-center text-muted-foreground">No blog posts available at the moment. Please check back later!</p>
+      </section>
+    )
+  }
+
   return (
     <section id="blog" className="py-16">
       <h2 className="text-3xl font-bold text-center font-headline">From The Cockpit Log</h2>
@@ -15,7 +24,7 @@ export function BlogSection() {
         {blogData.map((post) => {
           const image = placeholderImages.find(p => p.id === 'blog-placeholder');
           return(
-          <Link href="#" key={post.id} className="block group">
+          <Link href={post.url} key={post.id} className="block group" target="_blank" rel="noopener noreferrer">
             <Card className="h-full overflow-hidden transition-all group-hover:shadow-xl group-hover:-translate-y-2 transform duration-300">
               <CardHeader className="p-0">
                  {image && (
