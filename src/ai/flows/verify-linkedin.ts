@@ -37,6 +37,7 @@ const verifyLinkedinFlow = ai.defineFlow(
       const urlStr = input.url;
       // Basic validation to ensure it's a plausible LinkedIn URL.
       if (!/https?:\/\/(www\.)?linkedin\.com\/in\//.test(urlStr)) {
+        // Fallback for invalid formats
         return { name: 'Data Professional' };
       }
 
@@ -54,21 +55,29 @@ const verifyLinkedinFlow = ai.defineFlow(
       if (!nameSlug) {
         return { name: 'Data Professional' };
       }
+      
+      // 1. Replace hyphens with spaces. e.g., "Karthik-r-br2025" -> "Karthik r br2025"
+      const withSpaces = nameSlug.replace(/-/g, ' ');
 
-      // 1. Remove trailing numeric and common identifier patterns
-      // This handles cases like 'ajay026' -> 'ajay' and 'Karthik-r-br2025' -> 'Karthik-r'
-      const cleanedSlug = nameSlug.replace(/-?br\d*$/i, '').replace(/\d+$/, '');
+      // 2. Remove characters that are not letters or spaces. e.g., "Karthik r br2025" -> "Karthik r br"
+      const lettersOnly = withSpaces.replace(/[^a-zA-Z\s]/g, '');
 
-      // 2. Split by hyphen, capitalize each part, and join with a space
-      const name = cleanedSlug
-        .split('-')
+      // 3. Trim any extra whitespace from the ends.
+      const trimmed = lettersOnly.trim();
+      
+      // 4. Capitalize each part of the name. e.g., "Karthik r br" -> "Karthik R Br"
+      // Then join and trim again in case of multiple spaces.
+      const name = trimmed
+        .split(/\s+/)
         .map(part => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase())
-        .join(' ');
+        .join(' ')
+        .trim();
 
+      // Final fallback if the name is empty after cleaning
       return { name: name || 'Data Professional' };
     } catch (e) {
       console.error('Error parsing LinkedIn URL', e);
-      // Fallback name for any unexpected errors
+      // Fallback name for any unexpected errors during processing
       return { name: 'Data Professional' };
     }
   }
