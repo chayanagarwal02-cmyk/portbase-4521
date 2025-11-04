@@ -34,43 +34,36 @@ const verifyLinkedinFlow = ai.defineFlow(
   async (input) => {
     try {
       const urlStr = input.url;
-      // Basic validation to ensure it's a plausible LinkedIn URL.
-      if (!/https?:\/\/(www\.)?linkedin\.com\/in\//.test(urlStr)) {
-        // Fallback for invalid formats or incomplete URLs
+      
+      // Basic validation for a LinkedIn profile URL structure.
+      if (!/linkedin\.com\/in\//.test(urlStr)) {
         return { name: 'Data Professional' };
       }
-
-      // Remove query parameters and trailing slashes
-      const cleanUrl = urlStr.split('?')[0].replace(/\/$/, '');
       
-      // Find the name slug after "/in/"
+      const cleanUrl = urlStr.split('?')[0].replace(/\/$/, '');
       const slugIndex = cleanUrl.indexOf('/in/');
+      
       if (slugIndex === -1) {
         return { name: 'Data Professional' };
       }
 
       let nameSlug = cleanUrl.substring(slugIndex + 4);
-      
+
       if (!nameSlug) {
         return { name: 'Data Professional' };
       }
       
-      // Replace hyphens with spaces.
-      const withSpaces = nameSlug.replace(/-/g, ' ');
-
-      // Remove any trailing numbers or common suffixes like 'br' followed by numbers
-      // This is safer than removing all numbers.
-      const cleanedSlug = withSpaces.replace(/\s*\d+$/, '').replace(/\s+br\d*$/, '').trim();
-
+      // Replace hyphens with spaces and trim any extra whitespace.
+      const withSpaces = nameSlug.replace(/-/g, ' ').trim();
+      
       // Capitalize each part of the name.
-      const name = cleanedSlug
-        .split(/\s+/)
+      const name = withSpaces
+        .split(' ')
         .map(part => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase())
-        .join(' ')
-        .trim();
+        .join(' ');
 
-      // Final fallback if the name is empty after cleaning
       return { name: name || 'Data Professional' };
+
     } catch (e) {
       console.error('Error parsing LinkedIn URL', e);
       // Fallback name for any unexpected errors during processing
