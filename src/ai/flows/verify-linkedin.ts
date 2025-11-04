@@ -50,23 +50,22 @@ const verifyLinkedinFlow = ai.defineFlow(
         return { name: 'Data Professional' };
       }
 
-      const nameSlug = cleanUrl.substring(slugIndex + 4);
+      let nameSlug = cleanUrl.substring(slugIndex + 4);
       
       if (!nameSlug) {
         return { name: 'Data Professional' };
       }
       
-      // 1. Replace hyphens with spaces. e.g., "Karthik-r-br2025" -> "Karthik r br2025"
+      // 1. Remove common noise like 'br' and trailing numbers
+      nameSlug = nameSlug.replace(/-br\d*$/, '').replace(/\d+$/, '');
+
+      // 2. Replace hyphens with spaces.
       const withSpaces = nameSlug.replace(/-/g, ' ');
-
-      // 2. Remove characters that are not letters or spaces. e.g., "Karthik r br2025" -> "Karthik r br"
-      const lettersOnly = withSpaces.replace(/[^a-zA-Z\s]/g, '');
-
-      // 3. Trim any extra whitespace from the ends.
-      const trimmed = lettersOnly.trim();
       
-      // 4. Capitalize each part of the name. e.g., "Karthik r br" -> "Karthik R Br"
-      // Then join and trim again in case of multiple spaces.
+      // 3. Trim any extra whitespace from the ends.
+      const trimmed = withSpaces.trim();
+      
+      // 4. Capitalize each part of the name.
       const name = trimmed
         .split(/\s+/)
         .map(part => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase())
