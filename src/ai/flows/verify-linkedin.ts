@@ -1,4 +1,3 @@
-
 'use server';
 
 /**
@@ -37,7 +36,7 @@ const verifyLinkedinFlow = ai.defineFlow(
       const urlStr = input.url;
       // Basic validation to ensure it's a plausible LinkedIn URL.
       if (!/https?:\/\/(www\.)?linkedin\.com\/in\//.test(urlStr)) {
-        // Fallback for invalid formats
+        // Fallback for invalid formats or incomplete URLs
         return { name: 'Data Professional' };
       }
 
@@ -56,17 +55,15 @@ const verifyLinkedinFlow = ai.defineFlow(
         return { name: 'Data Professional' };
       }
       
-      // 1. Remove common noise like 'br' and trailing numbers
-      nameSlug = nameSlug.replace(/-br\d*$/, '').replace(/\d+$/, '');
-
-      // 2. Replace hyphens with spaces.
+      // Replace hyphens with spaces.
       const withSpaces = nameSlug.replace(/-/g, ' ');
-      
-      // 3. Trim any extra whitespace from the ends.
-      const trimmed = withSpaces.trim();
-      
-      // 4. Capitalize each part of the name.
-      const name = trimmed
+
+      // Remove any trailing numbers or common suffixes like 'br' followed by numbers
+      // This is safer than removing all numbers.
+      const cleanedSlug = withSpaces.replace(/\s*\d+$/, '').replace(/\s+br\d*$/, '').trim();
+
+      // Capitalize each part of the name.
+      const name = cleanedSlug
         .split(/\s+/)
         .map(part => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase())
         .join(' ')
