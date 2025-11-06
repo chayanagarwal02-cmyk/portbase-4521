@@ -25,7 +25,7 @@ const roles = [
     description: 'Assess practical skills, project impact, and leadership.',
     icon: UserSearch,
     href: '/portfolio?role=hiring-manager',
-    isDialog: true,
+    isDialog: false,
   },
   {
     role: 'data-professional' as Role,
@@ -33,7 +33,7 @@ const roles = [
     description: 'A technical deep-dive into projects, code, and analytics.',
     icon: Database,
     href: '/portfolio?role=data-professional',
-    isDialog: true,
+    isDialog: false,
   },
   {
     role: 'hr' as Role,
@@ -41,7 +41,7 @@ const roles = [
     description: 'View culture fit, team skills, and professional growth.',
     icon: UserCheck,
     href: '/portfolio?role=hr',
-    isDialog: true,
+    isDialog: false,
   },
   {
     role: 'cxo' as Role,
