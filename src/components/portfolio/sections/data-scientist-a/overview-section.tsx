@@ -21,11 +21,25 @@ export function OverviewSection() {
     const dataScientistMetrics = profileData['Data Scientist'];
     const dataEngineerMetrics = profileData['Data Engineer'];
 
+    // Metric groups to be merged
+    const businessImpact = dataAnalystMetrics.circles.find(c => c.title === "Business Impact & Insight Generation");
+    const businessValue = dataScientistMetrics.circles.find(c => c.title === "Quantifiable Business Value");
+    
+    const analysisEfficiency = dataAnalystMetrics.circles.find(c => c.title === "Analysis & Reporting Efficiency");
+    const engineerEfficiency = dataEngineerMetrics.circles.find(c => c.title === "Efficiency & Cost");
+
     const dataQualityAndAccuracy = dataAnalystMetrics.circles.find(c => c.title === "Data Quality & Accuracy");
     const dataQualityAndFreshness = dataEngineerMetrics.circles.find(c => c.title === "Data Quality & Freshness");
 
     const combinedCircles: ProfileCircle[] = [
-        dataAnalystMetrics.circles.find(c => c.title === "Business Impact & Insight Generation")!,
+        {
+            title: "Overall Business Impact",
+            value: Math.round(((businessImpact?.value || 0) + (businessValue?.value || 0)) / 2),
+            key_metrics: [
+                ...(businessImpact?.key_metrics || []),
+                ...(businessValue?.key_metrics || []),
+            ]
+        },
         dataScientistMetrics.circles.find(c => c.title === "Model Performance")!,
         dataEngineerMetrics.circles.find(c => c.title === "Pipeline Health & Reliability")!,
         {
@@ -36,11 +50,16 @@ export function OverviewSection() {
                 ...(dataQualityAndFreshness?.key_metrics || []),
             ]
         },
+        {
+            title: "Operational Efficiency & Cost",
+            value: Math.round(((analysisEfficiency?.value || 0) + (engineerEfficiency?.value || 0)) / 2),
+            key_metrics: [
+                ...(analysisEfficiency?.key_metrics || []),
+                ...(engineerEfficiency?.key_metrics || []),
+            ]
+        },
         dataScientistMetrics.circles.find(c => c.title === "Production Readiness")!,
-        dataAnalystMetrics.circles.find(c => c.title === "Analysis & Reporting Efficiency")!,
-        dataEngineerMetrics.circles.find(c => c.title === "Efficiency & Cost")!,
         dataAnalystMetrics.circles.find(c => c.title === "Team & Soft Skills")!,
-        dataScientistMetrics.circles.find(c => c.title === "Quantifiable Business Value")!,
     ].filter((c): c is ProfileCircle => !!c);
 
 
