@@ -388,7 +388,7 @@ export const dataScientistSkills: CategorizedSkills = {
 };
 
 export const dataEngineerSkills: CategorizedSkills = {
-    'Data Pipelines & ETL': [
+    'Technical Foundations': [
         { subject: 'Airflow/Prefect', value: 92 },
         { subject: 'dbt', value: 88 },
         { subject: 'Spark', value: 80 },
@@ -398,21 +398,16 @@ export const dataEngineerSkills: CategorizedSkills = {
 export const dataScientistASkills: CategorizedSkills = {
     'Technical Foundations': [
         ...dataAnalystSkills['Technical Foundations'],
+        ...dataEngineerSkills['Technical Foundations'],
     ],
     'Essential Soft Skills': [
         ...dataAnalystSkills['Essential Soft Skills'],
-    ],
-    'Emerging AI & Cloud Tools': [
-        ...dataAnalystSkills['Emerging AI & Cloud Tools'],
     ],
     'Advanced Modeling': [
         ...dataScientistSkills['Advanced Modeling'],
     ],
     'MLOps & Deployment': [
         ...dataScientistSkills['MLOps & Deployment'],
-    ],
-    'Data Pipelines & ETL': [
-        ...dataEngineerSkills['Data Pipelines & ETL'],
     ]
 };
 
