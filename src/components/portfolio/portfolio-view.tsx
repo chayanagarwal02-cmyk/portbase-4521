@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useEffect, useState, useRef, Suspense } from 'react';
@@ -14,7 +13,6 @@ import { Chatbot } from '@/components/portfolio/chatbot';
 import { contentVisibility, type Role, techStackData, aiDataScientistTechStack, aiProjectsData } from '@/lib/data';
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
-import { CodeSection } from './sections/code-section';
 import { AnalyticsSection as GeneralAnalyticsSection } from './sections/analytics-section';
 import { BlogSection } from './sections/blog-section';
 import { VideosSection } from './sections/videos-section';
@@ -98,7 +96,6 @@ function PortfolioViewInternal({ role }: { role: string }) {
     const generalComponents: { [key: string]: React.ReactNode } = {
         'Leadership': <GeneralLeadershipSection />,
         'Certifications': <GeneralCertificatesSection />,
-        'Code': <CodeSection />,
         'Analytics': <GeneralAnalyticsSection />,
         'Blog': <BlogSection />,
         'Videos': <VideosSection />,
