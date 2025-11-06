@@ -11,7 +11,7 @@ const videoEntries = [
     description: 'Understanding the airline industry and its regulatory bodies, Understanding the characteristics of the Airline Industry and its characteristics, Understanding the organizational structure of the airline industry, Understanding the security, navigation, and traffic control, and Understanding the importance of safety and security.',
   },
   {
-    url: 'https://youtu.be/IyT0PlFVo5Y?si=jfHdAfM_kR9qHkRW',
+    url: 'https://www.youtube.com/watch?v=IyT0PlFVo5Y',
     title: '10 AMAZING FOGGY TAKEOFFS | Bangalore Airport Plane Spotting [VOBL/BLR] | December 2020 Edition',
     description: 'The variety of Indian Airlines of different manufacturers, Bengaluru International Airport sees every day is a treat for any plane spotter or an avgeek. This video includes a variety of airplanes departing from Bengaluru during Foggy Day.',
   },
@@ -49,7 +49,7 @@ export function VideosSection() {
       <p className="mt-2 text-center text-muted-foreground mb-12">
         Recordings from the cockpit and beyond.
       </p>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
         {videoData.map((video) => (
           video.id &&
           <Card key={video.id} className="overflow-hidden bg-card/50 group">
@@ -79,3 +79,5 @@ export function VideosSection() {
     </section>
   );
 }
+
+    

@@ -1,6 +1,6 @@
 'use client';
 
-import { ArrowRight, Plane, Goal, TrendingUp, Zap, Users, Lightbulb, DollarSign, ExternalLink, View } from 'lucide-react';
+import { ArrowRight, Plane, Goal, TrendingUp, Zap, Users, Lightbulb, DollarSign, ExternalLink, View, Film } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -18,6 +18,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import Image from 'next/image';
+import { VideosSection } from './sections/videos-section';
 
 
 const topMetrics = [
@@ -204,6 +205,24 @@ export function ExecutiveBriefingView() {
             </DialogContent>
           </Dialog>
 
+          <Dialog>
+            <DialogTrigger asChild>
+                <Button size="lg" variant="outline">
+                    <Film className="mr-2 h-4 w-4" />
+                    Presentations
+                </Button>
+            </DialogTrigger>
+            <DialogContent className="max-w-6xl h-[90vh] flex flex-col">
+                <DialogHeader>
+                    <DialogTitle className="text-2xl font-headline">Presentations & Talks</DialogTitle>
+                    <DialogDescription>A collection of public talks, workshops, and video content.</DialogDescription>
+                </DialogHeader>
+                <div className="overflow-y-auto flex-grow pr-4">
+                    <VideosSection />
+                </div>
+            </DialogContent>
+          </Dialog>
+
           <Button size="lg" variant="outline">
             Schedule a Conversation
           </Button>
@@ -375,5 +394,7 @@ export function ExecutiveBriefingView() {
     </div>
   );
 }
+
+    
 
     
