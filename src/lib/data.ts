@@ -349,13 +349,16 @@ export const skillsOverview: SkillOverview[] = [
 ];
 
 export const dataAnalystSkills: CategorizedSkills = {
-    'Core Technical & Programming Skills': [
+    'Technical Foundations': [
         { subject: 'SQL', value: 80 },
         { subject: 'Data Visualization', value: 80 },
         { subject: 'Spreadsheets', value: 80 },
         { subject: 'Prob & Stats', value: 80 },
         { subject: 'Data Cleaning & Wrangling', value: 80 },
         { subject: 'Python', value: 80 },
+        { subject: 'PostgreSQL', value: 95 },
+        { subject: 'BigQuery', value: 85 },
+        { subject: 'Snowflake', value: 75 },
     ],
     'Essential Soft Skills': [
         { subject: 'Data Storytelling & Communication', value: 80 },
@@ -390,17 +393,27 @@ export const dataEngineerSkills: CategorizedSkills = {
         { subject: 'dbt', value: 88 },
         { subject: 'Spark', value: 80 },
     ],
-    'Databases & Warehousing': [
-        { subject: 'PostgreSQL', value: 95 },
-        { subject: 'BigQuery', value: 85 },
-        { subject: 'Snowflake', value: 75 },
-    ],
 };
 
 export const dataScientistASkills: CategorizedSkills = {
-    ...dataAnalystSkills,
-    ...dataScientistSkills,
-    ...dataEngineerSkills,
+    'Technical Foundations': [
+        ...dataAnalystSkills['Technical Foundations'],
+    ],
+    'Essential Soft Skills': [
+        ...dataAnalystSkills['Essential Soft Skills'],
+    ],
+    'Emerging AI & Cloud Tools': [
+        ...dataAnalystSkills['Emerging AI & Cloud Tools'],
+    ],
+    'Advanced Modeling': [
+        ...dataScientistSkills['Advanced Modeling'],
+    ],
+    'MLOps & Deployment': [
+        ...dataScientistSkills['MLOps & Deployment'],
+    ],
+    'Data Pipelines & ETL': [
+        ...dataEngineerSkills['Data Pipelines & ETL'],
+    ]
 };
 
 
@@ -431,3 +444,5 @@ export const virtualInternships: CareerItem[] = [
 ];
 
 export * from './types';
+
+    
