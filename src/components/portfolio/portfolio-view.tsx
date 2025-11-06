@@ -6,22 +6,37 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { PortfolioHeader } from '@/components/portfolio/header';
 import { HeroSection } from '@/components/portfolio/sections/hero-section';
-import { OverviewSection } from '@/components/portfolio/sections/overview-section';
-import { LeadershipSection } from '@/components/portfolio/sections/leadership-section';
-import { CertificatesSection } from '@/components/portfolio/sections/certificates-section';
-import { ProjectsSection } from '@/components/portfolio/sections/projects-section';
+import { OverviewSection as GeneralOverviewSection } from '@/components/portfolio/sections/overview-section';
+import { LeadershipSection as GeneralLeadershipSection } from '@/components/portfolio/sections/leadership-section';
+import { CertificatesSection as GeneralCertificatesSection } from '@/components/portfolio/sections/certificates-section';
+import { ProjectsSection as GeneralProjectsSection } from '@/components/portfolio/sections/projects-section';
 import { ContactSection } from '@/components/portfolio/sections/contact-section';
 import { Chatbot } from '@/components/portfolio/chatbot';
 import { contentVisibility, type Role } from '@/lib/data';
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import { CodeSection } from './sections/code-section';
-import { AnalyticsSection } from './sections/analytics-section';
+import { AnalyticsSection as GeneralAnalyticsSection } from './sections/analytics-section';
 import { BlogSection } from './sections/blog-section';
 import { VideosSection } from './sections/videos-section';
 import { cn } from '@/lib/utils';
 import { StrategicValueSection } from './sections/strategic-value-section';
 import { ExecutiveBriefingView } from '@/components/portfolio/executive-briefing-view';
+
+// AI Data Scientist Sections
+import { OverviewSection as AiDataScientistOverview } from './sections/ai-data-scientist/overview-section';
+import { ProjectsSection as AiDataScientistProjects } from './sections/ai-data-scientist/projects-section';
+import { AnalyticsSection as AiDataScientistAnalytics } from './sections/ai-data-scientist/analytics-section';
+import { LeadershipSection as AiDataScientistLeadership } from './sections/ai-data-scientist/leadership-section';
+import { CertificatesSection as AiDataScientistCertificates } from './sections/ai-data-scientist/certificates-section';
+
+// Data Scientist - A Sections
+import { OverviewSection as DataScientistAOverview } from './sections/data-scientist-a/overview-section';
+import { ProjectsSection as DataScientistAProjects } from './sections/data-scientist-a/projects-section';
+import { AnalyticsSection as DataScientistAAnalytics } from './sections/data-scientist-a/analytics-section';
+import { LeadershipSection as DataScientistALeadership } from './sections/data-scientist-a/leadership-section';
+import { CertificatesSection as DataScientistACertificates } from './sections/data-scientist-a/certificates-section';
+
 
 function PortfolioViewInternal({ role }: { role: string }) {
   const router = useRouter();
@@ -84,22 +99,47 @@ function PortfolioViewInternal({ role }: { role: string }) {
     newParams.set('profile', newProfile);
     router.push(`/portfolio?${newParams.toString()}`, { scroll: false });
   };
-
-  const TABS_CONTENT: { [key: string]: React.ReactNode } = {
-    'Overview': <OverviewSection profile={activeProfile} />,
-    'Team Projects': <ProjectsSection />,
-    'Leadership': <LeadershipSection />,
-    'Certifications': <CertificatesSection />,
-    'Contact': <ContactSection />,
-    'Projects': <ProjectsSection />,
-    'Code': <CodeSection />,
-    'Analytics': <AnalyticsSection />,
-    'Blog': <BlogSection />,
-    'Videos': <VideosSection />,
-    'Strategic Value': <StrategicValueSection />,
-    'AI Universe': <OverviewSection profile={activeProfile} />,
-  };
   
+  const getTabContent = (tabName: string) => {
+    const generalComponents: { [key: string]: React.ReactNode } = {
+        'Overview': <GeneralOverviewSection profile={activeProfile} />,
+        'Leadership': <GeneralLeadershipSection />,
+        'Certifications': <GeneralCertificatesSection />,
+        'Projects': <GeneralProjectsSection />,
+        'Team Projects': <GeneralProjectsSection />,
+        'Code': <CodeSection />,
+        'Analytics': <GeneralAnalyticsSection />,
+        'Blog': <BlogSection />,
+        'Videos': <VideosSection />,
+        'Strategic Value': <StrategicValueSection />,
+        'Contact': <ContactSection />,
+    };
+
+    switch (activeProfile) {
+        case 'ai-data-scientist':
+            switch (tabName) {
+                case 'Overview': return <AiDataScientistOverview />;
+                case 'Projects': return <AiDataScientistProjects />;
+                case 'Analytics': return <AiDataScientistAnalytics />;
+                case 'Leadership': return <AiDataScientistLeadership />;
+                case 'Certifications': return <AiDataScientistCertificates />;
+                default: return generalComponents[tabName];
+            }
+        case 'data-scientist-a':
+            switch (tabName) {
+                case 'Overview': return <DataScientistAOverview />;
+                case 'Projects': return <DataScientistAProjects />;
+                case 'Analytics': return <DataScientistAAnalytics />;
+                case 'Leadership': return <DataScientistALeadership />;
+                case 'Certifications': return <DataScientistACertificates />;
+                default: return generalComponents[tabName];
+            }
+        default:
+            return generalComponents[tabName];
+    }
+  };
+
+
   const TAB_LABELS: { [key: string]: string } = {
     'Contact': 'Reach me out',
   }
@@ -148,7 +188,7 @@ function PortfolioViewInternal({ role }: { role: string }) {
             {visibleTabs.map((tabName) => (
               <TabsContent key={tabName} value={tabName} className="mt-8">
                 <div ref={(el) => sectionsRef.current.set(tabName, el)}>
-                  {TABS_CONTENT[tabName]}
+                  {getTabContent(tabName)}
                 </div>
               </TabsContent>
             ))}
@@ -172,5 +212,3 @@ export function PortfolioView({ role }: { role: string }) {
     </Suspense>
   )
 }
-
-    
