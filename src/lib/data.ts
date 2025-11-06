@@ -215,7 +215,32 @@ export const leadershipData: Leadership[] = [
   },
 ];
 
-export const certificatesData: Certificate[] = [];
+export const certificatesData: Certificate[] = [
+  {
+    id: 1,
+    title: 'Google Cloud Certified - Professional Data Engineer',
+    issuer: 'Google Cloud',
+    year: '2024',
+    skills: ['Data Pipelines', 'BigQuery', 'ML Models', 'Cloud Storage'],
+    url: 'https://www.credential.net/1ee42782-5555-46b5-9509-32357999849c',
+  },
+  {
+    id: 2,
+    title: 'TensorFlow Developer Certificate',
+    issuer: 'TensorFlow',
+    year: '2023',
+    skills: ['Deep Learning', 'Neural Networks', 'Computer Vision', 'NLP'],
+    url: 'https://www.credential.net/1ee42782-5555-46b5-9509-32357999849c',
+  },
+  {
+    id: 3,
+    title: 'IBM Data Science Professional Certificate',
+    issuer: 'Coursera',
+    year: '2023',
+    skills: ['Python', 'SQL', 'Data Analysis', 'Machine Learning', 'Data Visualization'],
+    url: 'https://www.coursera.org/professional-certificates/ibm-data-science',
+  },
+];
 
 export const blogData: Blog[] = [
   {
