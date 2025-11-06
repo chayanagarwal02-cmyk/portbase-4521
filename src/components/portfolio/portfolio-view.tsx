@@ -128,7 +128,7 @@ function PortfolioViewInternal({ role }: { role: string }) {
         case 'data-scientist-a':
             switch (tabName) {
                 case 'Overview': return <DataScientistAOverview />;
-                case 'Projects': return <DataScientistAProjects />;
+                case 'Projects': return <GeneralProjectsSection />;
                 case 'Analytics': return <DataScientistAAnalytics />;
                 case 'Leadership': return <DataScientistALeadership />;
                 case 'Certifications': return <DataScientistACertificates />;
