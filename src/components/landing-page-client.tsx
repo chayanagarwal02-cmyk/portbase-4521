@@ -11,6 +11,7 @@ import {
   Quote,
   TrendingUp,
   UserSearch,
+  BrainCircuit,
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { aviationQuotes } from '@/lib/quotes';
@@ -57,6 +58,13 @@ const roles = [
     icon: Eye,
     href: '/portfolio?role=stalker',
   },
+  {
+    role: 'ai-universe' as Role,
+    title: 'AI Universe',
+    description: 'Explore AI-powered features and generative content.',
+    icon: BrainCircuit,
+    href: '/portfolio?role=ai-universe',
+  },
 ];
 
 const cardColors = [
@@ -65,6 +73,7 @@ const cardColors = [
   'hover:bg-gradient-to-br from-background to-green-900/40',
   'hover:bg-gradient-to-br from-background to-red-900/40',
   'hover:bg-gradient-to-br from-background to-gray-800/40',
+  'hover:bg-gradient-to-br from-background to-teal-900/40',
 ];
 
 export function LandingPageClient() {
@@ -200,7 +209,7 @@ export function LandingPageClient() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.5 + i * 0.1 }}
                 className={
-                  card.role === 'stalker' || card.role === 'cxo'
+                  card.role === 'stalker' || card.role === 'cxo' || card.role === 'ai-universe'
                     ? 'lg:col-span-1 sm:col-span-2 lg:col-start-auto sm:col-start-auto'
                     : ''
                 }

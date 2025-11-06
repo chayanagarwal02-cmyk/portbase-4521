@@ -1,5 +1,3 @@
-
-
 'use client';
 
 import { useEffect, useState, useRef, Suspense } from 'react';
@@ -39,8 +37,10 @@ function PortfolioViewInternal({ role }: { role: string }) {
     const profile = searchParams.get('profile');
     if (profile) {
       setActiveProfile(profile);
+    } else if (role === 'ai-universe') {
+      setActiveProfile('ai-universe');
     }
-  }, [searchParams]);
+  }, [searchParams, role]);
 
   useEffect(() => {
     if (visibleTabs.length > 0 && !visibleTabs.includes(activeTab)) {
@@ -98,6 +98,7 @@ function PortfolioViewInternal({ role }: { role: string }) {
     'Blog': <BlogSection />,
     'Videos': <VideosSection />,
     'Strategic Value': <StrategicValueSection />,
+    'AI Universe': <OverviewSection profile="ai-universe" />,
   };
   
   const TAB_LABELS: { [key: string]: string } = {

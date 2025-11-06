@@ -6,6 +6,7 @@ export const contentVisibility: Record<Role, string[]> = {
   'hiring-manager': ['Overview', 'Projects', 'Analytics', 'Leadership', 'Certifications', 'Contact'],
   'stalker': ['Blog', 'Videos'],
   'cxo': [],
+  'ai-universe': ['Overview', 'Projects'],
 };
 
 export const heroData: Record<Role, {title: string; subtitle: string; badges: {text: string, className: string}[], profiles?: { value: string, label: string }[]}> = {
@@ -63,6 +64,15 @@ export const heroData: Record<Role, {title: string; subtitle: string; badges: {t
         { text: "Business-Oriented", className: "bg-red-900/50 text-red-300 border-red-700" },
         { text: "Results-Driven", className: "bg-teal-900/50 text-teal-300 border-teal-700"},
         { text: "Strategic Thinker", className: "bg-gray-700/50 text-gray-300 border-gray-600"}
+    ],
+  },
+  'ai-universe': {
+    title: "Welcome to the AI Universe",
+    subtitle: "Explore AI-powered features, generative content, and interactive assistants built into this portfolio.",
+    badges: [
+        { text: "Genkit", className: "bg-blue-900/50 text-blue-300 border-blue-700" },
+        { text: "LLMs", className: "bg-green-900/50 text-green-300 border-green-700"},
+        { text: "AI Agents", className: "bg-purple-900/50 text-purple-300 border-purple-700"}
     ],
   }
 }
@@ -195,49 +205,15 @@ export const leadershipData: Leadership[] = [
 export const certificatesData: Certificate[] = [
   {
     id: 1,
-    title: 'AWS Solutions Architect Professional',
-    issuer: 'Amazon Web Services',
-    year: 'Dec 2024',
-    skills: ['Cloud Architecture', 'AWS', 'DevOps'],
-    url: '#',
-  },
-  {
-    id: 2,
-    title: 'Google Data Analytics Professional',
-    issuer: 'Google',
-    year: 'Oct 2024',
-    skills: ['Data Analysis', 'SQL', 'Tableau'],
-    url: '#',
-  },
-  {
-    id: 3,
-    title: 'Machine Learning Specialization',
-    issuer: 'Stanford University',
-    year: 'Aug 2024',
-    skills: ['ML', 'Python', 'TensorFlow'],
-    url: '#',
-  },
-    {
-    id: 4,
-    title: 'Azure Data Engineer Associate',
-    issuer: 'Microsoft',
-    year: 'Jun 2024',
-    skills: ['Azure', 'Data Engineering', 'ETL'],
-    url: '#',
+    title: 'The Trajectory of Urban Air Mobility',
+    issuer: 'Medium Blog',
+    year: 'June 2025',
+    skills: ['UAM Systems', 'Business Analysis', 'Market Viability', 'Logistics'],
+    url: 'https://medium.com/@chayan.agarwal01/the-trajectory-of-urban-air-mobility-99ffcb89113f',
   },
 ];
 
-export const blogData: Blog[] = [
-    {
-        id: 1,
-        title: 'The Trajectory of Urban Air Mobility',
-        excerpt: 'Uber Elevate, launched in 2016 with its seminal white paper, aimed to revolutionize urban transportation by introducing aerial ridesharing using electric Vertical Take-off and Landing (eVTOL) aircraft. The initiative’s vision was to create a multimodal transportation product seamlessly integrating ground and intra-city flight, promising significant time savings, reduced urban congestion, and environmentally sustainable mobility. This ambitious endeavor played a pivotal role in propelling the concept of Urban Air Mobility (UAM) from a futuristic idea to a serious aerospace sector, attracting substantial investment and fostering collaboration across regulators, civic leaders, real estate developers, and technology companies.',
-        date: 'June 18, 2025',
-        tags: ['UAM Systems', 'Business Analysis', 'Market Viability', 'Logistics'],
-        url: 'https://medium.com/@chayan.agarwal01/the-trajectory-of-urban-air-mobility-99ffcb89113f',
-        imageId: 'uam-blog-post'
-    }
-];
+export const blogData: Blog[] = [];
 
 export const analyticsData: AnalyticsData = {
     quarterlyImpact: [

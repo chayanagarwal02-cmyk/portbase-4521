@@ -1,4 +1,4 @@
-export type Role = 'hr' | 'data-professional' | 'hiring-manager' | 'stalker' | 'cxo';
+export type Role = 'hr' | 'data-professional' | 'hiring-manager' | 'stalker' | 'cxo' | 'ai-universe';
 
 export interface Project {
   id: number;
@@ -130,7 +130,7 @@ export interface ProfileData {
   metrics: ProfileMetric[];
 }
 
-export type ProfileName = 'Data Analyst' | 'Data Scientist' | 'Data Engineer';
+export type ProfileName = 'Data Analyst' | 'Data Scientist' | 'Data Engineer' | 'AI Universe';
 
 export type ProfileDataMap = {
   [key in ProfileName]: ProfileData;
