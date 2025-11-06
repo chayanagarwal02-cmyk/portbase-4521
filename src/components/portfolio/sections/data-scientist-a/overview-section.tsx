@@ -21,11 +21,28 @@ export function OverviewSection() {
     const dataScientistMetrics = profileData['Data Scientist'];
     const dataEngineerMetrics = profileData['Data Engineer'];
 
+    const dataQualityAndAccuracy = dataAnalystMetrics.circles.find(c => c.title === "Data Quality & Accuracy");
+    const dataQualityAndFreshness = dataEngineerMetrics.circles.find(c => c.title === "Data Quality & Freshness");
+
     const combinedCircles: ProfileCircle[] = [
-        ...dataAnalystMetrics.circles,
-        ...dataScientistMetrics.circles,
-        ...dataEngineerMetrics.circles,
-    ];
+        dataAnalystMetrics.circles.find(c => c.title === "Business Impact & Insight Generation")!,
+        dataScientistMetrics.circles.find(c => c.title === "Model Performance")!,
+        dataEngineerMetrics.circles.find(c => c.title === "Pipeline Health & Reliability")!,
+        {
+            title: "Unified Data Quality",
+            value: Math.round(((dataQualityAndAccuracy?.value || 0) + (dataQualityAndFreshness?.value || 0)) / 2),
+            key_metrics: [
+                ...(dataQualityAndAccuracy?.key_metrics || []),
+                ...(dataQualityAndFreshness?.key_metrics || []),
+            ]
+        },
+        dataScientistMetrics.circles.find(c => c.title === "Production Readiness")!,
+        dataAnalystMetrics.circles.find(c => c.title === "Analysis & Reporting Efficiency")!,
+        dataEngineerMetrics.circles.find(c => c.title === "Efficiency & Cost")!,
+        dataAnalystMetrics.circles.find(c => c.title === "Team & Soft Skills")!,
+        dataScientistMetrics.circles.find(c => c.title === "Quantifiable Business Value")!,
+    ].filter((c): c is ProfileCircle => !!c);
+
 
     const combinedMetrics: ProfileMetric[] = [
         ...dataAnalystMetrics.metrics,
