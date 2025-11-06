@@ -11,12 +11,23 @@ import {
 import { profileData } from '@/lib/profile-data';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { HelpCircle, Users } from 'lucide-react';
+import { HelpCircle, Users, TrendingUp } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import type { ProfileCircle, ProfileMetric } from '@/lib/types';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import Image from 'next/image';
+import { SkillsOverviewChart } from '@/components/portfolio/skills-overview-chart';
 
+const quickStats = [
+    { label: 'Projects Completed', value: '15+' },
+    { label: 'Years Experience', value: '5+' },
+    { label: 'Technologies', value: '20+' },
+    { label: 'Certifications', value: '6' },
+    { label: 'Leadership Roles', value: '2' },
+    { label: 'Accolades', value: '1' },
+    { label: 'Tech Blogs Written', value: '3' },
+    { label: 'Speaking Engagements', value: '3' },
+];
 
 export function OverviewSection() {
     const dataAnalystMetrics = profileData['Data Analyst'];
@@ -189,6 +200,33 @@ export function OverviewSection() {
                 </ScrollArea>
             </CardContent>
         </Card>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <Card>
+                <CardHeader>
+                    <CardTitle className="font-headline">General Skills Overview</CardTitle>
+                </CardHeader>
+                <CardContent className="relative">
+                    <SkillsOverviewChart />
+                </CardContent>
+            </Card>
+            <Card className="bg-card/50">
+                <CardHeader>
+                    <CardTitle className="flex items-center gap-2 font-headline text-xl">
+                        <TrendingUp className="h-5 w-5 text-primary" />
+                        Quick Stats
+                    </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                    {quickStats.map(stat => (
+                        <div key={stat.label} className="flex justify-between items-center bg-secondary/30 p-3 rounded-md">
+                            <p className="text-muted-foreground">{stat.label}</p>
+                            <p className="font-bold text-foreground">{stat.value}</p>
+                        </div>
+                    ))}
+                </CardContent>
+            </Card>
+        </div>
     </div>
   );
 }
