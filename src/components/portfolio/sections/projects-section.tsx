@@ -17,6 +17,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { ResponsiveContainer, BarChart as RechartsBarChart, XAxis, YAxis, Tooltip, Bar as RechartsBar } from 'recharts';
 import { techStackData } from '@/lib/data';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
+import type { Project } from '@/lib/types';
 
 
 const iconMap: { [key: string]: React.ElementType } = {
@@ -61,8 +62,8 @@ const iconMap: { [key: string]: React.ElementType } = {
   'Streamlit': BarChart2,
 };
 
-export function ProjectsSection({ techStack = techStackData }: { techStack?: TechStack[] }) {
-  const [selectedProject, setSelectedProject] = useState<(typeof projectsData[0]) | null>(null);
+export function ProjectsSection({ techStack = techStackData, projects = projectsData }: { techStack?: TechStack[], projects?: Project[] }) {
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const avatarImage = placeholderImages.find(p => p.id === 'avatar-placeholder');
 
   return (
@@ -91,7 +92,7 @@ export function ProjectsSection({ techStack = techStackData }: { techStack?: Tec
       <div>
         <h2 className="text-2xl font-bold font-headline mb-8 flex items-center gap-2"><Folder /> Featured Projects</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projectsData.map((project) => (
+          {projects.map((project) => (
             <Card key={project.id} className="bg-secondary/30 flex flex-col overflow-hidden group hover:border-primary/50 transition-all cursor-pointer" onClick={() => setSelectedProject(project)}>
               <CardHeader>
                 <div className="flex items-start gap-4">

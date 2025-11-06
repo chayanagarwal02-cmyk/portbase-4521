@@ -188,6 +188,93 @@ export const projectsData: Project[] = [
   },
 ];
 
+export const aiProjectsData: Project[] = [
+  {
+    id: 101,
+    title: 'High-Fidelity Digital Twin for Autonomous Predictive Maintenance (Jet Engine RUL)',
+    description: 'Developed a physics-informed neural network (PINN) to create a digital twin of a jet engine, predicting Remaining Useful Life (RUL) with high accuracy.',
+    tags: ['PyTorch', 'Digital Twin', 'PINN', 'MLOps', 'Kubernetes', 'GCP'],
+    achievements: [
+      'Improved RUL prediction accuracy by 25% over traditional ML models.',
+      'Reduced false positives in maintenance alerts by 40%.',
+      'Published findings in the Journal of Aerospace Engineering.'
+    ],
+    duration: '9 Months',
+    teamSize: 5,
+    liveUrl: '#',
+    repoUrl: '#',
+    impact: 'Est. $5M/year savings',
+    visuals: {
+      kpi: {
+        label: "RUL Accuracy",
+        value: "98.2%",
+      },
+      chartData: [
+        { name: "LSTM", value: 78 },
+        { name: "Transformer", value: 85 },
+        { name: "PINN", value: 98.2 }
+      ],
+      chartDescription: "Model Accuracy Comparison"
+    }
+  },
+  {
+    id: 102,
+    title: 'Verifiable, Adversarial-Robust Autonomous Swarm Drone Mission Planner',
+    description: 'Designed a decentralized mission planning system for drone swarms using multi-agent reinforcement learning (MARL) with formal verification methods to ensure robustness against adversarial attacks.',
+    tags: ['MARL', 'AI Agents', 'Formal Verification', 'RAG', 'Python', 'Docker'],
+    achievements: [
+      'Achieved 99.9% mission success rate in simulated adversarial environments.',
+      'Enabled real-time, decentralized replanning for up to 100 drones.',
+      'Presented at the International Conference on Autonomous Agents.'
+    ],
+    duration: '12 Months',
+    teamSize: 8,
+    liveUrl: '#',
+    repoUrl: '#',
+    impact: '99.9% mission success',
+    visuals: {
+      kpi: {
+        label: "Adversarial Robustness",
+        value: "99.9%",
+      },
+      chartData: [
+        { name: "Centralized", value: 65 },
+        { name: "Decentralized", value: 88 },
+        { name: "Decentralized+Robust", value: 99.9 }
+      ],
+      chartDescription: "Mission Success Rate Under Attack"
+    }
+  },
+  {
+    id: 103,
+    title: 'Generative AI System for Topology Optimization of Flight-Ready Parts',
+    description: 'Created a generative adversarial network (GAN) to produce novel, lightweight, and structurally sound designs for aircraft components, optimized for 3D printing.',
+    tags: ['Generative AI', 'GANs', 'TensorFlow', 'Topology Optimization', 'Hugging Face', 'Streamlit'],
+    achievements: [
+      'Reduced average component weight by 30% while maintaining structural integrity.',
+      'Shortened design-to-prototype cycle from 4 weeks to 3 days.',
+      'Integrated with a Streamlit app for interactive design exploration by engineers.'
+    ],
+    duration: '7 Months',
+    teamSize: 3,
+    liveUrl: '#',
+    repoUrl: '#',
+    impact: '30% weight reduction',
+    visuals: {
+      kpi: {
+        label: "Weight Reduction",
+        value: "30%",
+      },
+      chartData: [
+        { name: "Original", value: 100 },
+        { name: "Gen 1", value: 82 },
+        { name: "Gen 2 (Final)", value: 70 }
+      ],
+      chartDescription: "Component Weight (as % of original)"
+    }
+  },
+]
+
 export const leadershipData: Leadership[] = [
   {
     id: 1,
@@ -427,9 +514,16 @@ export const dataEngineerSkills: CategorizedSkills = {
 
 export const dataScientistASkills: CategorizedSkills = {
     'Technical Foundations': [
-        ...dataAnalystSkills['Core Technical & Programming Skills'],
-        ...dataEngineerSkills['Databases & Warehousing'],
-        ...dataEngineerSkills['Data Orchestration & Transformation'],
+        { subject: 'SQL', value: 80 },
+        { subject: 'Data Visualization', value: 80 },
+        { subject: 'Spreadsheets', value: 80 },
+        { subject: 'Python', value: 80 },
+        { subject: 'PostgreSQL', value: 95 },
+        { subject: 'BigQuery', value: 85 },
+        { subject: 'Snowflake', value: 75 },
+        { subject: 'Airflow/Prefect', value: 92 },
+        { subject: 'dbt', value: 88 },
+        { subject: 'Spark', value: 80 },
     ],
     'Advanced Modeling': [
         ...dataScientistSkills['Advanced Modeling'],
