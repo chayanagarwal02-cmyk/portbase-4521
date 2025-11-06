@@ -3,7 +3,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { projectsData, testimonialsData } from '@/lib/data';
+import { projectsData, testimonialsData, type TechStack } from '@/lib/data';
 import { placeholderImages } from '@/lib/placeholder-images.json';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -38,10 +38,30 @@ const iconMap: { [key: string]: React.ElementType } = {
   'Snowflake': Cloud,
   'Airflow/Prefect': Briefcase,
   'dbt': Rocket,
-  'Spark': Cpu
+  'Spark': Cpu,
+  'LangChain': Code,
+  'Langfuse': Code,
+  'OpenAl API': Code,
+  'AutoGen': Code,
+  'LlamaIndex': Code,
+  'GPT-4': Cpu,
+  'RAG': Code,
+  'MCP Tool Box': Code,
+  'AI Agents': Cpu,
+  'Gemini CLI': Code,
+  'PyTorch': Cpu,
+  'TensorFlow': Cpu,
+  'MLflow': Rocket,
+  'Docker': Rocket,
+  'Hugging Face TRL/PEFT': Cpu,
+  'Kubernetes': Cloud,
+  'Terraform': Cloud,
+  'GCP': Cloud,
+  'AWS': Cloud,
+  'Streamlit': BarChart2,
 };
 
-export function ProjectsSection() {
+export function ProjectsSection({ techStack = techStackData }: { techStack?: TechStack[] }) {
   const [selectedProject, setSelectedProject] = useState<(typeof projectsData[0]) | null>(null);
   const avatarImage = placeholderImages.find(p => p.id === 'avatar-placeholder');
 
@@ -51,7 +71,7 @@ export function ProjectsSection() {
         <h2 className="text-2xl font-bold font-headline mb-8 flex items-center gap-2"><Briefcase/> Technology Stack</h2>
         <ScrollArea>
           <div className="flex space-x-6 pb-4">
-            {techStackData.map((tech) => {
+            {techStack.map((tech) => {
               const Icon = iconMap[tech.name] || Code;
               return (
                 <div key={tech.name} className="flex-shrink-0 w-40">
@@ -240,5 +260,3 @@ export function ProjectsSection() {
     </section>
   );
 }
-
-    

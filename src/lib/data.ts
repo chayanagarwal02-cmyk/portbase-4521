@@ -383,16 +383,11 @@ export const skillsOverview: SkillOverview[] = [
 ];
 
 export const dataAnalystSkills: CategorizedSkills = {
-    'Technical Foundations': [
+    'Core Technical & Programming Skills': [
         { subject: 'SQL', value: 80 },
         { subject: 'Data Visualization', value: 80 },
         { subject: 'Spreadsheets', value: 80 },
-        { subject: 'Prob & Stats', value: 80 },
-        { subject: 'Data Cleaning & Wrangling', value: 80 },
         { subject: 'Python', value: 80 },
-        { subject: 'PostgreSQL', value: 95 },
-        { subject: 'BigQuery', value: 85 },
-        { subject: 'Snowflake', value: 75 },
     ],
     'Essential Soft Skills': [
         { subject: 'Data Storytelling & Communication', value: 80 },
@@ -418,7 +413,12 @@ export const dataScientistSkills: CategorizedSkills = {
 };
 
 export const dataEngineerSkills: CategorizedSkills = {
-    'Technical Foundations': [
+    'Databases & Warehousing': [
+        { subject: 'PostgreSQL', value: 95 },
+        { subject: 'BigQuery', value: 85 },
+        { subject: 'Snowflake', value: 75 },
+    ],
+    'Data Orchestration & Transformation': [
         { subject: 'Airflow/Prefect', value: 92 },
         { subject: 'dbt', value: 88 },
         { subject: 'Spark', value: 80 },
@@ -427,28 +427,19 @@ export const dataEngineerSkills: CategorizedSkills = {
 
 export const dataScientistASkills: CategorizedSkills = {
     'Technical Foundations': [
-        { subject: 'SQL', value: 80 },
-        { subject: 'Data Visualization', value: 80 },
-        { subject: 'Spreadsheets', value: 80 },
-        { subject: 'Prob & Stats', value: 80 },
-        { subject: 'Data Cleaning & Wrangling', value: 80 },
-        { subject: 'Python', value: 80 },
-        { subject: 'PostgreSQL', value: 95 },
-        { subject: 'BigQuery', value: 85 },
-        { subject: 'Snowflake', value: 75 },
-        { subject: 'Airflow/Prefect', value: 92 },
-        { subject: 'dbt', value: 88 },
-        { subject: 'Spark', value: 80 },
-    ],
-    'Essential Soft Skills': [
-        ...dataAnalystSkills['Essential Soft Skills'],
+        ...dataAnalystSkills['Core Technical & Programming Skills'],
+        ...dataEngineerSkills['Databases & Warehousing'],
+        ...dataEngineerSkills['Data Orchestration & Transformation'],
     ],
     'Advanced Modeling': [
         ...dataScientistSkills['Advanced Modeling'],
     ],
     'MLOps & Deployment': [
         ...dataScientistSkills['MLOps & Deployment'],
-    ]
+    ],
+    'Essential Soft Skills': [
+        ...dataAnalystSkills['Essential Soft Skills'],
+    ],
 };
 
 
@@ -466,6 +457,28 @@ export const techStackData: TechStack[] = [
     { name: 'dbt', proficiency: 88, icon: 'Rocket' },
     { name: 'Spark', proficiency: 80, icon: 'Cpu' },
 ];
+
+export const aiDataScientistTechStack: TechStack[] = [
+    { name: 'LangChain', proficiency: 90, icon: 'Code' },
+    { name: 'Langfuse', proficiency: 85, icon: 'Code' },
+    { name: 'OpenAl API', proficiency: 88, icon: 'Code' },
+    { name: 'AutoGen', proficiency: 82, icon: 'Code' },
+    { name: 'LlamaIndex', proficiency: 80, icon: 'Code' },
+    { name: 'GPT-4', proficiency: 95, icon: 'Cpu' },
+    { name: 'RAG', proficiency: 89, icon: 'Code' },
+    { name: 'AI Agents', proficiency: 85, icon: 'Cpu' },
+    { name: 'Gemini CLI', proficiency: 92, icon: 'Code' },
+    { name: 'PyTorch', proficiency: 91, icon: 'Cpu' },
+    { name: 'TensorFlow', proficiency: 90, icon: 'Cpu' },
+    { name: 'MLflow', proficiency: 87, icon: 'Rocket' },
+    { name: 'Docker', proficiency: 86, icon: 'Rocket' },
+    { name: 'Hugging Face TRL/PEFT', proficiency: 84, icon: 'Cpu' },
+    { name: 'Kubernetes', proficiency: 83, icon: 'Cloud' },
+    { name: 'Terraform', proficiency: 80, icon: 'Cloud' },
+    { name: 'GCP', proficiency: 90, icon: 'Cloud' },
+    { name: 'AWS', proficiency: 88, icon: 'Cloud' },
+    { name: 'Streamlit', proficiency: 85, icon: 'BarChart2' },
+]
 
 export const achievements: Achievement[] = [
     { iconName: 'Award', color: 'text-yellow-400 bg-yellow-900/50', tooltip: 'Innovator of the Year' },

@@ -12,7 +12,7 @@ import { CertificatesSection as GeneralCertificatesSection } from '@/components/
 import { ProjectsSection as GeneralProjectsSection } from '@/components/portfolio/sections/projects-section';
 import { ContactSection } from '@/components/portfolio/sections/contact-section';
 import { Chatbot } from '@/components/portfolio/chatbot';
-import { contentVisibility, type Role } from '@/lib/data';
+import { contentVisibility, type Role, techStackData, aiDataScientistTechStack } from '@/lib/data';
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import { CodeSection } from './sections/code-section';
@@ -114,7 +114,7 @@ function PortfolioViewInternal({ role }: { role: string }) {
         case 'ai-data-scientist':
             switch (tabName) {
                 case 'Overview': return <AiDataScientistOverview />;
-                case 'Projects': return <GeneralProjectsSection />;
+                case 'Projects': return <GeneralProjectsSection techStack={aiDataScientistTechStack}/>;
                 case 'Analytics': return <AiDataScientistAnalytics />;
                 case 'Leadership': return <GeneralLeadershipSection />;
                 case 'Certifications': return <GeneralCertificatesSection />;
