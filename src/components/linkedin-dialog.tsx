@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -79,6 +80,15 @@ export function LinkedinDialog({ open, onOpenChange, role }: { open: boolean, on
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[425px]">
+        <DialogHeader>
+          <DialogTitle className="flex items-center gap-2">
+            <Linkedin className="h-5 w-5 text-primary" />
+            {roleTitles[role] || 'Profile Verification'}
+          </DialogTitle>
+          <DialogDescription>
+            This feature is temporarily disabled.
+          </DialogDescription>
+        </DialogHeader>
         {/* <form onSubmit={handleSubmit}>
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
@@ -121,3 +131,4 @@ export function LinkedinDialog({ open, onOpenChange, role }: { open: boolean, on
     </Dialog>
   );
 }
+
