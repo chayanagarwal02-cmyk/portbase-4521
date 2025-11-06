@@ -9,7 +9,7 @@ export const contentVisibility: Record<Role, string[]> = {
   'ai-universe': ['Overview', 'Projects', 'Analytics', 'Leadership', 'Certifications', 'Contact'],
 };
 
-export const heroData: Record<Role, {title: string; subtitle: string; badges: {text: string, className: string}[], profiles?: { value: string, label: string }[]}> = {
+export const heroData: Record<Role, {title: string; subtitle: string; badges: {text: string, className: string}[], profiles?: { value: string, label: string }[], profileBadges?: Record<string, {text: string, className: string}[]>}> = {
   'hr': {
     title: "Hello - HR Professional",
     subtitle: "Select a profile to view tailored information on culture, team dynamics, and professional growth.",
@@ -69,15 +69,24 @@ export const heroData: Record<Role, {title: string; subtitle: string; badges: {t
   'ai-universe': {
     title: "Welcome to the AI Universe",
     subtitle: "Explore AI-powered features, generative content, and interactive assistants built into this portfolio.",
-    badges: [
-        { text: "Genkit", className: "bg-blue-900/50 text-blue-300 border-blue-700" },
-        { text: "LLMs", className: "bg-green-900/50 text-green-300 border-green-700"},
-        { text: "AI Agents", className: "bg-purple-900/50 text-purple-300 border-purple-700"}
-    ],
+    badges: [],
     profiles: [
       { value: 'ai-data-scientist', label: 'AI Data Scientist' },
       { value: 'data-scientist-a', label: 'Data Scientist - A' },
-    ]
+    ],
+    profileBadges: {
+        'ai-data-scientist': [
+            { text: "Generative AI", className: "bg-blue-900/50 text-blue-300 border-blue-700" },
+            { text: "MLOps", className: "bg-green-900/50 text-green-300 border-green-700"},
+            { text: "LLMOps", className: "bg-purple-900/50 text-purple-300 border-purple-700"}
+        ],
+        'data-scientist-a': [
+            { text: "MLOps", className: "bg-rose-900/50 text-rose-300 border-rose-700" },
+            { text: "Deep Learning", className: "bg-indigo-900/50 text-indigo-300 border-indigo-700"},
+            { text: "RecSys", className: "bg-emerald-900/50 text-emerald-300 border-emerald-700"},
+            { text: "Time Series Analysis", className: "bg-amber-900/50 text-amber-300 border-amber-700"}
+        ]
+    }
   }
 }
 
@@ -366,10 +375,6 @@ export const dataAnalystSkills: CategorizedSkills = {
         { subject: 'Critical Thinking', value: 80 },
         { subject: 'Problem-Solving', value: 80 },
     ],
-    'Emerging AI & Cloud Tools': [
-        { subject: 'AI-Powered BI Tools', value: 80 },
-        { subject: 'Cloud Data Warehouses', value: 80 },
-    ]
 };
 
 export const dataScientistSkills: CategorizedSkills = {

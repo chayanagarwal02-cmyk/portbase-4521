@@ -39,7 +39,7 @@ export function HeroSection({
     setGreeting(getGreeting());
   }, []);
 
-  const { title, subtitle, badges, profiles } = heroData[role];
+  const { title, subtitle, badges: defaultBadges, profiles, profileBadges } = heroData[role];
 
   const roleDisplayName = roleDisplayNameMap[role];
   const isGreeterRole = role === 'hiring-manager' || role === 'hr' || role === 'data-professional';
@@ -52,6 +52,10 @@ export function HeroSection({
           displayTitle = `${greeting} ${roleDisplayName}, ready for my flight?`;
       }
   }
+
+  const badges = (role === 'ai-universe' && profileBadges && profileBadges[activeProfile])
+    ? profileBadges[activeProfile]
+    : defaultBadges;
 
 
   return (
