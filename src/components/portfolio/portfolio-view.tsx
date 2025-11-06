@@ -130,7 +130,7 @@ function PortfolioViewInternal({ role }: { role: string }) {
                 case 'Overview': return <DataScientistAOverview />;
                 case 'Projects': return <GeneralProjectsSection />;
                 case 'Analytics': return <DataScientistAAnalytics />;
-                case 'Leadership': return <DataScientistALeadership />;
+                case 'Leadership': return <GeneralLeadershipSection />;
                 case 'Certifications': return <DataScientistACertificates />;
                 default: return generalComponents[tabName];
             }
