@@ -17,6 +17,7 @@ import type { ProfileCircle, ProfileMetric } from '@/lib/types';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import Image from 'next/image';
 import { SkillsOverviewChart } from '@/components/portfolio/skills-overview-chart';
+import { dataScientistASkills } from '@/lib/data';
 
 const quickStats = [
     { label: 'Projects Completed', value: '15+' },
@@ -34,7 +35,6 @@ export function OverviewSection() {
     const dataScientistMetrics = profileData['Data Scientist'];
     const dataEngineerMetrics = profileData['Data Engineer'];
 
-    // Metric groups to be merged
     const businessImpact = dataAnalystMetrics.circles.find(c => c.title === "Business Impact & Insight Generation");
     const businessValue = dataScientistMetrics.circles.find(c => c.title === "Quantifiable Business Value");
     
@@ -207,7 +207,7 @@ export function OverviewSection() {
                     <CardTitle className="font-headline">General Skills Overview</CardTitle>
                 </CardHeader>
                 <CardContent className="relative">
-                    <SkillsOverviewChart />
+                    <SkillsOverviewChart skills={dataScientistASkills} />
                 </CardContent>
             </Card>
             <Card className="bg-card/50">

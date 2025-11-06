@@ -20,6 +20,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { achievements, careerJourney, virtualInternships, dataAnalystSkills } from '@/lib/data';
 
 
 const quickStats = [
@@ -70,22 +71,13 @@ const CaptainIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 
-const achievements = [
-    { icon: Award, color: 'text-yellow-400 bg-yellow-900/50', tooltip: 'Innovator of the Year' },
-    { icon: Star, color: 'text-orange-400 bg-orange-900/50', tooltip: 'Top Performer Award' },
-    { icon: CultNinjaIcon, color: 'text-rose-400 bg-rose-900/50', tooltip: 'Cult Ninja Award' },
-    { icon: Rocket, color: 'text-blue-400 bg-blue-900/50', tooltip: 'Project Launch Excellence' },
-    { icon: CaptainIcon, color: 'text-amber-400 bg-amber-900/50', tooltip: "Captain of the Month - Scaler CC x BLR Community (Sept' 25)" },
-]
-
-const careerJourney = [
-    { year: '2023 - 2024', role: 'Data Operations Analyst', company: 'Amazon Development Center (India) Pvt. Ltd.', description: 'Analyzed large-scale data to enhance operational efficiency and support strategic decisions.'},
-    { year: '2022 - 2023', role: 'Operations Analyst', company: 'Highway Delite', description: 'Monitored operational metrics and provided data-driven recommendations for process improvements.'},
-]
-
-const virtualInternships = [
-    { year: 'June 2025 - August 2025', role: 'Data Analytics Consultant', company: 'Quantium (via The Forage)', description: 'Completed a simulated project involving data analysis and strategic recommendations for a retail client.'}
-]
+const iconMap = {
+    Award,
+    Star,
+    CultNinja: CultNinjaIcon,
+    Rocket,
+    Captain: CaptainIcon
+};
 
 
 export function OverviewSection({ profile }: { profile: string }) {
@@ -94,7 +86,7 @@ export function OverviewSection({ profile }: { profile: string }) {
   const chartColors = ["hsl(var(--chart-1))", "hsl(var(--chart-2))", "hsl(var(--chart-3))", "hsl(var(--chart-4))"];
 
   if (!currentProfileData) {
-    return <div>Loading profile...</div>; // Or some other fallback UI
+    return <div>Loading profile...</div>;
   }
 
   return (
@@ -214,7 +206,7 @@ export function OverviewSection({ profile }: { profile: string }) {
             <CardTitle className="font-headline">General Skills Overview</CardTitle>
           </CardHeader>
           <CardContent className="relative">
-            <SkillsOverviewChart />
+            <SkillsOverviewChart skills={dataAnalystSkills} />
           </CardContent>
         </Card>
         <Card className="bg-card/50">
@@ -240,7 +232,7 @@ export function OverviewSection({ profile }: { profile: string }) {
         <TooltipProvider>
             <div className="flex justify-center gap-4">
                 {achievements.map((ach, i) => {
-                    const Icon = ach.icon;
+                    const Icon = iconMap[ach.iconName];
                     return (
                         <Tooltip key={i}>
                             <TooltipTrigger asChild>

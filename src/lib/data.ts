@@ -369,6 +369,40 @@ export const dataAnalystSkills: CategorizedSkills = {
     ]
 };
 
+export const dataScientistSkills: CategorizedSkills = {
+    'Advanced Modeling': [
+        { subject: 'Classification', value: 90 },
+        { subject: 'Regression', value: 85 },
+        { subject: 'Clustering', value: 80 },
+        { subject: 'Deep Learning', value: 75 },
+    ],
+    'MLOps & Deployment': [
+        { subject: 'Model Versioning', value: 88 },
+        { subject: 'CI/CD for Models', value: 82 },
+        { subject: 'Monitoring', value: 78 },
+        { subject: 'API Development', value: 70 },
+    ],
+};
+
+export const dataEngineerSkills: CategorizedSkills = {
+    'Data Pipelines & ETL': [
+        { subject: 'Airflow/Prefect', value: 92 },
+        { subject: 'dbt', value: 88 },
+        { subject: 'Spark', value: 80 },
+    ],
+    'Databases & Warehousing': [
+        { subject: 'PostgreSQL', value: 95 },
+        { subject: 'BigQuery', value: 85 },
+        { subject: 'Snowflake', value: 75 },
+    ],
+};
+
+export const dataScientistASkills: CategorizedSkills = {
+    ...dataAnalystSkills,
+    ...dataScientistSkills,
+    ...dataEngineerSkills,
+};
+
 
 export const techStackData: TechStack[] = [
     { name: 'Python', proficiency: 90, icon: 'Code' },

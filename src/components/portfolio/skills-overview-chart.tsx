@@ -9,17 +9,16 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import { Plane } from 'lucide-react';
-import { dataAnalystSkills } from '@/lib/data';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import type { CategorizedSkills } from '@/lib/types';
 
-type SkillCategory = keyof typeof dataAnalystSkills;
+type SkillCategory = keyof CategorizedSkills;
 
-export function SkillsOverviewChart() {
-  const skillCategories = Object.keys(dataAnalystSkills) as SkillCategory[];
+export function SkillsOverviewChart({ skills }: { skills: CategorizedSkills }) {
+  const skillCategories = Object.keys(skills) as SkillCategory[];
   const [activeCategory, setActiveCategory] = useState<SkillCategory>(skillCategories[0]);
-  const activeSkills = dataAnalystSkills[activeCategory];
+  const activeSkills = skills[activeCategory];
 
   return (
     <div className="relative flex flex-col items-center">
