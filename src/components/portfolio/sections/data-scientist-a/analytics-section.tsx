@@ -1,7 +1,7 @@
-
 'use client';
 
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { Construction } from 'lucide-react';
 
 export function AnalyticsSection() {
   return (
@@ -10,7 +10,11 @@ export function AnalyticsSection() {
         <CardTitle>Data Scientist A - Analytics</CardTitle>
       </CardHeader>
       <CardContent>
-        <p>Placeholder content for Data Scientist A Analytics. This section will display analytics specific to this profile.</p>
+        <div className="flex flex-col items-center justify-center text-center text-muted-foreground h-64">
+          <Construction className="w-12 h-12 mb-4" />
+          <h3 className="text-xl font-semibold">Under Development</h3>
+          <p>This analytics section is currently being built.</p>
+        </div>
       </CardContent>
     </Card>
   );
