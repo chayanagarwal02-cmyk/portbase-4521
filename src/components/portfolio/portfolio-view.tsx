@@ -5,7 +5,6 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { PortfolioHeader } from '@/components/portfolio/header';
 import { HeroSection } from '@/components/portfolio/sections/hero-section';
-import { AboutSection } from '@/components/portfolio/sections/about-section';
 import { OverviewSection } from '@/components/portfolio/sections/overview-section';
 import { LeadershipSection } from '@/components/portfolio/sections/leadership-section';
 import { CertificatesSection } from '@/components/portfolio/sections/certificates-section';
@@ -86,7 +85,7 @@ function PortfolioViewInternal({ role }: { role: string }) {
   };
 
   const TABS_CONTENT: { [key: string]: React.ReactNode } = {
-    'About Me': <AboutSection profile={activeProfile} />,
+    'About Me': <OverviewSection profile={activeProfile} />,
     'Overview': <OverviewSection profile={activeProfile} />,
     'Team Projects': <ProjectsSection />,
     'Leadership': <LeadershipSection />,
