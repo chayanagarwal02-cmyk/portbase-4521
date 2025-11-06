@@ -4,7 +4,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { projectsData, testimonialsData, type TechStack } from '@/lib/data';
-import { placeholderImages } from '@/lib/placeholder-images.json';
+import placeholderData from '@/lib/placeholder-images.json';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
@@ -64,7 +64,7 @@ const iconMap: { [key: string]: React.ElementType } = {
 
 export function ProjectsSection({ techStack = techStackData, projects = projectsData }: { techStack?: TechStack[], projects?: Project[] }) {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const avatarImage = placeholderImages.find(p => p.id === 'avatar-placeholder');
+  const avatarImage = placeholderData.placeholderImages.find(p => p.id === 'avatar-placeholder');
 
   return (
     <section id="projects" className="py-8 space-y-16">
@@ -124,7 +124,7 @@ export function ProjectsSection({ techStack = techStackData, projects = projects
         <Carousel className="w-full max-w-3xl mx-auto" opts={{loop: true}}>
           <CarouselContent>
             {testimonialsData.map((testimonial) => {
-              const testimonialAvatar = placeholderImages.find(p => p.id === 'testimonial-avatar-placeholder') || avatarImage;
+              const testimonialAvatar = placeholderData.placeholderImages.find(p => p.id === 'testimonial-avatar-placeholder') || avatarImage;
               return(
                 <CarouselItem key={testimonial.id}>
                   <div className="p-1">
@@ -225,7 +225,7 @@ export function ProjectsSection({ techStack = techStackData, projects = projects
                        <Carousel className="w-full max-w-md mx-auto" opts={{loop: true}}>
                           <CarouselContent>
                             {selectedProject.testimonials.map((testimonial) => {
-                              const testimonialAvatar = placeholderImages.find(p => p.id === 'testimonial-avatar-placeholder') || avatarImage;
+                              const testimonialAvatar = placeholderData.placeholderImages.find(p => p.id === 'testimonial-avatar-placeholder') || avatarImage;
                               return(
                                 <CarouselItem key={testimonial.id}>
                                   <div className="p-1">

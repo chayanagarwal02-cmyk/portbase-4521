@@ -3,7 +3,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/componen
 import { Badge } from '@/components/ui/badge';
 import { ArrowRight } from 'lucide-react';
 import { blogData } from '@/lib/data';
-import { placeholderImages } from '@/lib/placeholder-images.json';
+import placeholderData from '@/lib/placeholder-images.json';
 import Link from 'next/link';
 
 export function BlogSection() {
@@ -22,7 +22,7 @@ export function BlogSection() {
       <p className="mt-2 text-center text-muted-foreground mb-12">Thoughts, insights, and stories from my journey.</p>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {blogData.map((post) => {
-          const image = placeholderImages.find(p => p.id === post.imageId) || placeholderImages.find(p => p.id === 'blog-placeholder');
+          const image = placeholderData.placeholderImages.find(p => p.id === post.imageId) || placeholderData.placeholderImages.find(p => p.id === 'blog-placeholder');
           return(
           <Link href={post.url} key={post.id} className="block group" target="_blank" rel="noopener noreferrer">
             <Card className="h-full overflow-hidden transition-all group-hover:shadow-xl group-hover:-translate-y-2 transform duration-300">
