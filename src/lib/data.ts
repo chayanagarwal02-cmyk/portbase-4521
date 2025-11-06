@@ -1,3 +1,4 @@
+
 import type { Project, Skill, Leadership, Certificate, Blog, Role, AnalyticsData, CodeSample, PerformanceMetric, SkillOverview, Testimonial, TechStack, CategorizedSkills, Achievement, CareerItem } from './types';
 
 export const contentVisibility: Record<Role, string[]> = {
@@ -344,82 +345,6 @@ export const analyticsData: AnalyticsData = {
         { month: 'Dec', Python: 90, SQL: 85 },
     ]
 };
-
-export const codeSamples: CodeSample[] = [
-    {
-        id: 'etl',
-        title: 'ETL Pipeline',
-        code: `import pandas as pd
-
-def extract_data(source_path):
-    """Extracts data from a CSV source."""
-    return pd.read_csv(source_path)
-
-def transform_data(df):
-    """Applies transformations to the dataframe."""
-    df['normalized_value'] = df['value'] / df['value'].max()
-    df.dropna(inplace=True)
-    return df
-
-def load_data(df, target_path):
-    """Loads transformed data to a parquet file."""
-    df.to_parquet(target_path, index=False)
-
-# --- Main execution ---
-raw_df = extract_data('data/raw/flights.csv')
-transformed_df = transform_data(raw_df)
-load_data(transformed_df, 'data/processed/flights.parquet')
-`
-    },
-    {
-        id: 'ml',
-        title: 'ML Model',
-        code: `from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score
-
-# Assuming X and y are pre-loaded feature and target data
-X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.2, random_state=42
-)
-
-model = RandomForestClassifier(n_estimators=100, random_state=42)
-model.fit(X_train, y_train)
-
-predictions = model.predict(X_test)
-accuracy = accuracy_score(y_test, predictions)
-
-print(f"Model Accuracy: {accuracy:.2f}")
-`
-    },
-    {
-        id: 'sql',
-        title: 'SQL Query',
-        code: `WITH MonthlyFlightCounts AS (
-    SELECT
-        strftime('%Y-%m', departure_time) AS month,
-        origin_airport_id,
-        COUNT(*) AS flight_count
-    FROM
-        flights
-    WHERE
-        departure_time >= '2023-01-01'
-    GROUP BY
-        1, 2
-)
-SELECT
-    m.month,
-    a.airport_name,
-    m.flight_count
-FROM
-    MonthlyFlightCounts m
-JOIN
-    airports a ON m.origin_airport_id = a.airport_id
-ORDER BY
-    m.month, m.flight_count DESC;
-`
-    }
-];
 
 export const techStackData: TechStack[] = [
     { name: 'SQL', proficiency: 85, icon: 'Database' },
