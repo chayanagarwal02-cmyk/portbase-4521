@@ -402,8 +402,18 @@ export const dataEngineerSkills: CategorizedSkills = {
 
 export const dataScientistASkills: CategorizedSkills = {
     'Technical Foundations': [
-        ...dataAnalystSkills['Technical Foundations'],
-        ...dataEngineerSkills['Technical Foundations'],
+        { subject: 'SQL', value: 80 },
+        { subject: 'Data Visualization', value: 80 },
+        { subject: 'Spreadsheets', value: 80 },
+        { subject: 'Prob & Stats', value: 80 },
+        { subject: 'Data Cleaning & Wrangling', value: 80 },
+        { subject: 'Python', value: 80 },
+        { subject: 'PostgreSQL', value: 95 },
+        { subject: 'BigQuery', value: 85 },
+        { subject: 'Snowflake', value: 75 },
+        { subject: 'Airflow/Prefect', value: 92 },
+        { subject: 'dbt', value: 88 },
+        { subject: 'Spark', value: 80 },
     ],
     'Essential Soft Skills': [
         ...dataAnalystSkills['Essential Soft Skills'],
@@ -418,12 +428,18 @@ export const dataScientistASkills: CategorizedSkills = {
 
 
 export const techStackData: TechStack[] = [
-    { name: 'Python', proficiency: 90, icon: 'Code' },
-    { name: 'SQL/PostgreSQL', proficiency: 85, icon: 'Database' },
-    { name: 'AWS/Azure', proficiency: 80, icon: 'Cloud' },
-    { name: 'Machine Learning', proficiency: 88, icon: 'Cpu' },
+    { name: 'SQL', proficiency: 85, icon: 'Database' },
     { name: 'Data Visualization', proficiency: 75, icon: 'BarChart2' },
-    { name: 'ETL Pipelines', proficiency: 82, icon: 'Zap' },
+    { name: 'Spreadsheets', proficiency: 80, icon: 'FileCode' },
+    { name: 'Prob & Stats', proficiency: 80, icon: 'BarChart' },
+    { name: 'Data Cleaning & Wrangling', proficiency: 82, icon: 'Zap' },
+    { name: 'Python', proficiency: 90, icon: 'Code' },
+    { name: 'PostgreSQL', proficiency: 95, icon: 'Database' },
+    { name: 'BigQuery', proficiency: 85, icon: 'Cloud' },
+    { name: 'Snowflake', proficiency: 75, icon: 'Cloud' },
+    { name: 'Airflow/Prefect', proficiency: 92, icon: 'Briefcase' },
+    { name: 'dbt', proficiency: 88, icon: 'Rocket' },
+    { name: 'Spark', proficiency: 80, icon: 'Cpu' },
 ];
 
 export const achievements: Achievement[] = [
@@ -444,5 +460,3 @@ export const virtualInternships: CareerItem[] = [
 ];
 
 export * from './types';
-
-    

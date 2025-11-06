@@ -8,7 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { ExternalLink, Github, MessageSquareQuote, Folder, TrendingUp, Code, Database, Cloud, Cpu, BarChart2, Zap, Star, Plane, ChevronLeft, ChevronRight, Briefcase, FileCode, BarChart, Rocket } from 'lucide-react';
+import { ExternalLink, Github, MessageSquareQuote, Folder, TrendingUp, Code, Database, Cloud, Cpu, BarChart2, Zap, Star, Plane, ChevronLeft, ChevronRight, Briefcase, FileCode, BarChart, Rocket, Sheet } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Progress } from '@/components/ui/progress';
@@ -19,7 +19,7 @@ import { techStackData } from '@/lib/data';
 
 const iconMap: { [key: string]: React.ElementType } = {
   Python: Code,
-  'SQL/PostgreSQL': Database,
+  'SQL': Database,
   'AWS/Azure': Cloud,
   'Machine Learning': Cpu,
   'Data Visualization': BarChart2,
@@ -28,6 +28,15 @@ const iconMap: { [key: string]: React.ElementType } = {
   FileCode: FileCode,
   BarChart: BarChart,
   Rocket: Rocket,
+  'Spreadsheets': Sheet,
+  'Prob & Stats': BarChart,
+  'Data Cleaning & Wrangling': Zap,
+  'PostgreSQL': Database,
+  'BigQuery': Cloud,
+  'Snowflake': Cloud,
+  'Airflow/Prefect': Briefcase,
+  'dbt': Rocket,
+  'Spark': Cpu
 };
 
 export function ProjectsSection() {
