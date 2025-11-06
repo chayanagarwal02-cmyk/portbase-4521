@@ -6,7 +6,7 @@ export const contentVisibility: Record<Role, string[]> = {
   'hiring-manager': ['Overview', 'Projects', 'Analytics', 'Leadership', 'Certifications', 'Contact'],
   'stalker': ['Blog', 'Videos'],
   'cxo': [],
-  'ai-universe': ['Overview', 'Projects'],
+  'ai-universe': ['Overview', 'Projects', 'Analytics', 'Leadership', 'Certifications', 'Contact'],
 };
 
 export const heroData: Record<Role, {title: string; subtitle: string; badges: {text: string, className: string}[], profiles?: { value: string, label: string }[]}> = {
@@ -202,18 +202,19 @@ export const leadershipData: Leadership[] = [
   },
 ];
 
-export const certificatesData: Certificate[] = [
+export const certificatesData: Certificate[] = [];
+
+export const blogData: Blog[] = [
   {
     id: 1,
-    title: 'The Trajectory of Urban Air Mobility',
-    issuer: 'Medium Blog',
-    year: 'June 2025',
-    skills: ['UAM Systems', 'Business Analysis', 'Market Viability', 'Logistics'],
-    url: 'https://medium.com/@chayan.agarwal01/the-trajectory-of-urban-air-mobility-99ffcb89113f',
-  },
+    title: "The Trajectory of Urban Air Mobility",
+    excerpt: "Uber Elevate, launched in 2016 with its seminal white paper, aimed to revolutionize urban transportation by introducing aerial ridesharing using electric Vertical Take-off and Landing (eVTOL) aircraft. The initiative’s vision was to create a multimodal transportation product seamlessly integrating ground and intra-city flight, promising significant time savings, reduced urban congestion, and environmentally sustainable mobility. This ambitious endeavor played a pivotal role in propelling the concept of Urban Air Mobility (UAM) from a futuristic idea to a serious aerospace sector, attracting substantial investment and fostering collaboration across regulators, civic leaders, real estate developers, and technology companies.",
+    date: "June 18, 2025",
+    tags: ["understanding of UAM Systems", "Business Analysis", "market viability and cost modeling", "Logistics and Pilot Program Planning"],
+    url: "https://medium.com/@chayan.agarwal01/the-trajectory-of-urban-air-mobility-99ffcb89113f",
+    imageId: "uam-blog-post",
+  }
 ];
-
-export const blogData: Blog[] = [];
 
 export const analyticsData: AnalyticsData = {
     quarterlyImpact: [
