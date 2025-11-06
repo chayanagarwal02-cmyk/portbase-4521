@@ -131,7 +131,7 @@ function PortfolioViewInternal({ role }: { role: string }) {
                 case 'Projects': return <GeneralProjectsSection />;
                 case 'Analytics': return <DataScientistAAnalytics />;
                 case 'Leadership': return <GeneralLeadershipSection />;
-                case 'Certifications': return <DataScientistACertificates />;
+                case 'Certifications': return <GeneralCertificatesSection />;
                 default: return generalComponents[tabName];
             }
         default:
