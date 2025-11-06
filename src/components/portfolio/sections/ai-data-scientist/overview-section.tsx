@@ -75,56 +75,9 @@ const iconMap = {
 };
 
 export function OverviewSection() {
-    const dataAnalystMetrics = profileData['Data Analyst'];
-    const dataScientistMetrics = profileData['Data Scientist'];
-    const dataEngineerMetrics = profileData['Data Engineer'];
-
-    const businessImpact = dataAnalystMetrics.circles.find(c => c.title === "Business Impact & Insight Generation");
-    const businessValue = dataScientistMetrics.circles.find(c => c.title === "Quantifiable Business Value");
-    
-    const analysisEfficiency = dataAnalystMetrics.circles.find(c => c.title === "Analysis & Reporting Efficiency");
-    const engineerEfficiency = dataEngineerMetrics.circles.find(c => c.title === "Efficiency & Cost");
-
-    const dataQualityAndAccuracy = dataAnalystMetrics.circles.find(c => c.title === "Data Quality & Accuracy");
-    const dataQualityAndFreshness = dataEngineerMetrics.circles.find(c => c.title === "Data Quality & Freshness");
-
-    const combinedCircles: ProfileCircle[] = [
-        {
-            title: "Overall Business Impact",
-            value: Math.round(((businessImpact?.value || 0) + (businessValue?.value || 0)) / 2),
-            key_metrics: [
-                ...(businessImpact?.key_metrics || []),
-                ...(businessValue?.key_metrics || []),
-            ]
-        },
-        dataScientistMetrics.circles.find(c => c.title === "Model Performance")!,
-        dataEngineerMetrics.circles.find(c => c.title === "Pipeline Health & Reliability")!,
-        {
-            title: "Unified Data Quality",
-            value: Math.round(((dataQualityAndAccuracy?.value || 0) + (dataQualityAndFreshness?.value || 0)) / 2),
-            key_metrics: [
-                ...(dataQualityAndAccuracy?.key_metrics || []),
-                ...(dataQualityAndFreshness?.key_metrics || []),
-            ]
-        },
-        {
-            title: "Operational Efficiency & Cost",
-            value: Math.round(((analysisEfficiency?.value || 0) + (engineerEfficiency?.value || 0)) / 2),
-            key_metrics: [
-                ...(analysisEfficiency?.key_metrics || []),
-                ...(engineerEfficiency?.key_metrics || []),
-            ]
-        },
-        dataScientistMetrics.circles.find(c => c.title === "Production Readiness")!,
-        dataAnalystMetrics.circles.find(c => c.title === "Team & Soft Skills")!,
-    ].filter((c): c is ProfileCircle => !!c);
-
-
-    const combinedMetrics: ProfileMetric[] = [
-        ...dataAnalystMetrics.metrics,
-        ...dataScientistMetrics.metrics,
-        ...dataEngineerMetrics.metrics,
-    ];
+    const currentProfileData = profileData['AI Data Scientist'];
+    const combinedCircles: ProfileCircle[] = currentProfileData.circles;
+    const combinedMetrics: ProfileMetric[] = currentProfileData.metrics;
   
   const chartColors = ["hsl(var(--chart-1))", "hsl(var(--chart-2))", "hsl(var(--chart-3))", "hsl(var(--chart-4))", "hsl(var(--chart-5))", "hsl(var(--chart-1))", "hsl(var(--chart-2))"];
   
@@ -347,3 +300,5 @@ export function OverviewSection() {
     </div>
   );
 }
+
+    
