@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState } from 'react';
@@ -15,6 +16,7 @@ import { Progress } from '@/components/ui/progress';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { ResponsiveContainer, BarChart as RechartsBarChart, XAxis, YAxis, Tooltip, Bar as RechartsBar } from 'recharts';
 import { techStackData } from '@/lib/data';
+import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 
 
 const iconMap: { [key: string]: React.ElementType } = {
@@ -47,18 +49,23 @@ export function ProjectsSection() {
     <section id="projects" className="py-8 space-y-16">
       <div>
         <h2 className="text-2xl font-bold font-headline mb-8 flex items-center gap-2"><Briefcase/> Technology Stack</h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-          {techStackData.map((tech) => {
-            const Icon = iconMap[tech.name] || Code;
-            return (
-              <Card key={tech.name} className="bg-secondary/30 text-center p-4 flex flex-col items-center justify-center">
-                <Icon className="w-8 h-8 text-primary mb-2" />
-                <p className="font-semibold text-sm mb-2">{tech.name}</p>
-                <Progress value={tech.proficiency} className="h-1" />
-              </Card>
-            )
-          })}
-        </div>
+        <ScrollArea>
+          <div className="flex space-x-6 pb-4">
+            {techStackData.map((tech) => {
+              const Icon = iconMap[tech.name] || Code;
+              return (
+                <div key={tech.name} className="flex-shrink-0 w-40">
+                  <Card className="bg-secondary/30 text-center p-4 flex flex-col items-center justify-center h-full">
+                    <Icon className="w-8 h-8 text-primary mb-2" />
+                    <p className="font-semibold text-sm mb-2 flex-grow">{tech.name}</p>
+                    <Progress value={tech.proficiency} className="h-1 w-full" />
+                  </Card>
+                </div>
+              )
+            })}
+          </div>
+          <ScrollBar orientation="horizontal" />
+        </ScrollArea>
       </div>
       
       <div>
@@ -233,3 +240,5 @@ export function ProjectsSection() {
     </section>
   );
 }
+
+    
