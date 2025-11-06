@@ -11,10 +11,11 @@ import {
 import { profileData } from '@/lib/profile-data';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { HelpCircle } from 'lucide-react';
+import { HelpCircle, Users } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import type { ProfileCircle, ProfileMetric } from '@/lib/types';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
+import Image from 'next/image';
 
 
 export function OverviewSection() {
@@ -136,19 +137,58 @@ export function OverviewSection() {
 
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="font-headline">Consolidated Performance Metrics</CardTitle>
-        <CardDescription>An aggregated view of performance indicators across Data Analyst, Data Scientist, and Data Engineer roles. Click any chart for a detailed breakdown.</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <ScrollArea>
-          <div className="flex space-x-8 pb-4">
-            {combinedCircles.map((metric, index) => renderCircle(metric, index))}
-          </div>
-          <ScrollBar orientation="horizontal" />
-        </ScrollArea>
-      </CardContent>
-    </Card>
+    <div className="space-y-12">
+        <Card className="overflow-hidden">
+            <div className="flex flex-col md:flex-row bg-card/50">
+                <div className="md:w-1/3 relative h-64 md:h-auto">
+                <Image
+                    src="/images/avatar.png"
+                    alt="Chayan Agarwal"
+                    layout="fill"
+                    objectFit="cover"
+                    className="grayscale hover:grayscale-0 transition-all duration-300"
+                />
+                </div>
+                <div className="md:w-2/3 p-8 flex flex-col justify-center">
+                    <h2 className="text-2xl font-headline font-bold mb-2">A Message for the Data Scientist - A Profile</h2>
+                    <p className="text-muted-foreground mb-4">
+                        Welcome to my career portfolio. This unified view combines my skills across data analysis, engineering, and science to give you a comprehensive look at my capabilities as a versatile data professional.
+                    </p>
+                    <p className="text-sm font-semibold">Chayan Agarwal</p>
+                    <p className="text-xs text-muted-foreground">Data Professional & Aviation Enthusiast</p>
+                </div>
+            </div>
+        </Card>
+        
+        <Card className="bg-card/50">
+            <CardHeader>
+                <CardTitle className="flex items-center gap-2 font-headline text-xl">
+                    <Users className="h-5 w-5 text-primary" />
+                    About This View
+                </CardTitle>
+            </CardHeader>
+            <CardContent>
+                <p className="text-sm text-muted-foreground">Customized content for Data Scientist - A</p>
+                <p className="mt-2 text-muted-foreground">
+                    This portfolio view consolidates key metrics from Data Analyst, Data Scientist, and Data Engineer profiles to provide a holistic overview. Explore the tabs to see how these skills combine in various projects.
+                </p>
+            </CardContent>
+        </Card>
+
+        <Card>
+            <CardHeader>
+                <CardTitle className="font-headline">Performance Metrics</CardTitle>
+                <CardDescription>An aggregated view of performance indicators across Data Analyst, Data Scientist, and Data Engineer roles. Click any chart for a detailed breakdown.</CardDescription>
+            </CardHeader>
+            <CardContent>
+                <ScrollArea>
+                <div className="flex space-x-8 pb-4">
+                    {combinedCircles.map((metric, index) => renderCircle(metric, index))}
+                </div>
+                <ScrollBar orientation="horizontal" />
+                </ScrollArea>
+            </CardContent>
+        </Card>
+    </div>
   );
 }
