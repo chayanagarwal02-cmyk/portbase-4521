@@ -13,11 +13,11 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { HelpCircle, Users, TrendingUp, Award, Star, Rocket, Briefcase, GraduationCap } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
-import type { ProfileCircle, ProfileMetric } from '@/lib/types';
+import type { ProfileCircle, ProfileMetric, CategorizedSkills } from '@/lib/types';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import Image from 'next/image';
 import { SkillsOverviewChart } from '@/components/portfolio/skills-overview-chart';
-import { achievements, careerJourney, virtualInternships, dataScientistASkills } from '@/lib/data';
+import { achievements, careerJourney, virtualInternships } from '@/lib/data';
 
 const quickStats = [
     { label: 'Projects Completed', value: '15+' },
@@ -29,6 +29,28 @@ const quickStats = [
     { label: 'Tech Blogs Written', value: '3' },
     { label: 'Speaking Engagements', value: '3' },
 ];
+
+const aiDataScientistSkills: CategorizedSkills = {
+    'GenAI & LLMs': [
+        { subject: 'LangChain', value: 90 },
+        { subject: 'GPT-4/Gemini', value: 95 },
+        { subject: 'RAG', value: 89 },
+        { subject: 'AI Agents', value: 85 },
+        { subject: 'Fine-tuning', value: 84 },
+    ],
+    'ML & Deep Learning': [
+        { subject: 'PyTorch', value: 91 },
+        { subject: 'TensorFlow', value: 90 },
+        { subject: 'Scikit-learn', value: 88 },
+        { subject: 'Transformers', value: 85 },
+    ],
+    'MLOps & Infra': [
+        { subject: 'MLflow', value: 87 },
+        { subject: 'Docker', value: 86 },
+        { subject: 'Kubernetes', value: 83 },
+        { subject: 'GCP/AWS', value: 90 },
+    ],
+};
 
 const CultNinjaIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" {...props}>
@@ -66,7 +88,8 @@ const CaptainIcon = (props: React.SVGProps<SVGSVGElement>) => (
     </svg>
 );
 
-const iconMap = {
+
+const iconMap: { [key: string]: React.ElementType } = {
     Award,
     Star,
     CultNinja: CultNinjaIcon,
@@ -182,29 +205,30 @@ export function OverviewSection() {
                 </p>
             </CardContent>
         </Card>
-
-        <Card>
-            <CardHeader>
-                <CardTitle className="font-headline">Performance Metrics</CardTitle>
-                <CardDescription>An aggregated view of performance indicators across Data Analyst, Data Scientist, and Data Engineer roles. Click any chart for a detailed breakdown.</CardDescription>
-            </CardHeader>
-            <CardContent>
-                <ScrollArea>
-                <div className="flex space-x-8 pb-4">
-                    {combinedCircles.map((metric, index) => renderCircle(metric, index))}
-                </div>
-                <ScrollBar orientation="horizontal" />
-                </ScrollArea>
-            </CardContent>
-        </Card>
+        {combinedCircles.length > 0 && 
+            <Card>
+                <CardHeader>
+                    <CardTitle className="font-headline">Performance Metrics</CardTitle>
+                    <CardDescription>An aggregated view of performance indicators across Data Analyst, Data Scientist, and Data Engineer roles. Click any chart for a detailed breakdown.</CardDescription>
+                </CardHeader>
+                <CardContent>
+                    <ScrollArea>
+                    <div className="flex space-x-8 pb-4">
+                        {combinedCircles.map((metric, index) => renderCircle(metric, index))}
+                    </div>
+                    <ScrollBar orientation="horizontal" />
+                    </ScrollArea>
+                </CardContent>
+            </Card>
+        }
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <Card>
                 <CardHeader>
-                    <CardTitle className="font-headline">General Skills Overview</CardTitle>
+                    <CardTitle className="font-headline">AI Data Scientist Skills</CardTitle>
                 </CardHeader>
                 <CardContent className="relative">
-                    <SkillsOverviewChart skills={dataScientistASkills} />
+                    <SkillsOverviewChart skills={aiDataScientistSkills} />
                 </CardContent>
             </Card>
             <Card className="bg-card/50">
@@ -300,5 +324,3 @@ export function OverviewSection() {
     </div>
   );
 }
-
-    

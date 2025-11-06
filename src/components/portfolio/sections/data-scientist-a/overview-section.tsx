@@ -13,11 +13,11 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { HelpCircle, Users, TrendingUp, Award, Star, Rocket, Briefcase, GraduationCap } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
-import type { ProfileCircle, ProfileMetric } from '@/lib/types';
+import type { ProfileCircle, ProfileMetric, CategorizedSkills } from '@/lib/types';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import Image from 'next/image';
 import { SkillsOverviewChart } from '@/components/portfolio/skills-overview-chart';
-import { achievements, careerJourney, virtualInternships, dataScientistASkills } from '@/lib/data';
+import { achievements, careerJourney, virtualInternships } from '@/lib/data';
 
 const quickStats = [
     { label: 'Projects Completed', value: '15+' },
@@ -29,6 +29,34 @@ const quickStats = [
     { label: 'Tech Blogs Written', value: '3' },
     { label: 'Speaking Engagements', value: '3' },
 ];
+
+const dataScientistASkills: CategorizedSkills = {
+    'Technical Foundations': [
+        { subject: 'SQL', value: 80 },
+        { subject: 'Data Visualization', value: 80 },
+        { subject: 'Spreadsheets', value: 80 },
+        { subject: 'Python', value: 80 },
+        { subject: 'PostgreSQL', value: 95 },
+        { subject: 'BigQuery', value: 85 },
+        { subject: 'Snowflake', value: 75 },
+        { subject: 'Airflow/Prefect', value: 92 },
+        { subject: 'dbt', value: 88 },
+        { subject: 'Spark', value: 80 },
+    ],
+    'Advanced Modeling': [
+        { subject: 'Classification', value: 90 },
+        { subject: 'Regression', value: 85 },
+        { subject: 'Clustering', value: 80 },
+        { subject: 'Deep Learning', value: 75 },
+    ],
+    'MLOps & Deployment': [
+        { subject: 'Model Versioning', value: 88 },
+        { subject: 'CI/CD for Models', value: 82 },
+        { subject: 'Monitoring', value: 78 },
+        { subject: 'API Development', value: 70 },
+    ],
+};
+
 
 const CultNinjaIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" {...props}>
@@ -303,7 +331,3 @@ export function OverviewSection() {
     </div>
   );
 }
-
-    
-
-    

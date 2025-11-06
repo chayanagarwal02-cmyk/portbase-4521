@@ -4,7 +4,7 @@ export const contentVisibility: Record<Role, string[]> = {
   'hr': [],
   'data-professional': [],
   'hiring-manager': [],
-  'stalker': ['Blog', 'Videos'],
+  'stalker': ['Blog', 'Videos', 'Contact'],
   'cxo': [],
   'ai-universe': ['Overview', 'Projects', 'Analytics', 'Leadership', 'Certifications', 'Contact'],
 };
@@ -420,55 +420,6 @@ ORDER BY
 `
     }
 ];
-
-export const dataScientistSkills: CategorizedSkills = {
-    'Advanced Modeling': [
-        { subject: 'Classification', value: 90 },
-        { subject: 'Regression', value: 85 },
-        { subject: 'Clustering', value: 80 },
-        { subject: 'Deep Learning', value: 75 },
-    ],
-    'MLOps & Deployment': [
-        { subject: 'Model Versioning', value: 88 },
-        { subject: 'CI/CD for Models', value: 82 },
-        { subject: 'Monitoring', value: 78 },
-        { subject: 'API Development', value: 70 },
-    ],
-};
-
-export const dataAnalystSkills: CategorizedSkills = {
-    'Essential Soft Skills': [
-        { subject: 'Data Storytelling & Communication', value: 80 },
-        { subject: 'Business Acumen', value: 80 },
-        { subject: 'Critical Thinking', value: 80 },
-        { subject: 'Problem-Solving', value: 80 },
-    ],
-};
-
-export const dataScientistASkills: CategorizedSkills = {
-    'Technical Foundations': [
-        { subject: 'SQL', value: 80 },
-        { subject: 'Data Visualization', value: 80 },
-        { subject: 'Spreadsheets', value: 80 },
-        { subject: 'Python', value: 80 },
-        { subject: 'PostgreSQL', value: 95 },
-        { subject: 'BigQuery', value: 85 },
-        { subject: 'Snowflake', value: 75 },
-        { subject: 'Airflow/Prefect', value: 92 },
-        { subject: 'dbt', value: 88 },
-        { subject: 'Spark', value: 80 },
-    ],
-    'Advanced Modeling': [
-        ...dataScientistSkills['Advanced Modeling'],
-    ],
-    'MLOps & Deployment': [
-        ...dataScientistSkills['MLOps & Deployment'],
-    ],
-    'Essential Soft Skills': [
-        ...dataAnalystSkills['Essential Soft Skills'],
-    ],
-};
-
 
 export const techStackData: TechStack[] = [
     { name: 'SQL', proficiency: 85, icon: 'Database' },
