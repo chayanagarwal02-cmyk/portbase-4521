@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/dialog"
 import Image from 'next/image';
 import { VideosSection } from './sections/videos-section';
+import { Youtube } from 'lucide-react';
 
 
 const topMetrics = [
@@ -99,6 +100,65 @@ const businessRoiMetrics = [
     { label: "Budget secured for ML initiatives", value: "$550K" },
     { label: "Projects approved after initial rejection", value: "5" }
 ]
+
+const executiveVideoData = [
+  {
+    url: 'https://www.youtube.com/watch?v=k-1B8Al4y-o', // Example: Google I/O talk
+    title: 'Keynote: The Future of Data-Driven Strategy',
+    description: 'A presentation on leveraging AI and large-scale data analytics to drive C-level strategy and secure market leadership, delivered at the Global Tech Summit 2024.',
+  },
+  {
+    url: 'https://www.youtube.com/watch?v=q0UX4pG_C_s', // Example: AI/ML conference
+    title: 'From Cost Center to Profit Center: The ROI of Machine Learning',
+    description: 'A practical guide for executives on framing, funding, and measuring the return on investment for machine learning initiatives within the enterprise.',
+  },
+  {
+    url: 'https://www.youtube.com/watch?v=l91D8S2y3s', // Example: Executive roundtable
+    title: 'Building a Data-First Culture: A Leadership Roundtable',
+    description: 'A panel discussion with industry leaders on the challenges and successes of transforming an organization to be data-driven from the top down.',
+  },
+   {
+    url: 'https://www.youtube.com/watch?v=S294sI930-k', // Example: Product launch
+    title: 'Product Launch: Unveiling the Predictive Analytics Suite',
+    description: 'Lead presentation for the launch of a new enterprise analytics product, demonstrating its strategic value to potential clients and partners.',
+  }
+].map(video => ({...video, id: new URL(video.url).searchParams.get('v')}));
+
+
+function PresentationVideos() {
+  return (
+    <section id="presentations" className="py-8">
+      <div className="grid md:grid-cols-2 gap-8">
+        {executiveVideoData.map((video) => (
+          video.id &&
+          <Card key={video.id} className="overflow-hidden bg-card/50 group">
+            <div className="aspect-video relative overflow-hidden">
+              <a
+                href={video.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src={`https://img.youtube.com/vi/${video.id}/hqdefault.jpg`}
+                  alt={video.title}
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                  <Youtube className="w-16 h-16 text-white" />
+                </div>
+              </a>
+            </div>
+            <CardContent className="p-6">
+              <CardTitle className="mb-2 text-lg">{video.title}</CardTitle>
+              <p className="text-sm text-muted-foreground line-clamp-3">{video.description}</p>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 
 function CaseStudiesDialog() {
     return (
@@ -215,10 +275,10 @@ export function ExecutiveBriefingView() {
             <DialogContent className="max-w-6xl h-[90vh] flex flex-col">
                 <DialogHeader>
                     <DialogTitle className="text-2xl font-headline">Presentations & Talks</DialogTitle>
-                    <DialogDescription>A collection of public talks, workshops, and video content.</DialogDescription>
+                    <DialogDescription>A collection of public talks, workshops, and video content curated for executives.</DialogDescription>
                 </DialogHeader>
                 <div className="overflow-y-auto flex-grow pr-4">
-                    <VideosSection />
+                    <PresentationVideos />
                 </div>
             </DialogContent>
           </Dialog>
@@ -394,7 +454,3 @@ export function ExecutiveBriefingView() {
     </div>
   );
 }
-
-    
-
-    
