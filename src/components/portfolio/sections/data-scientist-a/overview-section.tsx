@@ -14,6 +14,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import { HelpCircle } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import type { ProfileCircle, ProfileMetric } from '@/lib/types';
+import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 
 
 export function OverviewSection() {
@@ -71,13 +72,10 @@ export function OverviewSection() {
   
   const chartColors = ["hsl(var(--chart-1))", "hsl(var(--chart-2))", "hsl(var(--chart-3))", "hsl(var(--chart-4))", "hsl(var(--chart-5))", "hsl(var(--chart-1))", "hsl(var(--chart-2))"];
   
-  const topRowCircles = combinedCircles.slice(0, 4);
-  const bottomRowCircles = combinedCircles.slice(4);
-
-  const renderCircle = (metric: ProfileCircle, index: number, isTopRow: boolean) => (
+  const renderCircle = (metric: ProfileCircle, index: number) => (
     <Dialog key={metric.title}>
         <DialogTrigger asChild>
-            <div className="cursor-pointer group">
+            <div className="cursor-pointer group flex-shrink-0 w-48 text-center">
                 <div className="h-40 w-40 mx-auto transition-transform group-hover:scale-110">
                     <ResponsiveContainer width="100%" height="100%">
                         <RadialBarChart 
@@ -88,7 +86,7 @@ export function OverviewSection() {
                             endAngle={-270}
                         >
                         <PolarAngleAxis type="number" domain={[0, 100]} angleAxisId={0} tick={false}/>
-                        <RadialBar background clockWise dataKey="value" cornerRadius={10} fill={chartColors[isTopRow ? index : index + 4]} />
+                        <RadialBar background clockWise dataKey="value" cornerRadius={10} fill={chartColors[index % chartColors.length]} />
                         <text x="50%" y="50%" textAnchor="middle" dominantBaseline="middle" className="fill-foreground text-2xl font-bold">
                             {`${metric.value}%`}
                         </text>
@@ -144,14 +142,12 @@ export function OverviewSection() {
         <CardDescription>An aggregated view of performance indicators across Data Analyst, Data Scientist, and Data Engineer roles. Click any chart for a detailed breakdown.</CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="space-y-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-                {topRowCircles.map((metric, index) => renderCircle(metric, index, true))}
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-center justify-center">
-                 {bottomRowCircles.map((metric, index) => renderCircle(metric, index, false))}
-            </div>
-        </div>
+        <ScrollArea>
+          <div className="flex space-x-8 pb-4">
+            {combinedCircles.map((metric, index) => renderCircle(metric, index))}
+          </div>
+          <ScrollBar orientation="horizontal" />
+        </ScrollArea>
       </CardContent>
     </Card>
   );
