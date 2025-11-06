@@ -1,16 +1,110 @@
 
 'use client';
 
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { Card, CardHeader, CardTitle, CardContent, CardDescription } from '@/components/ui/card';
+import {
+  RadialBarChart,
+  RadialBar,
+  ResponsiveContainer,
+  PolarAngleAxis,
+} from 'recharts';
+import { profileData } from '@/lib/profile-data';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { HelpCircle } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import type { ProfileCircle, ProfileMetric } from '@/lib/types';
+
 
 export function OverviewSection() {
+    const dataAnalystMetrics = profileData['Data Analyst'];
+    const dataScientistMetrics = profileData['Data Scientist'];
+    const dataEngineerMetrics = profileData['Data Engineer'];
+
+    const combinedCircles: ProfileCircle[] = [
+        ...dataAnalystMetrics.circles,
+        ...dataScientistMetrics.circles,
+        ...dataEngineerMetrics.circles,
+    ];
+
+    const combinedMetrics: ProfileMetric[] = [
+        ...dataAnalystMetrics.metrics,
+        ...dataScientistMetrics.metrics,
+        ...dataEngineerMetrics.metrics,
+    ];
+  
+  const chartColors = ["hsl(var(--chart-1))", "hsl(var(--chart-2))", "hsl(var(--chart-3))", "hsl(var(--chart-4))", "hsl(var(--chart-5))"];
+
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Data Scientist A - Overview</CardTitle>
+        <CardTitle className="font-headline">Consolidated Performance Metrics</CardTitle>
+        <CardDescription>An aggregated view of performance indicators across Data Analyst, Data Scientist, and Data Engineer roles. Click any chart for a detailed breakdown.</CardDescription>
       </CardHeader>
       <CardContent>
-        <p>Placeholder content for Data Scientist A Overview. This section will contain unique information about this specific profile.</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 text-center">
+            {combinedCircles.map((metric, index) => (
+             <Dialog key={metric.title}>
+                <DialogTrigger asChild>
+                    <div className="cursor-pointer group">
+                        <div className="h-40 w-40 mx-auto transition-transform group-hover:scale-110">
+                            <ResponsiveContainer width="100%" height="100%">
+                                <RadialBarChart 
+                                    innerRadius="70%" 
+                                    outerRadius="85%" 
+                                    data={[metric]} 
+                                    startAngle={90} 
+                                    endAngle={-270}
+                                >
+                                <PolarAngleAxis type="number" domain={[0, 100]} angleAxisId={0} tick={false}/>
+                                <RadialBar background clockWise dataKey="value" cornerRadius={10} fill={chartColors[index % chartColors.length]} />
+                                <text x="50%" y="50%" textAnchor="middle" dominantBaseline="middle" className="fill-foreground text-2xl font-bold">
+                                    {`${metric.value}%`}
+                                </text>
+                                </RadialBarChart>
+                            </ResponsiveContainer>
+                        </div>
+                        <p className="mt-2 font-semibold text-muted-foreground group-hover:text-primary transition-colors">{metric.title}</p>
+                    </div>
+                </DialogTrigger>
+                <DialogContent>
+                    <DialogHeader>
+                        <DialogTitle className='font-headline text-xl'>{metric.title}</DialogTitle>
+                        <DialogDescription>
+                            Detailed breakdown of metrics contributing to this score. Hover over an item for its definition.
+                        </DialogDescription>
+                    </DialogHeader>
+                    <TooltipProvider>
+                        <ul className="space-y-4 pt-4">
+                        {metric.key_metrics.map(keyMetric => {
+                            const metricDetail = combinedMetrics.find(m => m.indicator === keyMetric);
+                            if (!metricDetail) return null;
+
+                            return (
+                            <li key={keyMetric}>
+                                <Tooltip delayDuration={0}>
+                                    <TooltipTrigger className="w-full">
+                                        <div className="flex justify-between items-center p-3 bg-secondary/50 rounded-md">
+                                            <div className='flex items-center gap-2'>
+                                                <HelpCircle className="h-4 w-4 text-muted-foreground" />
+                                                <span className="text-foreground">{keyMetric}</span>
+                                            </div>
+                                            <Badge variant="outline">{metricDetail.example_value}</Badge>
+                                        </div>
+                                    </TooltipTrigger>
+                                    <TooltipContent side="bottom" align="start">
+                                        <p className="max-w-xs">{metricDetail.description}</p>
+                                    </TooltipContent>
+                                </Tooltip>
+                            </li>
+                            )
+                        })}
+                        </ul>
+                    </TooltipProvider>
+                </DialogContent>
+            </Dialog>
+            ))}
+        </div>
       </CardContent>
     </Card>
   );
