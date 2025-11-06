@@ -1,3 +1,4 @@
+
 import type { ProfileDataMap } from './types';
 
 export const profileData: ProfileDataMap = {
@@ -338,7 +339,7 @@ export const profileData: ProfileDataMap = {
       }
     ]
   },
-  "AI Universe": {
+  "Ai Universe": {
     "about": "This space is dedicated to showcasing the generative AI capabilities integrated into this portfolio. Explore how Large Language Models (LLMs) and other AI tools create interactive and dynamic experiences.",
     "circles": [
         { "title": "AI Interaction", "value": 95, "key_metrics": ["Response Accuracy", "Flow Efficiency"] },
