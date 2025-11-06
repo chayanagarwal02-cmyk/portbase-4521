@@ -11,13 +11,13 @@ import {
 import { profileData } from '@/lib/profile-data';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { HelpCircle, Users, TrendingUp } from 'lucide-react';
+import { HelpCircle, Users, TrendingUp, Award, Star, Rocket, Briefcase, GraduationCap } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import type { ProfileCircle, ProfileMetric } from '@/lib/types';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import Image from 'next/image';
 import { SkillsOverviewChart } from '@/components/portfolio/skills-overview-chart';
-import { dataScientistASkills } from '@/lib/data';
+import { achievements, careerJourney, virtualInternships, dataScientistASkills } from '@/lib/data';
 
 const quickStats = [
     { label: 'Projects Completed', value: '15+' },
@@ -29,6 +29,50 @@ const quickStats = [
     { label: 'Tech Blogs Written', value: '3' },
     { label: 'Speaking Engagements', value: '3' },
 ];
+
+const CultNinjaIcon = (props: React.SVGProps<SVGSVGElement>) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" {...props}>
+      <circle cx="50" cy="50" r="48" fill="none" stroke="currentColor" strokeWidth="2"/>
+      <path id="top" d="M 20, 50 a 30,30 0 1,1 60,0" fill="none" />
+      <text>
+        <textPath href="#top" startOffset="50%" textAnchor="middle" fontSize="10" fill="currentColor">
+          EARNED NOT BOUGHT
+        </textPath>
+      </text>
+      <path id="bottom" d="M 20, 50 a 30,30 0 0,0 60,0" fill="none" />
+      <text>
+        <textPath href="#bottom" startOffset="50%" textAnchor="middle" fontSize="10" fill="currentColor">
+          CULT NINJA
+        </textPath>
+      </text>
+      <g transform="translate(50 50) scale(0.4)">
+        <circle cx="0" cy="-15" r="5" fill="currentColor" />
+        <path d="M -20 0 L 20 0" stroke="currentColor" strokeWidth="4" />
+        <path d="M -15 15 L 0 5 L 15 15 Z" fill="currentColor" />
+      </g>
+    </svg>
+  );
+
+const CaptainIcon = (props: React.SVGProps<SVGSVGElement>) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" {...props}>
+        <circle cx="50" cy="50" r="45" fill="#1E3A8A" stroke="#FBBF24" strokeWidth="4" />
+        <text x="50" y="30" textAnchor="middle" fill="white" fontSize="8" className="font-headline">ACHIEVEMENT</text>
+        <g transform="translate(50 55) scale(0.3)">
+            <path d="M0-25 l5,10 h15 l-10,15 l5,20 l-15-10 l-15,10 l5-20 l-10-15 h15 z" fill="none" stroke="#FBBF24" strokeWidth="3" />
+            <circle cx="0" cy="0" r="10" fill="none" stroke="#FBBF24" strokeWidth="3"/>
+            <path d="M0-10 V10 M-10,0 H10" stroke="#FBBF24" strokeWidth="3"/>
+        </g>
+        <text x="50" y="80" textAnchor="middle" fill="white" fontSize="6">CAPTAIN OF THE MONTH</text>
+    </svg>
+);
+
+const iconMap = {
+    Award,
+    Star,
+    CultNinja: CultNinjaIcon,
+    Rocket,
+    Captain: CaptainIcon
+};
 
 export function OverviewSection() {
     const dataAnalystMetrics = profileData['Data Analyst'];
@@ -227,6 +271,81 @@ export function OverviewSection() {
                 </CardContent>
             </Card>
         </div>
+
+      <div>
+        <h3 className="text-center text-xl font-headline mb-6">Achievements &amp; Certifications</h3>
+        <TooltipProvider>
+            <div className="flex justify-center gap-4">
+                {achievements.map((ach, i) => {
+                    const Icon = iconMap[ach.iconName];
+                    return (
+                        <Tooltip key={i}>
+                            <TooltipTrigger asChild>
+                                <button className={`flex items-center justify-center w-16 h-16 rounded-full ${ach.color} transition-transform hover:scale-110`}>
+                                    <Icon className="w-8 h-8" />
+                                </button>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                                <p>{ach.tooltip}</p>
+                            </TooltipContent>
+                        </Tooltip>
+                    )
+                })}
+            </div>
+        </TooltipProvider>
+      </div>
+
+      <Card className="bg-card/50">
+        <CardHeader>
+            <CardTitle className="flex items-center gap-2 font-headline text-xl">
+                <Briefcase className="h-5 w-5 text-primary" />
+                Career Journey
+            </CardTitle>
+        </CardHeader>
+        <CardContent>
+            <div className="relative pl-6">
+                <div className="absolute left-[30px] h-full w-0.5 bg-border -translate-x-1/2"></div>
+                {careerJourney.map((item, index) => (
+                    <div key={index} className="relative pl-8 pb-8">
+                        <div className="absolute left-0 top-1.5 flex items-center">
+                            <div className="w-4 h-4 rounded-full bg-primary z-10"></div>
+                        </div>
+                        <p className="text-sm text-muted-foreground">{item.year}</p>
+                        <h4 className="font-semibold text-foreground">{item.role}</h4>
+                        <p className="text-sm text-muted-foreground font-semibold">{item.company}</p>
+                        <p className="text-sm text-muted-foreground mt-1">{item.description}</p>
+                    </div>
+                ))}
+            </div>
+        </CardContent>
+      </Card>
+      
+      <Card className="bg-card/50">
+        <CardHeader>
+            <CardTitle className="flex items-center gap-2 font-headline text-xl">
+                <GraduationCap className="h-5 w-5 text-primary" />
+                Virtual Internships
+            </CardTitle>
+        </CardHeader>
+        <CardContent>
+            <div className="relative pl-6">
+                <div className="absolute left-[30px] h-full w-0.5 bg-border -translate-x-1/2"></div>
+                {virtualInternships.map((item, index) => (
+                    <div key={index} className="relative pl-8 pb-8 last:pb-0">
+                        <div className="absolute left-0 top-1.5 flex items-center">
+                            <div className="w-4 h-4 rounded-full bg-primary z-10"></div>
+                        </div>
+                        <p className="text-sm text-muted-foreground">{item.year}</p>
+                        <h4 className="font-semibold text-foreground">{item.role}</h4>
+                         <p className="text-sm text-muted-foreground font-semibold">{item.company}</p>
+                        <p className="text-sm text-muted-foreground mt-1">{item.description}</p>
+                    </div>
+                ))}
+            </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }
+
+    
