@@ -74,6 +74,10 @@ export const heroData: Record<Role, {title: string; subtitle: string; badges: {t
         { text: "LLMs", className: "bg-green-900/50 text-green-300 border-green-700"},
         { text: "AI Agents", className: "bg-purple-900/50 text-purple-300 border-purple-700"}
     ],
+    profiles: [
+      { value: 'ai-data-scientist', label: 'AI Data Scientist' },
+      { value: 'data-scientist-a', label: 'Data Scientist - A' },
+    ]
   }
 }
 

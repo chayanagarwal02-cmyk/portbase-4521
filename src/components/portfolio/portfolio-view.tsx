@@ -38,7 +38,7 @@ function PortfolioViewInternal({ role }: { role: string }) {
     if (profile) {
       setActiveProfile(profile);
     } else if (role === 'ai-universe') {
-      setActiveProfile('ai-universe');
+      setActiveProfile('ai-data-scientist');
     }
   }, [searchParams, role]);
 

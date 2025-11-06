@@ -354,5 +354,15 @@ export const profileData: ProfileDataMap = {
         { "category": "Tool Integration", "indicator": "Tool Usefulness", "format": "Count", "example_value": "4 Tools", "description": "Number of Genkit tools actively used by AI agents." },
         { "category": "Tool Integration", "indicator": "API Calls", "format": "Count", "example_value": "120/day", "description": "Number of daily calls to external AI model APIs." }
     ]
+  },
+  "Data Scientist - A": {
+    "about": "This is the placeholder content for the Data Scientist - A profile.",
+    "circles": [],
+    "metrics": []
+  },
+  "AI Data Scientist": {
+    "about": "This is the placeholder content for the AI Data Scientist profile.",
+    "circles": [],
+    "metrics": []
   }
 }

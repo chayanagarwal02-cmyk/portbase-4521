@@ -130,7 +130,7 @@ export interface ProfileData {
   metrics: ProfileMetric[];
 }
 
-export type ProfileName = 'Data Analyst' | 'Data Scientist' | 'Data Engineer' | 'AI Universe';
+export type ProfileName = 'Data Analyst' | 'Data Scientist' | 'Data Engineer' | 'Ai Universe' | 'Data Scientist - A' | 'AI Data Scientist';
 
 export type ProfileDataMap = {
   [key in ProfileName]: ProfileData;
