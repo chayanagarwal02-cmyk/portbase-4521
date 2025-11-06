@@ -10,9 +10,11 @@
 
 import { ai } from '@/ai/genkit';
 import { z } from 'zod';
+import type { Role } from '@/lib/data';
 
 const LinkedinVerificationInputSchema = z.object({
   url: z.string().url().describe('The LinkedIn profile URL.'),
+  role: z.string().describe('The role of the visitor.'),
 });
 export type LinkedinVerificationInput = z.infer<typeof LinkedinVerificationInputSchema>;
 
@@ -32,25 +34,28 @@ const verifyLinkedinFlow = ai.defineFlow(
     outputSchema: LinkedinVerificationOutputSchema,
   },
   async (input) => {
+    
+    const fallbackName = input.role === 'cxo' ? 'Valued Executive' : 'AI Enthusiast';
+
     try {
       const urlStr = input.url;
       
       // Basic validation for a LinkedIn profile URL structure.
       if (!/linkedin\.com\/in\//.test(urlStr)) {
-        return { name: 'Data Professional' };
+        return { name: fallbackName };
       }
       
       const cleanUrl = urlStr.split('?')[0].replace(/\/$/, '');
       const slugIndex = cleanUrl.indexOf('/in/');
       
       if (slugIndex === -1) {
-        return { name: 'Data Professional' };
+        return { name: fallbackName };
       }
 
       let nameSlug = cleanUrl.substring(slugIndex + 4);
 
       if (!nameSlug) {
-        return { name: 'Data Professional' };
+        return { name: fallbackName };
       }
       
       // Replace hyphens with spaces and trim any extra whitespace.
@@ -62,12 +67,12 @@ const verifyLinkedinFlow = ai.defineFlow(
         .map(part => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase())
         .join(' ');
 
-      return { name: name || 'Data Professional' };
+      return { name: name || fallbackName };
 
     } catch (e) {
       console.error('Error parsing LinkedIn URL', e);
       // Fallback name for any unexpected errors during processing
-      return { name: 'Data Professional' };
+      return { name: fallbackName };
     }
   }
 );

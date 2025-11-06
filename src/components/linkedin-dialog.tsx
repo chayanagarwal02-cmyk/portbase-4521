@@ -21,75 +21,65 @@ import { saveProfileView } from '@/ai/flows/save-profile-view';
 import type { Role } from '@/lib/data';
 
 const roleTitles: Record<string, string> = {
-  'data-professional': 'Data Professional Verification',
-  'hiring-manager': 'Hiring Manager Verification',
-  hr: 'HR Professional Verification'
+  'cxo': 'Executive Verification',
+  'ai-universe': 'AI Universe Access',
 }
 
 export function LinkedinDialog({ open, onOpenChange, role }: { open: boolean, onOpenChange: (open: boolean) => void, role: Role | null }) {
-  // const [linkedinUrl, setLinkedinUrl] = useState('');
-  // const [isLoading, setIsLoading] = useState(false);
-  // const router = useRouter();
-  // const { toast } = useToast();
+  const [linkedinUrl, setLinkedinUrl] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
+  const { toast } = useToast();
 
-  // useEffect(() => {
-  //   if (!open) {
-  //     setLinkedinUrl('');
-  //     setIsLoading(false);
-  //   }
-  // }, [open]);
+  useEffect(() => {
+    if (!open) {
+      setLinkedinUrl('');
+      setIsLoading(false);
+    }
+  }, [open]);
 
-  // const handleSubmit = async (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   if (!role || !linkedinUrl || !linkedinUrl.includes('linkedin.com/in/')) {
-  //     toast({
-  //       variant: 'destructive',
-  //       title: 'Invalid URL',
-  //       description: 'Please enter a valid LinkedIn profile URL.',
-  //     });
-  //     return;
-  //   }
-  //   setIsLoading(true);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!role || !linkedinUrl || !linkedinUrl.includes('linkedin.com/in/')) {
+      toast({
+        variant: 'destructive',
+        title: 'Invalid URL',
+        description: 'Please enter a valid LinkedIn profile URL.',
+      });
+      return;
+    }
+    setIsLoading(true);
 
-  //   try {
-  //     const { name } = await verifyLinkedin({ url: linkedinUrl });
+    try {
+      const { name } = await verifyLinkedin({ url: linkedinUrl, role: role });
       
-  //     // Don't wait for this to finish, save in background
-  //     saveProfileView({
-  //       url: linkedinUrl,
-  //       name: name,
-  //       role: role,
-  //       viewedAt: new Date().toISOString(),
-  //     });
+      // Don't wait for this to finish, save in background
+      saveProfileView({
+        url: linkedinUrl,
+        name: name,
+        role: role,
+        viewedAt: new Date().toISOString(),
+      });
 
-  //     // On successful "verification", navigate to the loading page with the name
-  //     router.push(`/loading?name=${encodeURIComponent(name)}&role=${role}`);
-  //   } catch (error) {
-  //     console.error('LinkedIn verification failed:', error);
-  //     toast({
-  //       variant: 'destructive',
-  //       title: 'Verification Failed',
-  //       description: 'Could not process the LinkedIn URL. Please try again.',
-  //     });
-  //     setIsLoading(false);
-  //   }
-  // };
+      // On successful "verification", navigate to the loading page with the name
+      router.push(`/loading?name=${encodeURIComponent(name)}&role=${role}`);
+    } catch (error) {
+      console.error('LinkedIn verification failed:', error);
+      toast({
+        variant: 'destructive',
+        title: 'Verification Failed',
+        description: 'Could not process the LinkedIn URL. Please try again.',
+      });
+      setIsLoading(false);
+    }
+  };
   
   if (!role) return null;
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader>
-          <DialogTitle className="flex items-center gap-2">
-            <Linkedin className="h-5 w-5 text-primary" />
-            {roleTitles[role] || 'Profile Verification'}
-          </DialogTitle>
-          <DialogDescription>
-            This feature is temporarily disabled.
-          </DialogDescription>
-        </DialogHeader>
-        {/* <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
               <Linkedin className="h-5 w-5 text-primary" />
@@ -126,9 +116,8 @@ export function LinkedinDialog({ open, onOpenChange, role }: { open: boolean, on
               )}
             </Button>
           </DialogFooter>
-        </form> */}
+        </form>
       </DialogContent>
     </Dialog>
   );
 }
-

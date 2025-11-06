@@ -26,6 +26,7 @@ const roles = [
     description: 'High-level overview of business impact and strategy.',
     icon: TrendingUp,
     href: '/portfolio?role=cxo',
+    isDialog: true,
   },
   {
     role: 'stalker' as Role,
@@ -40,6 +41,7 @@ const roles = [
     description: 'Explore AI-powered features and generative content.',
     icon: BrainCircuit,
     href: '/portfolio?role=ai-universe',
+    isDialog: true,
   },
 ];
 
