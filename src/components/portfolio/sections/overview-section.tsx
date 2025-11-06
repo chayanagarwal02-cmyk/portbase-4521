@@ -90,8 +90,12 @@ const virtualInternships = [
 
 export function OverviewSection({ profile }: { profile: string }) {
   const profileTitle = profile.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-  const currentProfileData = profileData[profileTitle as keyof typeof profileData];
+  const currentProfileData = profileData[profileTitle as keyof typeof profileData] || profileData['Data Analyst'];
   const chartColors = ["hsl(var(--chart-1))", "hsl(var(--chart-2))", "hsl(var(--chart-3))", "hsl(var(--chart-4))"];
+
+  if (!currentProfileData) {
+    return <div>Loading profile...</div>; // Or some other fallback UI
+  }
 
   return (
     <div className="space-y-12">
@@ -307,3 +311,6 @@ export function OverviewSection({ profile }: { profile: string }) {
   );
 }
 
+
+
+    

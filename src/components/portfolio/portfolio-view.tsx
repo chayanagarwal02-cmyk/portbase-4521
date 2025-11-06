@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useEffect, useState, useRef, Suspense } from 'react';
@@ -85,7 +86,6 @@ function PortfolioViewInternal({ role }: { role: string }) {
   };
 
   const TABS_CONTENT: { [key: string]: React.ReactNode } = {
-    'About Me': <OverviewSection profile={activeProfile} />,
     'Overview': <OverviewSection profile={activeProfile} />,
     'Team Projects': <ProjectsSection />,
     'Leadership': <LeadershipSection />,
@@ -97,7 +97,7 @@ function PortfolioViewInternal({ role }: { role: string }) {
     'Blog': <BlogSection />,
     'Videos': <VideosSection />,
     'Strategic Value': <StrategicValueSection />,
-    'AI Universe': <OverviewSection profile="ai-universe" />,
+    'AI Universe': <OverviewSection profile={activeProfile} />,
   };
   
   const TAB_LABELS: { [key: string]: string } = {
@@ -172,3 +172,5 @@ export function PortfolioView({ role }: { role: string }) {
     </Suspense>
   )
 }
+
+    
