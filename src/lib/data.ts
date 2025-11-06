@@ -1,9 +1,9 @@
 import type { Project, Skill, Leadership, Certificate, Blog, Role, AnalyticsData, CodeSample, PerformanceMetric, SkillOverview, Testimonial, TechStack, CategorizedSkills, Achievement, CareerItem } from './types';
 
 export const contentVisibility: Record<Role, string[]> = {
-  'hr': ['About Me', 'Team Projects', 'Leadership', 'Certifications', 'Contact'],
-  'data-professional': ['Overview', 'Projects', 'Code', 'Analytics', 'Certifications'],
-  'hiring-manager': ['Overview', 'Projects', 'Analytics', 'Leadership', 'Certifications', 'Contact'],
+  'hr': [],
+  'data-professional': [],
+  'hiring-manager': [],
   'stalker': ['Blog', 'Videos'],
   'cxo': [],
   'ai-universe': ['Overview', 'Projects', 'Analytics', 'Leadership', 'Certifications', 'Contact'],
@@ -11,46 +11,19 @@ export const contentVisibility: Record<Role, string[]> = {
 
 export const heroData: Record<Role, {title: string; subtitle: string; badges: {text: string, className: string}[], profiles?: { value: string, label: string }[], profileBadges?: Record<string, {text: string, className: string}[]>}> = {
   'hr': {
-    title: "Hello - HR Professional",
-    subtitle: "Select a profile to view tailored information on culture, team dynamics, and professional growth.",
-    badges: [
-        { text: "Team Player", className: "bg-blue-900/50 text-blue-300 border-blue-700" },
-        { text: "Effective Communicator", className: "bg-green-900/50 text-green-300 border-green-700"},
-        { text: "Adaptable", className: "bg-purple-900/50 text-purple-300 border-purple-700"}
-    ],
-    profiles: [
-        { value: 'data-analyst', label: 'Data Analyst' },
-        { value: 'data-scientist', label: 'Data Scientist' },
-        { value: 'data-engineer', label: 'Data Engineer' },
-    ]
+    title: "",
+    subtitle: "",
+    badges: [],
   },
   'data-professional': {
-    title: "Data Professional Deep Dive",
-    subtitle: "Select a profile for a technical exploration of projects, code, and analytics.",
-    badges: [
-      { text: "Python", className: "bg-yellow-900/50 text-yellow-300 border-yellow-700" },
-      { text: "SQL", className: "bg-sky-900/50 text-sky-300 border-sky-700"},
-      { text: "Cloud Certified", className: "bg-orange-900/50 text-orange-300 border-orange-700"}
-    ],
-    profiles: [
-        { value: 'data-analyst', label: 'Data Analyst' },
-        { value: 'data-scientist', label: 'Data Scientist' },
-        { value: 'data-engineer', label: 'Data Engineer' },
-    ]
+    title: "",
+    subtitle: "",
+    badges: [],
   },
   'hiring-manager': {
-    title: "Hello - Hiring Manager",
-    subtitle: "Select a profile to assess practical skills, project impact, and leadership qualities.",
-    badges: [
-      { text: "Problem Solver", className: "bg-rose-900/50 text-rose-300 border-rose-700" },
-      { text: "Results-Oriented", className: "bg-indigo-900/50 text-indigo-300 border-indigo-700"},
-      { text: "Project Leadership", className: "bg-emerald-900/50 text-emerald-300 border-emerald-700"}
-    ],
-    profiles: [
-        { value: 'data-analyst', label: 'Data Analyst' },
-        { value: 'data-scientist', label: 'Data Scientist' },
-        { value: 'data-engineer', label: 'Data Engineer' },
-    ]
+    title: "",
+    subtitle: "",
+    badges: [],
   },
   'stalker': {
     title: "A Glimpse into a Professional's Journey",
@@ -448,42 +421,6 @@ ORDER BY
     }
 ];
 
-export const hrPerformanceMetrics: PerformanceMetric[] = [
-    { name: "Team Player", value: 95, color: "hsl(var(--chart-1))" },
-    { name: "Communication", value: 88, color: "hsl(var(--chart-2))" },
-    { name: "Adaptability", value: 92, color: "hsl(var(--chart-3))" },
-];
-
-export const dataProfessionalPerformanceMetrics: PerformanceMetric[] = [
-    { name: "Problem Solving", value: 98, color: "hsl(var(--chart-4))" },
-    { name: "Analytical Skills", value: 95, color: "hsl(var(--chart-5))" },
-    { name: "Attention to Detail", value: 91, color: "hsl(var(--chart-1))" },
-];
-
-export const skillsOverview: SkillOverview[] = [
-    { subject: "Python", value: 90 },
-    { subject: "SQL", value: 85 },
-    { subject: "Cloud", value: 80 },
-    { subject: "Data Viz", value: 78 },
-    { subject: "ETL", value: 88 },
-    { subject: "ML/AI", value: 72 },
-];
-
-export const dataAnalystSkills: CategorizedSkills = {
-    'Core Technical & Programming Skills': [
-        { subject: 'SQL', value: 80 },
-        { subject: 'Data Visualization', value: 80 },
-        { subject: 'Spreadsheets', value: 80 },
-        { subject: 'Python', value: 80 },
-    ],
-    'Essential Soft Skills': [
-        { subject: 'Data Storytelling & Communication', value: 80 },
-        { subject: 'Business Acumen', value: 80 },
-        { subject: 'Critical Thinking', value: 80 },
-        { subject: 'Problem-Solving', value: 80 },
-    ],
-};
-
 export const dataScientistSkills: CategorizedSkills = {
     'Advanced Modeling': [
         { subject: 'Classification', value: 90 },
@@ -499,16 +436,12 @@ export const dataScientistSkills: CategorizedSkills = {
     ],
 };
 
-export const dataEngineerSkills: CategorizedSkills = {
-    'Databases & Warehousing': [
-        { subject: 'PostgreSQL', value: 95 },
-        { subject: 'BigQuery', value: 85 },
-        { subject: 'Snowflake', value: 75 },
-    ],
-    'Data Orchestration & Transformation': [
-        { subject: 'Airflow/Prefect', value: 92 },
-        { subject: 'dbt', value: 88 },
-        { subject: 'Spark', value: 80 },
+export const dataAnalystSkills: CategorizedSkills = {
+    'Essential Soft Skills': [
+        { subject: 'Data Storytelling & Communication', value: 80 },
+        { subject: 'Business Acumen', value: 80 },
+        { subject: 'Critical Thinking', value: 80 },
+        { subject: 'Problem-Solving', value: 80 },
     ],
 };
 

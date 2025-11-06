@@ -21,30 +21,6 @@ import type { Role } from '@/lib/data';
 
 const roles = [
   {
-    role: 'hiring-manager' as Role,
-    title: 'Hiring Manager',
-    description: 'Assess practical skills, project impact, and leadership.',
-    icon: UserSearch,
-    href: '/portfolio?role=hiring-manager',
-    isDialog: false,
-  },
-  {
-    role: 'data-professional' as Role,
-    title: 'Data Professional',
-    description: 'A technical deep-dive into projects, code, and analytics.',
-    icon: Database,
-    href: '/portfolio?role=data-professional',
-    isDialog: false,
-  },
-  {
-    role: 'hr' as Role,
-    title: 'HR Professional',
-    description: 'View culture fit, team skills, and professional growth.',
-    icon: UserCheck,
-    href: '/portfolio?role=hr',
-    isDialog: false,
-  },
-  {
     role: 'cxo' as Role,
     title: 'Executive Briefing',
     description: 'High-level overview of business impact and strategy.',
@@ -68,9 +44,6 @@ const roles = [
 ];
 
 const cardColors = [
-  'hover:bg-gradient-to-br from-background to-blue-900/40',
-  'hover:bg-gradient-to-br from-background to-purple-900/40',
-  'hover:bg-gradient-to-br from-background to-green-900/40',
   'hover:bg-gradient-to-br from-background to-red-900/40',
   'hover:bg-gradient-to-br from-background to-gray-800/40',
   'hover:bg-gradient-to-br from-background to-teal-900/40',
@@ -123,6 +96,8 @@ export function LandingPageClient() {
       </div>
     );
   
+    // This check is kept for potential future use even if no current roles use it.
+    // @ts-ignore
     if (card.isDialog) {
       return (
         <button onClick={() => handleCardClick(card.role)} className="group w-full text-left">

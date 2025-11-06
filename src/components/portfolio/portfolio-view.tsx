@@ -6,7 +6,6 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { PortfolioHeader } from '@/components/portfolio/header';
 import { HeroSection } from '@/components/portfolio/sections/hero-section';
-import { OverviewSection as GeneralOverviewSection } from '@/components/portfolio/sections/overview-section';
 import { LeadershipSection as GeneralLeadershipSection } from '@/components/portfolio/sections/leadership-section';
 import { CertificatesSection as GeneralCertificatesSection } from '@/components/portfolio/sections/certificates-section';
 import { ProjectsSection as GeneralProjectsSection } from '@/components/portfolio/sections/projects-section';
@@ -40,7 +39,7 @@ function PortfolioViewInternal({ role }: { role: string }) {
   const [activeProfile, setActiveProfile] = useState('data-analyst');
   const sectionsRef = useRef<Map<string, HTMLDivElement | null>>(new Map());
 
-  const validRole = (role as Role) in contentVisibility ? (role as Role) : 'hr';
+  const validRole = (role as Role) in contentVisibility ? (role as Role) : 'stalker';
   const visibleTabs = contentVisibility[validRole];
 
   useEffect(() => {
@@ -97,11 +96,8 @@ function PortfolioViewInternal({ role }: { role: string }) {
   
   const getTabContent = (tabName: string) => {
     const generalComponents: { [key: string]: React.ReactNode } = {
-        'Overview': <GeneralOverviewSection profile={activeProfile} />,
         'Leadership': <GeneralLeadershipSection />,
         'Certifications': <GeneralCertificatesSection />,
-        'Projects': <GeneralProjectsSection />,
-        'Team Projects': <GeneralProjectsSection />,
         'Code': <CodeSection />,
         'Analytics': <GeneralAnalyticsSection />,
         'Blog': <BlogSection />,
@@ -130,6 +126,7 @@ function PortfolioViewInternal({ role }: { role: string }) {
                 default: return generalComponents[tabName];
             }
         default:
+            // Fallback for any other profile that might exist but isn't explicitly handled
             return generalComponents[tabName];
     }
   };
@@ -191,6 +188,7 @@ function PortfolioViewInternal({ role }: { role: string }) {
         ) : (
           <div className="mt-12">
              {/* Fallback for roles with no tabs if needed */}
+             {getTabContent(activeTab)}
           </div>
         )}
       </main>
