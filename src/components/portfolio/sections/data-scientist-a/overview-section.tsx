@@ -99,7 +99,7 @@ export function OverviewSection() {
                         <PolarAngleAxis type="number" domain={[0, 100]} angleAxisId={0} tick={false}/>
                         <RadialBar background clockWise dataKey="value" cornerRadius={10} fill={chartColors[index % chartColors.length]} />
                         <text x="50%" y="50%" textAnchor="middle" dominantBaseline="middle" className="fill-foreground text-2xl font-bold">
-                            {`${metric.value}%`}
+                            {`S{metric.value}%`}
                         </text>
                         </RadialBarChart>
                     </ResponsiveContainer>
