@@ -25,17 +25,12 @@ import { ExecutiveBriefingView } from '@/components/portfolio/executive-briefing
 
 // AI Data Scientist Sections
 import { OverviewSection as AiDataScientistOverview } from './sections/ai-data-scientist/overview-section';
-import { ProjectsSection as AiDataScientistProjects } from './sections/ai-data-scientist/projects-section';
 import { AnalyticsSection as AiDataScientistAnalytics } from './sections/ai-data-scientist/analytics-section';
-import { LeadershipSection as AiDataScientistLeadership } from './sections/ai-data-scientist/leadership-section';
-import { CertificatesSection as AiDataScientistCertificates } from './sections/ai-data-scientist/certificates-section';
+
 
 // Data Scientist - A Sections
 import { OverviewSection as DataScientistAOverview } from './sections/data-scientist-a/overview-section';
-import { ProjectsSection as DataScientistAProjects } from './sections/data-scientist-a/projects-section';
 import { AnalyticsSection as DataScientistAAnalytics } from './sections/data-scientist-a/analytics-section';
-import { LeadershipSection as DataScientistALeadership } from './sections/data-scientist-a/leadership-section';
-import { CertificatesSection as DataScientistACertificates } from './sections/data-scientist-a/certificates-section';
 
 
 function PortfolioViewInternal({ role }: { role: string }) {
@@ -119,10 +114,10 @@ function PortfolioViewInternal({ role }: { role: string }) {
         case 'ai-data-scientist':
             switch (tabName) {
                 case 'Overview': return <AiDataScientistOverview />;
-                case 'Projects': return <AiDataScientistProjects />;
+                case 'Projects': return <GeneralProjectsSection />;
                 case 'Analytics': return <AiDataScientistAnalytics />;
-                case 'Leadership': return <AiDataScientistLeadership />;
-                case 'Certifications': return <AiDataScientistCertificates />;
+                case 'Leadership': return <GeneralLeadershipSection />;
+                case 'Certifications': return <GeneralCertificatesSection />;
                 default: return generalComponents[tabName];
             }
         case 'data-scientist-a':

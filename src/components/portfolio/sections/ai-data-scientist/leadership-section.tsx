@@ -1,17 +1,8 @@
 
 'use client';
 
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { LeadershipSection as GeneralLeadershipSection } from '../leadership-section';
 
 export function LeadershipSection() {
-  return (
-    <Card>
-      <CardHeader>
-        <CardTitle>AI Data Scientist - Leadership</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <p>Placeholder content for AI Data Scientist Leadership. This section will outline leadership experiences relevant to this profile.</p>
-      </CardContent>
-    </Card>
-  );
+  return <GeneralLeadershipSection />;
 }

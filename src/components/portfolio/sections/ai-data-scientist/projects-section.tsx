@@ -1,17 +1,8 @@
 
 'use client';
 
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { ProjectsSection as GeneralProjectsSection } from '../projects-section';
 
 export function ProjectsSection() {
-  return (
-    <Card>
-      <CardHeader>
-        <CardTitle>AI Data Scientist - Projects</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <p>Placeholder content for AI Data Scientist Projects. This section will feature projects relevant to AI and data science.</p>
-      </CardContent>
-    </Card>
-  );
+  return <GeneralProjectsSection />;
 }
