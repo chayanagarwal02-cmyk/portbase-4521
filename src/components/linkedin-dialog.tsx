@@ -62,7 +62,7 @@ export function LinkedinDialog({ open, onOpenChange, role }: { open: boolean, on
       });
 
       // On successful "verification", navigate to the loading page with the name
-      router.push(`/loading?name=${encodeURIComponent(name)}&role=${role}`);
+      router.push(`/pre-flight-check?name=${encodeURIComponent(name)}&role=${role}`);
     } catch (error) {
       console.error('LinkedIn verification failed:', error);
       toast({
