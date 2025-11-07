@@ -1,16 +1,13 @@
+
 'use client';
 
 import Link from 'next/link';
 import {
-  Briefcase,
-  Database,
   Eye,
-  UserCheck,
   ArrowRight,
   Plane,
   Quote,
   TrendingUp,
-  UserSearch,
   BrainCircuit,
 } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -98,8 +95,6 @@ export function LandingPageClient() {
       </div>
     );
   
-    // This check is kept for potential future use even if no current roles use it.
-    // @ts-ignore
     if (card.isDialog) {
       return (
         <button onClick={() => handleCardClick(card.role)} className="group w-full text-left">
